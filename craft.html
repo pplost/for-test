@@ -26,10 +26,10 @@
 		text-align:center;
 		}
 	.odd{
-		background-color:#c7e5ff
+		background-color:#fff8e7
 	}
 	.even{
-		background-color:#eaf5ff
+		background-color:#fff0cd
 	}
 	</style>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
@@ -63,6 +63,7 @@
 				tds += '<td style="text-align:left">' + info["desc"] + '</td>';
 				tr.append(tds);
 				$("#cftable").append(tr);
+				line+=1;
 			})
 		})  
 	})  
