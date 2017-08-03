@@ -13,7 +13,7 @@
 	table.frametable th {
 		vertical-align:text-center;
 		padding:5px 15px 5px 6px;
-		background-color:#F5F5F5;
+		background-color:#f5e8cb;
 		border:1px solid #aaa;
 		text-align:center;
 		color:#333333;
@@ -25,15 +25,29 @@
 		border:1px solid #aaa;
 		text-align:center;
 		}
+	.odd{
+		background-color:#fff8e7
+	}
+	.even{
+		background-color:#fff0cd
+	}
 	</style>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript">  
 	$(function(){  
 		$.getJSON("data/craft.json",function(data){  
+			var line = 1
 			$.each(data,function(infoIndex,info){
+				var sty=""
+				if((line % 2) == 0){
+					sty=' class="even"';
+				}
+				else{
+					sty=' class="odd"';
+				}
 				var clink = 'href="http://fgowiki.com/guide/equipdetail/' + info["id"] + '"';
 				var slink = 'href="http://fgowiki.com/guide/petdetail/' + info["serventId"] + '"';
-				var tr = $('<tr></tr>');
+				var tr = $('<tr' + sty + '></tr>');
 				var tds = '<td><a ' + clink + ' target="_blank">' + info["id"] + '</a></td>';
 				tds += '<td><a ' + clink + ' target="_blank">' + info["name"] + '</a></td>';
 				tds += '<td><a ' + slink + ' target="_blank">' + info["servent"] + '</a></td>';
@@ -47,6 +61,7 @@
 				tds += '<td style="text-align:left">' + info["desc"] + '</td>';
 				tr.append(tds);
 				$("#cftable").append(tr);
+				line+=1;
 			})
 		})  
 	})  
