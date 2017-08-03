@@ -4,6 +4,10 @@
 	<title>羁绊礼装表</title>
 	
 	<style type="text/css">
+	body {
+		background-color:#fff0cd
+	}
+	
 	table.frametable {
 		margin-top:15px;
 		border-collapse:collapse;
@@ -25,11 +29,9 @@
 		border:1px solid #aaa;
 		text-align:center;
 		}
+		
 	.odd{
 		background-color:#fff8e7
-	}
-	.even{
-		background-color:#fff0cd
 	}
 	</style>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
@@ -39,10 +41,7 @@
 			var line = 1
 			$.each(data,function(infoIndex,info){
 				var sty=""
-				if((line % 2) == 0){
-					sty=' class="even"';
-				}
-				else{
+				if((line % 2) == 1){
 					sty=' class="odd"';
 				}
 				var clink = 'href="http://fgowiki.com/guide/equipdetail/' + info["id"] + '"';
