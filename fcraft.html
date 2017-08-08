@@ -41,7 +41,34 @@
 	}
 	</style>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
-	<script type="text/javascript">  
+</head>
+<body>
+	<table class="frametable" id="cftable">
+		<tr>
+			<th rowspan="2">ID</th>
+			<th rowspan="2">图标</th>
+			<th rowspan="2">名称</th>
+			<th rowspan="2">隶属从者</th>
+			<th rowspan="2">头像</th>
+			<th colspan="7">羁绊点数(万)</th>
+			<th rowspan="2">说明</th>
+		</tr>
+		<tr>
+			<th>0-5</th>
+			<th>5-6</th>
+			<th>6-7</th>
+			<th>7-8</th>
+			<th>8-9</th>
+			<th>9-10</th>
+			<th>总计</th>
+		</tr>
+	</table>
+	<p style="text-align:right; font-size:10px;"><a href="http://bbs.nga.cn/read.php?tid=11177929">数据来源：地球联邦4@NGA</a></p>
+	<p style="text-align:right; font-size:10px;"><a href="http://bbs.nga.cn/read.php?tid=11961759">校对：进击的黄瓜2@NGA</a></p>
+</body>
+</html>
+
+<script type="text/javascript">  
 	$(function(){  
 		$.getJSON("data/fcraft.json",function(data){
 			var line = 1
@@ -72,32 +99,5 @@
 			})
 		})  
 	})  
-	</script>  
-</head>
-<body>
-	<table class="frametable" id="cftable">
-		<tr>
-			<th rowspan="2">ID</th>
-			<th rowspan="2">图标</th>
-			<th rowspan="2">名称</th>
-			<th rowspan="2">隶属从者</th>
-			<th rowspan="2">头像</th>
-			<th colspan="7">羁绊点数(万)</th>
-			<th rowspan="2">说明</th>
-		</tr>
-		<tr>
-			<th>0-5</th>
-			<th>5-6</th>
-			<th>6-7</th>
-			<th>7-8</th>
-			<th>8-9</th>
-			<th>9-10</th>
-			<th>总计</th>
-		</tr>
-	</table>
-	<p style="text-align:right; font-size:10px;"><a href="http://bbs.nga.cn/read.php?tid=11177929">数据来源：地球联邦4@NGA</a></p>
-	<p style="text-align:right; font-size:10px;"><a href="http://bbs.nga.cn/read.php?tid=11961759">校对：进击的黄瓜2@NGA</a></p>
-</body>
-</html>
-
+</script>  
 
