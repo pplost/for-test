@@ -67,11 +67,12 @@
 </body>
 </html>
 
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
 <script type="text/javascript">  
 $(function(){  
 	$.getJSON("data/fcraft.json",function(data){
 		var line = 1
+		alert('hhh')
 		$.each(data,function(infoIndex,info){
 			var sty=""
 			if((line % 2) == 1){
