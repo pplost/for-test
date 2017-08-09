@@ -1,0 +1,191 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>NP</title>
+	<link rel="stylesheet" href="css/table.css" type="text/css" />
+</style> 
+</head>
+<body>
+	<table>
+		<tr>
+			<td>servent</td>
+			<td colspan="3">
+				<select id="servant">
+					<option value="-1">select</option>
+				</select>
+			</td>
+			<td>query</td>
+			<td colspan="3">
+				<input type="text" name="query" width="60">
+				<input type="button" onclick="alert('Hello World!')" value="query">
+			</td>
+		</tr>
+		
+		<tr>
+			<td>card</td>
+			<td colspan="7">
+		</tr>
+		
+		<tr>
+			<td>busterhits</td>
+			<td><input type="text" name="busterhits" disabled></td>
+			<td>artshits</td>
+			<td><input type="text" name="artshits" disabled></td>
+			<td>quickhits</td>
+			<td><input type="text" name="quickhits" disabled></td>
+			<td>exhits</td>
+			<td><input type="text" name="exhits" disabled></td>
+		</tr>
+		
+		<tr>
+			<td>busternp</td>
+			<td><input type="text" name="busternp" disabled></td>
+			<td>artsnp</td>
+			<td><input type="text" name="artsnp" disabled></td>
+			<td>quicknp</td>
+			<td><input type="text" name="quicknp" disabled></td>
+			<td>exnp</td>
+			<td><input type="text" name="exnp" disabled></td>
+		</tr>
+		
+		<tr>
+			<td>ride</td>
+			<td><input type="text" name="ride" disabled></td>
+			<td>artsbuild</td>
+			<td><input type="text" name="artsbuild" disabled></td>
+			<td colspan="4"></td>
+		</tr>
+		
+		<tr>
+			<td>npup</td>
+			<td><input type="text" name="npup"></td>
+			<td>artsup</td>
+			<td><input type="text" name="artsup"></td>
+			<td>quickup</td>
+			<td><input type="text" name="quickup"></td>
+			<td colspan="2"></td>
+		</tr>
+		
+		<tr>
+			<td colspan="8" height="50"></td>
+		</tr>
+		
+		<tr>
+			<td></td>
+			<td>first</td>
+			<td>second</td>
+			<td>third</td>
+			<td>ex</td>
+			<td colspan="3"></td>
+		</tr>
+		
+		<tr>
+			<td>iscrit</td>
+			<td><input type="checkbox" name="firstcrit" value="1"></td>
+			<td><input type="checkbox" name="secondcrit" value="1"></td>
+			<td><input type="checkbox" name="thirdcrit" value="1"></td>
+			<td colspan="4"></td>
+		</tr>
+
+		<tr>
+			<td >isoverkill</td>
+			<td><input type="checkbox" name="firstok" value="1"></td>
+			<td><input type="checkbox" name="secondok" value="1"></td>
+			<td><input type="checkbox" name="thirdok" value="1"></td>
+			<td><input type="checkbox" name="exok" value="1"></td>
+			<td colspan="3"></td>
+		</tr>
+		
+		<tr>
+			<td>cardseq</td>
+			<td>
+				<select id="firstcard">
+					<option value="0">None</option>
+					<option value="1.0">Buster</option>
+					<option value="2.0">Arts</option>
+					<option value="1.5">Quick</option>
+				</select>
+			</td>
+			<td>
+				<select id="secondcard">
+					<option value="0">None</option>
+					<option value="1.0">Buster</option>
+					<option value="2.0">Arts</option>
+					<option value="1.5">Quick</option>
+				</select>
+			</td>
+			<td>
+				<select id="thirdcard">
+					<option value="0">None</option>
+					<option value="1.0">Buster</option>
+					<option value="2.0">Arts</option>
+					<option value="1.5">Quick</option>
+				</select>
+			</td>
+			<td>
+				<select id="excard">
+					<option value="0">None</option>
+					<option value="1.0">EX</option>
+				</select>
+			</td>
+			<td colspan="3"></td>
+		</tr>
+		
+		<tr>
+			<td>enemy</td>
+			<td>
+				<select id="enemyclass">
+					<option value="1">default</option>
+					<option value="1">Saber</option>
+					<option value="1">Archer</option>
+					<option value="1">Lancer</option>
+					<option value="1.1">Rider</option>
+					<option value="1.2">Caster</option>
+					<option value="0.9">Assassin</option>
+					<option value="0.9">Berserker</option>
+					<option value="1">Ruler</option>
+					<option value="1">Avenger</option>
+					<option value="1">Alter-ego</option>
+					<option value="1">MoonCancer</option>
+					<option value="1">Beast</option>
+				</select>
+			</td>
+			<td>
+				<select id="enemykind">
+					<option value="1">default</option>
+				</select>
+			</td>
+			<td colspan="5"></td>
+		</tr>
+	</table>
+</body>
+</html>
+
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+var $ = jQuery.noConflict();
+var servants = new Array();
+	$(function(){  
+		$.getJSON("data/servant.json",function(data){  
+			$.each(data,function(infoIndex,info){
+				servants["id"]=info["id"];
+				servants["name"]=info["name"];
+				servants["Shielder"]=info["Shielder"];
+				servants["BusterCard"]=info["BusterCard"];
+				servants["ArtsCard"]=info["ArtsCard"];
+				servants["QuickCard"]=info["QuickCard"];
+				servants["BusterHit"]=info["BusterHit"];
+				servants["ArtsHit"]=info["ArtsHit"];
+				servants["QuickHit"]=info["QuickHit"];
+				servants["EXHit"]=info["EXHit"];
+				servants["BusterNp"]=info["BusterNp"];
+				servants["ArtsNp"]=info["ArtsNp"];
+				servants["QuickNp"]=info["QuickNp"];
+				servants["EXNp"]=info["EXNp"];
+				servants["ArtsEff"]=info["ArtsEff"];
+				servants["QuickEff"]=info["QuickEff"];
+				$("servant").options.add(new Option("【" + servants["class"] + "】" + servants["name"], servants["id"]));
+			})
+		})  
+	})  
+</script>
