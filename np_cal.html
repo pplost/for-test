@@ -30,7 +30,7 @@
 			<td>busterhits</td>
 			<td><input type="text" id="busterhits" disabled></td>
 			<td>artshits</td>
-			<td><input type="text" id="artshits" disabled></td>
+			<td><input type="text" name="artshits" disabled></td>
 			<td>quickhits</td>
 			<td><input type="text" id="quickhits" disabled></td>
 			<td>exhits</td>
@@ -177,11 +177,13 @@
 	
 	$("#servants").change(function(){
 		var id=$("#servants").val();
-		if(id=="0"){
-			$("#busterhits").val("0");
+		if(id==0){
+			$("#busterhits").val(0);
+			$("artshits").value=0;
 		}
 		else{
 			$("#busterhits").val(servants[id].BusterHit);
+			$("artshits").value=servants[id].ArtsHit;
 		}
 		
 	});
