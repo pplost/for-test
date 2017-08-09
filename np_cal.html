@@ -172,10 +172,15 @@
 			})
 		})
 		$("#servants").val(1); 
+		updateState(1);
 	});
 	
 	$("#servants").change(function(){
 		var id=$("#servants").val();
+		updateState(id);
+	});
+	
+	function updateState(id){
 		$("#busterhits").val(servants[id].BusterHits);
 		$("#artshits").val(servants[id].ArtsHits);
 		$("#quickhits").val(servants[id].QuickHits);
@@ -186,5 +191,5 @@
 		$("#exnp").val(servants[id].EXNp);
 		$("#ride").val(servants[id].QuickEff);
 		$("#craftbuild").val(servants[id].ArtsEff);	
-	});
+	};
 </script>
