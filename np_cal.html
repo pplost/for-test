@@ -10,7 +10,7 @@
 		<tr>
 			<td>servent</td>
 			<td colspan="3">
-				<select id="servant">
+				<select id="servants">
 					<option value="-1">select</option>
 				</select>
 			</td>
@@ -170,7 +170,7 @@ var servants = new Array();
 			$.each(data,function(infoIndex,info){
 				servants["id"]=info["id"];
 				servants["name"]=info["name"];
-				servants["Shielder"]=info["Shielder"];
+				servants["class"]=info["Shielder"];
 				servants["BusterCard"]=info["BusterCard"];
 				servants["ArtsCard"]=info["ArtsCard"];
 				servants["QuickCard"]=info["QuickCard"];
@@ -184,7 +184,8 @@ var servants = new Array();
 				servants["EXNp"]=info["EXNp"];
 				servants["ArtsEff"]=info["ArtsEff"];
 				servants["QuickEff"]=info["QuickEff"];
-				$("servant").options.add(new Option("【" + servants["class"] + "】" + servants["name"], servants["id"]));
+				var lst='<option value="'+servants["id"]+'">'+servants["class"]+":"+servants["name"]+'</option>';
+				$("#servants").append();
 			})
 		})  
 	})  
