@@ -30,7 +30,7 @@
 			<td>busterhits</td>
 			<td><input type="text" id="busterhits" disabled></td>
 			<td>artshits</td>
-			<td><input type="text" name="artshits" disabled></td>
+			<td><input type="text" id="artshits" disabled></td>
 			<td>quickhits</td>
 			<td><input type="text" id="quickhits" disabled></td>
 			<td>exhits</td>
@@ -52,7 +52,7 @@
 			<td>ride</td>
 			<td><input type="text" id="ride" disabled></td>
 			<td>artsbuild</td>
-			<td><input type="text" id="artsbuild" disabled></td>
+			<td><input type="text" id="craftbuild" disabled></td>
 			<td colspan="4"></td>
 		</tr>
 		
@@ -179,11 +179,27 @@
 		var id=$("#servants").val();
 		if(id==0){
 			$("#busterhits").val(0);
-			$("artshits").value=0;
+			$("#artshits").val(0);
+			$("#quickhits").val(0);
+			$("#exhits").val(0);
+			$("#busternp").val(0);
+			$("#artsnp").val(0);
+			$("#quicknp").val(0);
+			$("#exnp").val(0);
+			$("#ride").val(0);
+			$("#craftbuild").val(0);
 		}
 		else{
-			$("#busterhits").val(servants[id].BusterHit);
-			$("artshits").value=servants[id].ArtsHit;
+			$("#busterhits").val(servants[id].BusterHits);
+			$("#artshits").val(servants[id].ArtsHits);
+			$("#quickhits").val(servants[id].QuickHits);
+			$("#exhits").val(servants[id].EXHits);
+			$("#busternp").val(servants[id].BusterNp);
+			$("#artsnp").val(servants[id].ArtsNp);
+			$("#quicknp").val(servants[id].QuickNp);
+			$("#exnp").val(servants[id].EXNp);
+			$("#ride").val(servants[id].QuickEff);
+			$("#craftbuild").val(servants[id].ArtsEff);	
 		}
 		
 	});
