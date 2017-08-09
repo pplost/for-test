@@ -171,16 +171,16 @@
 				$("#servants").append(lst);
 			})
 		})
-		$("#servants").val(1); 
-		updateState(1);
+		$("#servants").val(2); 
+		updateStatus(2);
 	});
 	
 	$("#servants").change(function(){
 		var id=$("#servants").val();
-		updateState(id);
+		updateStatus(id);
 	});
 	
-	function updateState(id){
+	function updateStatus(id){
 		$("#busterhits").val(servants[id].BusterHits);
 		$("#artshits").val(servants[id].ArtsHits);
 		$("#quickhits").val(servants[id].QuickHits);
