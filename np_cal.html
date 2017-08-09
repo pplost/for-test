@@ -10,9 +10,7 @@
 		<tr>
 			<td>servent</td>
 			<td colspan="3">
-				<select id="servants">
-					<option value="0">---------------请选择---------------</option>
-				</select>
+				<select id="servants"></select>
 			</td>
 			<td>query</td>
 			<td colspan="3">
@@ -28,31 +26,31 @@
 		
 		<tr>
 			<td>busterhits</td>
-			<td><input type="text" id="busterhits" disabled></td>
+			<td><input type="text" id="busterhits" value="0" disabled></td>
 			<td>artshits</td>
-			<td><input type="text" id="artshits" disabled></td>
+			<td><input type="text" id="artshits" value="0" disabled></td>
 			<td>quickhits</td>
-			<td><input type="text" id="quickhits" disabled></td>
+			<td><input type="text" id="quickhits" value="0" disabled></td>
 			<td>exhits</td>
-			<td><input type="text" id="exhits" disabled></td>
+			<td><input type="text" id="exhits" value="0" disabled></td>
 		</tr>
 		
 		<tr>
 			<td>busternp</td>
-			<td><input type="text" id="busternp" disabled></td>
+			<td><input type="text" id="busternp" value="0" disabled></td>
 			<td>artsnp</td>
-			<td><input type="text" id="artsnp" disabled></td>
+			<td><input type="text" id="artsnp" value="0" disabled></td>
 			<td>quicknp</td>
-			<td><input type="text" id="quicknp" disabled></td>
+			<td><input type="text" id="quicknp" value="0" disabled></td>
 			<td>exnp</td>
-			<td><input type="text" id="exnp" disabled></td>
+			<td><input type="text" id="exnp" value="0" disabled></td>
 		</tr>
 		
 		<tr>
 			<td>ride</td>
-			<td><input type="text" id="ride" disabled></td>
+			<td><input type="text" id="ride" value="0" disabled></td>
 			<td>artsbuild</td>
-			<td><input type="text" id="craftbuild" disabled></td>
+			<td><input type="text" id="craftbuild" value="0" disabled></td>
 			<td colspan="4"></td>
 		</tr>
 		
@@ -177,30 +175,15 @@
 	
 	$("#servants").change(function(){
 		var id=$("#servants").val();
-		if(id==0){
-			$("#busterhits").val(0);
-			$("#artshits").val(0);
-			$("#quickhits").val(0);
-			$("#exhits").val(0);
-			$("#busternp").val(0);
-			$("#artsnp").val(0);
-			$("#quicknp").val(0);
-			$("#exnp").val(0);
-			$("#ride").val(0);
-			$("#craftbuild").val(0);
-		}
-		else{
-			$("#busterhits").val(servants[id].BusterHits);
-			$("#artshits").val(servants[id].ArtsHits);
-			$("#quickhits").val(servants[id].QuickHits);
-			$("#exhits").val(servants[id].EXHits);
-			$("#busternp").val(servants[id].BusterNp);
-			$("#artsnp").val(servants[id].ArtsNp);
-			$("#quicknp").val(servants[id].QuickNp);
-			$("#exnp").val(servants[id].EXNp);
-			$("#ride").val(servants[id].QuickEff);
-			$("#craftbuild").val(servants[id].ArtsEff);	
-		}
-		
+		$("#busterhits").val(servants[id].BusterHits);
+		$("#artshits").val(servants[id].ArtsHits);
+		$("#quickhits").val(servants[id].QuickHits);
+		$("#exhits").val(servants[id].EXHits);
+		$("#busternp").val(servants[id].BusterNp);
+		$("#artsnp").val(servants[id].ArtsNp);
+		$("#quicknp").val(servants[id].QuickNp);
+		$("#exnp").val(servants[id].EXNp);
+		$("#ride").val(servants[id].QuickEff);
+		$("#craftbuild").val(servants[id].ArtsEff);	
 	});
 </script>
