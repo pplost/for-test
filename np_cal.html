@@ -177,8 +177,8 @@
 	
 	$("#servants").change(function(){
 		var id=$("#servants").val();
-		if(id==0){
-			$("#busterhits").val()=0;
+		if(id=="0"){
+			$("#busterhits").val()="0";
 		}
 		else{
 			$("#busterhits").val()=servants[id].BusterHit;
