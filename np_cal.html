@@ -10,7 +10,7 @@
 		<tr>
 			<td>servent</td>
 			<td colspan="3">
-				<select id="servants" style="text-align:center;"></select>
+				<select id="servants"></select>
 			</td>
 			<td>query</td>
 			<td colspan="3">
@@ -170,7 +170,8 @@
 				var lst='<option value="'+servants[info["id"]].id+'">'+servants[info["id"]].class+":"+servants[info["id"]].name+'</option>';
 				$("#servants").append(lst);
 			})
-		})  
+		})
+		$("#servants").val(1); 
 	});
 	
 	$("#servants").change(function(){
