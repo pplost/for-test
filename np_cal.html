@@ -11,7 +11,7 @@
 			<td>servent</td>
 			<td colspan="3">
 				<select id="servants">
-					<option value="-1">-----请选择-----</option>
+					<option value="0">-----请选择-----</option>
 				</select>
 			</td>
 			<td>query</td>
@@ -28,41 +28,41 @@
 		
 		<tr>
 			<td>busterhits</td>
-			<td><input type="text" name="busterhits" disabled></td>
+			<td><input type="text" id="busterhits" disabled></td>
 			<td>artshits</td>
-			<td><input type="text" name="artshits" disabled></td>
+			<td><input type="text" id="artshits" disabled></td>
 			<td>quickhits</td>
-			<td><input type="text" name="quickhits" disabled></td>
+			<td><input type="text" id="quickhits" disabled></td>
 			<td>exhits</td>
-			<td><input type="text" name="exhits" disabled></td>
+			<td><input type="text" id="exhits" disabled></td>
 		</tr>
 		
 		<tr>
 			<td>busternp</td>
-			<td><input type="text" name="busternp" disabled></td>
+			<td><input type="text" id="busternp" disabled></td>
 			<td>artsnp</td>
-			<td><input type="text" name="artsnp" disabled></td>
+			<td><input type="text" id="artsnp" disabled></td>
 			<td>quicknp</td>
-			<td><input type="text" name="quicknp" disabled></td>
+			<td><input type="text" id="quicknp" disabled></td>
 			<td>exnp</td>
-			<td><input type="text" name="exnp" disabled></td>
+			<td><input type="text" id="exnp" disabled></td>
 		</tr>
 		
 		<tr>
 			<td>ride</td>
-			<td><input type="text" name="ride" disabled></td>
+			<td><input type="text" id="ride" disabled></td>
 			<td>artsbuild</td>
-			<td><input type="text" name="artsbuild" disabled></td>
+			<td><input type="text" id="artsbuild" disabled></td>
 			<td colspan="4"></td>
 		</tr>
 		
 		<tr>
 			<td>npup</td>
-			<td><input type="text" name="npup"></td>
+			<td><input type="text" id="npup"></td>
 			<td>artsup</td>
-			<td><input type="text" name="artsup"></td>
+			<td><input type="text" id="artsup"></td>
 			<td>quickup</td>
-			<td><input type="text" name="quickup"></td>
+			<td><input type="text" id="quickup"></td>
 			<td colspan="2"></td>
 		</tr>
 		
@@ -81,18 +81,18 @@
 		
 		<tr>
 			<td>iscrit</td>
-			<td><input type="checkbox" name="firstcrit" value="1"></td>
-			<td><input type="checkbox" name="secondcrit" value="1"></td>
-			<td><input type="checkbox" name="thirdcrit" value="1"></td>
+			<td><input type="checkbox" id="firstcrit" value="1"></td>
+			<td><input type="checkbox" id="secondcrit" value="1"></td>
+			<td><input type="checkbox" id="thirdcrit" value="1"></td>
 			<td colspan="4"></td>
 		</tr>
 
 		<tr>
 			<td >isoverkill</td>
-			<td><input type="checkbox" name="firstok" value="1"></td>
-			<td><input type="checkbox" name="secondok" value="1"></td>
-			<td><input type="checkbox" name="thirdok" value="1"></td>
-			<td><input type="checkbox" name="exok" value="1"></td>
+			<td><input type="checkbox" id="firstok" value="1"></td>
+			<td><input type="checkbox" id="secondok" value="1"></td>
+			<td><input type="checkbox" id="thirdok" value="1"></td>
+			<td><input type="checkbox" id="exok" value="1"></td>
 			<td colspan="3"></td>
 		</tr>
 		
@@ -163,8 +163,8 @@
 
 <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
-var $ = jQuery.noConflict();
-var servants = new Array();
+	var $ = jQuery.noConflict();
+	var servants = new Array();
 	$(function(){  
 		$.getJSON("data/servants.json",function(data){  
 			$.each(data,function(infoIndex,info){
@@ -173,5 +173,16 @@ var servants = new Array();
 				$("#servants").append(lst);
 			})
 		})  
-	})  
+	});
+	
+	$("#servants").change(function(){
+		var id=$("#servants").val();
+		if(id==0){
+			$("#busterhits").text=0;
+		}
+		else{
+			$("#busterhits").text=servants[id].BusterHit;
+		}
+		
+	});
 </script>
