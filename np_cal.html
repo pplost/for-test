@@ -11,7 +11,7 @@
 			<td>servent</td>
 			<td colspan="3">
 				<select id="servants">
-					<option value="-1">select</option>
+					<option value="-1">-----请选择-----</option>
 				</select>
 			</td>
 			<td>query</td>
@@ -168,23 +168,8 @@ var servants = new Array();
 	$(function(){  
 		$.getJSON("data/servants.json",function(data){  
 			$.each(data,function(infoIndex,info){
-				servants["id"]=info["id"];
-				servants["name"]=info["name"];
-				servants["class"]=info["class"];
-				servants["BusterCard"]=info["BusterCard"];
-				servants["ArtsCard"]=info["ArtsCard"];
-				servants["QuickCard"]=info["QuickCard"];
-				servants["BusterHit"]=info["BusterHit"];
-				servants["ArtsHit"]=info["ArtsHit"];
-				servants["QuickHit"]=info["QuickHit"];
-				servants["EXHit"]=info["EXHit"];
-				servants["BusterNp"]=info["BusterNp"];
-				servants["ArtsNp"]=info["ArtsNp"];
-				servants["QuickNp"]=info["QuickNp"];
-				servants["EXNp"]=info["EXNp"];
-				servants["ArtsEff"]=info["ArtsEff"];
-				servants["QuickEff"]=info["QuickEff"];
-				var lst='<option value="'+servants["id"]+'">'+servants["class"]+":"+servants["name"]+'</option>';
+				servants[info["id"]]=info;
+				var lst='<option value="'+servants[info["id"]].id+'">'+servants[info["id"]].class+":"+servants[info["id"]].name+'</option>';
 				$("#servants").append(lst);
 			})
 		})  
