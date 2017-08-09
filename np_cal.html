@@ -166,7 +166,7 @@
 var $ = jQuery.noConflict();
 var servants = new Array();
 	$(function(){  
-		$.getJSON("data/servant.json",function(data){  
+		$.getJSON("data/servants.json",function(data){  
 			$.each(data,function(infoIndex,info){
 				servants["id"]=info["id"];
 				servants["name"]=info["name"];
