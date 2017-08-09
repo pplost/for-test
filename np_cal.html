@@ -11,7 +11,7 @@
 			<td>servent</td>
 			<td colspan="3">
 				<select id="servants">
-					<option value="0">-----请选择-----</option>
+					<option value="0">---------------请选择---------------</option>
 				</select>
 			</td>
 			<td>query</td>
@@ -178,10 +178,10 @@
 	$("#servants").change(function(){
 		var id=$("#servants").val();
 		if(id=="0"){
-			$("#busterhits").value="0";
+			$("#busterhits").val("0");
 		}
 		else{
-			$("#busterhits").value=servants[id].BusterHit;
+			$("#busterhits").val(servants[id].BusterHit);
 		}
 		
 	});
