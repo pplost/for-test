@@ -222,9 +222,8 @@
 	function reset_list(){
 		$("#servants").empty();
 		for(var i in servants){
-				var lst='<option value="'+servants[i].seq+'">'+servants[i].id+servants[i].class+":"+servants[i].name+'</option>';
-				$("#servants").append(lst);
-			}
+			var lst='<option value="'+servants[i].seq+'">'+servants[i].id+servants[i].class+":"+servants[i].name+'</option>';
+			$("#servants").append(lst);
 		}
 		$("#servants").val(1); 
 		updateStatus(1);
