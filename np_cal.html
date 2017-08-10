@@ -14,8 +14,8 @@
 			</td>
 			<td>query</td>
 			<td colspan="3">
-				<input type="text" name="query" width="60">
-				<input type="button" onclick="alert('Hello World!')" value="query">
+				<input type="text" id="search_str" width="60">
+				<input type="button" id="search" onclick="search_name()" value="查询">
 			</td>
 		</tr>
 		
@@ -171,8 +171,8 @@
 				$("#servants").append(lst);
 			})
 		})
-		$("#servants").val("2"); 
-		updateStatus("2");
+		$("#servants").val(2); 
+		updateStatus(2);
 	});
 	
 	$("#servants").change(function(){
@@ -192,4 +192,14 @@
 		$("#ride").val(servants[id].QuickEff);
 		$("#craftbuild").val(servants[id].ArtsEff);	
 	};
+	
+	function search_name(){
+		str=$("#search_str").text;
+		for(var i=$("#servants").val()+1;i<servants.length;i++){
+			if(servants[i].name.indexOf(str)){
+				$("#servants").val(id); 
+				break;
+			}
+		}
+	}
 </script>
