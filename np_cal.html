@@ -197,9 +197,8 @@
 		str=$("#search_str").val();
 		for(var i=$("#servants").val()+1;i<servants.length;i++){
 			if(servants[i].name.match(str)){
-				alert(servants[i].name);
-				alert(str);
 				$("#servants").val(i); 
+				updateStatus(i);
 				break;
 			}
 		}
