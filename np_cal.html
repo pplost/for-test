@@ -196,7 +196,6 @@
 	function search_name(){
 		str=$("#search_str").val();
 		for(var i=parseInt($("#servants").val())+1;i<=servants.length;i++){
-			alert(i);
 			if(servants[i].name.match(str)){
 				$("#servants").val(i); 
 				updateStatus(i);
