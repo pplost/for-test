@@ -22,6 +22,7 @@
 		
 		<tr>
 			<td>card</td>
+			<div id="cards"></div>
 			<td colspan="7">
 		</tr>
 		
@@ -192,6 +193,19 @@
 		$("#exnp").val(servants[seq].EXNp);
 		$("#ride").val(servants[seq].QuickEff);
 		$("#craftbuild").val(servants[seq].ArtsEff);
+		$("#cards").empty();
+		for(var i=0;i<servants[seq].BusterCards;i++){
+			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Buster.png" style="width:50">';
+			$("#cards").append(cards);
+		}
+		for(var i=0;i<servants[seq].ArtsCards;i++){
+			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Arts.png" style="width:50">';
+			$("#cards").append(cards);
+		}
+		for(var i=0;i<servants[seq].QuickCards;i++){
+			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Quick.png" style="width:50">';
+			$("#cards").append(cards);
+		}
 	};
 	
 	function search_name(){
@@ -215,7 +229,7 @@
 			updateStatus(sid);
 		}
 		else{
-			alert('未找到对应值！');
+			alert('未找到结果！');
 		}
 	};
 	
