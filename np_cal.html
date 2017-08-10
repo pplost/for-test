@@ -165,15 +165,6 @@
 	var $ = jQuery.noConflict();
 	var servants = new Array();
 	$(function(){  
-		initList();
-	});
-	
-	$("#servants").change(function(){
-		var seq=$("#servants").val();
-		updateStatus(seq);
-	});
-	
-	function initList(){
 		$.getJSON("data/servants.json",function(data){  
 			$.each(data,function(infoIndex,info){
 				servants[info["seq"]]=info;
@@ -183,7 +174,13 @@
 			$("#servants").val(1); 
 			updateStatus(1);
 		})
-	}
+	});
+	
+	$("#servants").change(function(){
+		var seq=$("#servants").val();
+		updateStatus(seq);
+	});
+	
 	function updateStatus(seq){
 		$("#busterhits").val(servants[seq].BusterHits);
 		$("#artshits").val(servants[seq].ArtsHits);
@@ -220,7 +217,7 @@
 		else{
 			alert('未找到对应值！');
 		}
-	}
+	};
 	
 	function reset_list(){
 		$("#servants").empty();
@@ -231,5 +228,5 @@
 		}
 		$("#servants").val(1); 
 		updateStatus(1);
-	}
+	};
 </script>
