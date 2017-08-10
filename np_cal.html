@@ -22,9 +22,7 @@
 		
 		<tr>
 			<td>card</td>
-			<td colspan="7">
-				<div id="cards"></div>
-			</td>
+			<td colspan="7" id="cards"></td>
 		</tr>
 		
 		<tr>
@@ -197,15 +195,15 @@
 		$("#cards").empty();
 		for(var i=0;i<servants[seq].BusterCards;i++){
 			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Buster.png" style="width:50">';
-			$("#cards").append(cards);
+			$("#cards").append(card);
 		}
 		for(var i=0;i<servants[seq].ArtsCards;i++){
 			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Arts.png" style="width:50">';
-			$("#cards").append(cards);
+			$("#cards").append(card);
 		}
 		for(var i=0;i<servants[seq].QuickCards;i++){
 			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Quick.png" style="width:50">';
-			$("#cards").append(cards);
+			$("#cards").append(card);
 		}
 	};
 	
