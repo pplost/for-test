@@ -197,6 +197,8 @@
 		str=$("#search_str").text;
 		for(var i=$("#servants").val()+1;i<servants.length;i++){
 			if(servants[i].name.indexOf(str)){
+				alert(servants[i].name);
+				alert(str);
 				$("#servants").val(i); 
 				break;
 			}
