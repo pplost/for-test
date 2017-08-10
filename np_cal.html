@@ -194,7 +194,7 @@
 	};
 	
 	function search_name(){
-		str=$("#search_str").text;
+		str=$("#search_str").val();
 		for(var i=$("#servants").val()+1;i<servants.length;i++){
 			if(servants[i].name.indexOf(str)){
 				alert(servants[i].name);
