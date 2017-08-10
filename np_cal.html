@@ -170,9 +170,9 @@
 				var lst='<option value="'+servants[info["seq"]].seq+'">'+servants[info["seq"]].id+servants[info["seq"]].class+":"+servants[info["seq"]].name+'</option>';
 				$("#servants").append(lst);
 			})
+			$("#servants").val(2); 
+			updateStatus(2);
 		})
-		$("#servants").val(2); 
-		updateStatus(2);
 	});
 	
 	$("#servants").change(function(){
