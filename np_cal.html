@@ -176,12 +176,12 @@
 			$("#servants").val(1); 
 			updateStatus(1);
 		})
-	})
+	});
 	//选择下拉框事件
 	$("#servants").change(function(){
 		var seq=$("#servants").val();
 		updateStatus(seq);
-	})
+	});
 	//重置下拉框
 	function resetList(){
 		$("#servants").empty();
@@ -250,7 +250,7 @@
 			$("#thirdok:checked").attr("checked",true);
 			$("#exok:checked").attr("checked",true);
 		}
-	}
+	});
 	$("#secondok").change(function(){
 		if($("#secondok:checked").val()){
 			$("#thirdok:checked").attr("checked",true);
@@ -259,7 +259,7 @@
 		else{
 			$("#firstok:checked").attr("checked",false);
 		}
-	}
+	});
 	$("#thirdok").change(function(){
 		if($("#thirdok:checked").val()){
 			$("#exok:checked").attr("checked",true);
@@ -268,14 +268,14 @@
 			$("#firstok:checked").attr("checked",false);
 			$("#secondok:checked").attr("checked",false);
 		}
-	}
+	});
 	$("#exok").change(function(){
 		if(!$("#thirdok:checked").val()){
 			$("#firstok:checked").attr("checked",false);
 			$("#secondok:checked").attr("checked",false);
 			$("#thirdok:checked").attr("checked",false);
 		}
-	}
+	});
 	
 	function calNp(){
 		var sid=$("#servants").val();
