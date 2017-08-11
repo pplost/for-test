@@ -15,8 +15,8 @@
 			<td>query</td>
 			<td colspan="3">
 				<input type="text" id="search_str" width="60">
-				<input type="button" id="search" onclick="search_name()" value="查询">
-				<input type="button" id="reset" onclick="reset_list()" value="重置">
+				<input type="button" id="search" onclick="searchName()" value="查询">
+				<input type="button" id="reset" onclick="resetList()" value="重置">
 			</td>
 		</tr>
 		
@@ -157,6 +157,7 @@
 			<td colspan="5"></td>
 		</tr>
 	</table>
+	<div id="cal_result"></div>
 </body>
 </html>
 
@@ -164,6 +165,7 @@
 <script type="text/javascript">
 	var $ = jQuery.noConflict();
 	var servants = new Array();
+	//读取数据
 	$(function(){  
 		$.getJSON("data/servants.json",function(data){  
 			$.each(data,function(infoIndex,info){
@@ -174,13 +176,23 @@
 			$("#servants").val(1); 
 			updateStatus(1);
 		})
-	});
-	
+	})
+	//选择下拉框事件
 	$("#servants").change(function(){
 		var seq=$("#servants").val();
 		updateStatus(seq);
-	});
-	
+	})
+	//重置下拉框
+	function resetList(){
+		$("#servants").empty();
+		for(var i in servants){
+			var lst='<option value="'+servants[i].seq+'">'+servants[i].id+servants[i].class+":"+servants[i].name+'</option>';
+			$("#servants").append(lst);
+		}
+		$("#servants").val(1); 
+		updateStatus(1);
+	}
+	//更新表格数据
 	function updateStatus(seq){
 		$("#busterhits").val(servants[seq].BusterHits);
 		$("#artshits").val(servants[seq].ArtsHits);
@@ -205,9 +217,9 @@
 			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Quick.png" style="width:50">';
 			$("#cards").append(card);
 		}
-	};
-	
-	function search_name(){
+	}
+	//查询功能
+	function searchName(){
 		var str=$("#search_str").val();
 		var flag=true;
 		var sid=1;
@@ -230,15 +242,43 @@
 		else{
 			alert('未找到结果！');
 		}
-	};
-	
-	function reset_list(){
-		$("#servants").empty();
-		for(var i in servants){
-			var lst='<option value="'+servants[i].seq+'">'+servants[i].id+servants[i].class+":"+servants[i].name+'</option>';
-			$("#servants").append(lst);
+	}
+	//overkill选择框事件
+	$("#firstok").change(function(){
+		if($("#firstok:checked").val()){
+			$("#secondok:checked").attr("checked",true);
+			$("#thirdok:checked").attr("checked",true);
+			$("#exok:checked").attr("checked",true);
 		}
-		$("#servants").val(1); 
-		updateStatus(1);
-	};
+	}
+	$("#secondok").change(function(){
+		if($("#secondok:checked").val()){
+			$("#thirdok:checked").attr("checked",true);
+			$("#exok:checked").attr("checked",true);
+		}
+		else{
+			$("#firstok:checked").attr("checked",false);
+		}
+	}
+	$("#thirdok").change(function(){
+		if($("#thirdok:checked").val()){
+			$("#exok:checked").attr("checked",true);
+		}
+		else{
+			$("#firstok:checked").attr("checked",false);
+			$("#secondok:checked").attr("checked",false);
+		}
+	}
+	$("#exok").change(function(){
+		if(!$("#thirdok:checked").val()){
+			$("#firstok:checked").attr("checked",false);
+			$("#secondok:checked").attr("checked",false);
+			$("#thirdok:checked").attr("checked",false);
+		}
+	}
+	
+	function calNp(){
+		var sid=$("#servants").val();
+		
+	}
 </script>
