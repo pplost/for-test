@@ -2,17 +2,17 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<title>NP</title>
-	<link rel="stylesheet" href="css/table.css" type="text/css" />
+	<link rel="stylesheet" href="css/trash.css" type="text/css" />
 </style> 
 </head>
 <body>
 	<table>
 		<tr>
-			<td>servent</td>
+			<td>从者</td>
 			<td colspan="3">
 				<select id="servants"></select>
 			</td>
-			<td>query</td>
+			<td>查询</td>
 			<td colspan="3">
 				<input type="text" id="search_str">
 				<input type="button" id="search" onclick="searchName()" value="查询">
@@ -21,65 +21,65 @@
 		</tr>
 		
 		<tr>
-			<td>card</td>
+			<td>配卡</td>
 			<td colspan="7" id="cards"></td>
 		</tr>
 		
 		<tr>
-			<td>busterhits</td>
+			<td>红卡hit数</td>
 			<td><input type="text" id="buster_hits" style="width:50px" disabled></td>
-			<td>artshits</td>
+			<td>蓝卡hit数</td>
 			<td><input type="text" id="arts_hits" style="width:50px" disabled></td>
-			<td>quickhits</td>
+			<td>绿卡hit数</td>
 			<td><input type="text" id="quick_hits" style="width:50px" disabled></td>
-			<td>exhits</td>
+			<td>EX卡hit数</td>
 			<td><input type="text" id="ex_hits" style="width:50px" disabled></td>
 		</tr>
 		
 		<tr>
-			<td>busternp</td>
+			<td>红卡np率(%)</td>
 			<td><input type="text" id="buster_np" style="width:50px" disabled></td>
-			<td>artsnp</td>
+			<td>蓝卡np率(%)</td>
 			<td><input type="text" id="arts_np" style="width:50px" disabled></td>
-			<td>quicknp</td>
+			<td>绿卡np率(%)</td>
 			<td><input type="text" id="quick_np" style="width:50px" disabled></td>
-			<td>ex_np</td>
+			<td>ex卡np率(%)</td>
 			<td><input type="text" id="ex_np" style="width:50px" disabled></td>
 		</tr>
 		
 		<tr>
-			<td>ride</td>
+			<td>骑乘(%)</td>
 			<td><input type="text" id="ride" style="width:50px" disabled></td>
-			<td>artsbuild</td>
+			<td>阵地建造(%)</td>
 			<td><input type="text" id="craft_build" style="width:50px" disabled></td>
 			<td colspan="4"></td>
 		</tr>
 		
 		<tr>
-			<td>np_up</td>
+			<td>np获取提升(%)</td>
 			<td><input type="text" id="np_up" style="width:50px"></td>
-			<td>artsup</td>
+			<td>蓝魔放(%)</td>
 			<td><input type="text" id="arts_up" style="width:50px"></td>
-			<td>quickup</td>
+			<td>绿魔放(%)</td>
 			<td><input type="text" id="quick_up" style="width:50px"></td>
 			<td colspan="2"></td>
 		</tr>
 		
 		<tr>
-			<td colspan="8" id="skills"></td>
+			<td colspan="8" id="link_to_wiki"></td>
 		</tr>
 		
 		<tr>
 			<td></td>
-			<td>first</td>
-			<td>second</td>
-			<td>third</td>
-			<td>ex</td>
+			<td>首卡</td>
+			<td>次卡</td>
+			<td>尾卡</td>
+			<td>ex卡</td>
 			<td colspan="3" rowspan="5" id="cal_result"></td>
 		</tr>
 		
 		<tr>
-			<td>iscrit</td>
+			<td>是否暴击</td>
 			<td><input type="checkbox" id="first_crit" style="width:50px"></td>
 			<td><input type="checkbox" id="second_crit" style="width:50px"></td>
 			<td><input type="checkbox" id="third_crit" style="width:50px"></td>
@@ -87,7 +87,7 @@
 		</tr>
 
 		<tr>
-			<td >isoverkill</td>
+			<td >是否鞭尸</td>
 			<td><input type="checkbox" id="first_ok" style="width:50px"></td>
 			<td><input type="checkbox" id="second_ok" style="width:50px"></td>
 			<td><input type="checkbox" id="third_ok" style="width:50px"></td>
@@ -96,34 +96,34 @@
 		</tr>
 		
 		<tr>
-			<td>cardseq</td>
+			<td>卡序</td>
 			<td>
-				<select id="first_card">
-					<option value="-1">None</option>
+				<select id="first_card"  style="width:60px">
+					<option value="-1" >无</option>
 					<option value="0">Buster</option>
 					<option value="3">Arts</option>
 					<option value="1">Quick</option>
 				</select>
 			</td>
 			<td>
-				<select id="second_card">
-					<option value="-1">None</option>
+				<select id="second_card" style="width:60px">
+					<option value="-1">无</option>
 					<option value="0">Buster</option>
 					<option value="4.5">Arts</option>
 					<option value="1.5">Quick</option>
 				</select>
 			</td>
 			<td>
-				<select id="third_card">
-					<option value="-1">None</option>
+				<select id="third_card" style="width:60px">
+					<option value="-1">无</option>
 					<option value="0">Buster</option>
 					<option value="6">Arts</option>
 					<option value="2">Quick</option>
 				</select>
 			</td>
 			<td>
-				<select id="ex_card">
-					<option value="-1">None</option>
+				<select id="ex_card" style="width:60px">
+					<option value="-1">无</option>
 					<option value="1">EX</option>
 				</select>
 			</td>
@@ -131,20 +131,20 @@
 		</tr>
 		
 		<tr>
-			<td>enemy</td>
+			<td>敌方补正</td>
 			<td>
 				<select id="enemy_class">
-					<option value="1">其他</option>
-					<option value="1.1">Rider</option>
-					<option value="1.2">Caster</option>
-					<option value="0.9">Assassin</option>
-					<option value="0.9">Berserker</option>
+					<option value="1">其他 : 1</option>
+					<option value="1.1">Rider : 1.1</option>
+					<option value="1.2">Caster : 1.2</option>
+					<option value="0.9">Assassin : 0.9</option>
+					<option value="0.9">Berserker : 0.9</option>
 				</select>
 			</td>
 			<td>
 				<select id="enemy_kind">
-					<option value="1">其他</option>
-					<option value="1.2">死灵类</option>
+					<option value="1">其他 : 1</option>
+					<option value="1.2">死灵类 : 1.2</option>
 				</select>
 			</td>
 			<td colspan="2"><input type="button" id="cal_np" onclick="calNP()" value="计算"></td>
@@ -159,10 +159,10 @@
 	var servants = new Array();
 	//读取数据
 	$(function(){  
-		$.getJSON("https://pplost.github.io/for-test/data/servants.json",function(data){  
+		$.getJSON("data/servants.json",function(data){  
 			$.each(data,function(infoIndex,info){
 				servants[info["seq"]]=info;
-				var lst='<option value="'+servants[info["seq"]].seq+'">'+servants[info["seq"]].id+servants[info["seq"]].class+":"+servants[info["seq"]].name+'</option>';
+				var lst='<option value="'+servants[info["seq"]].seq+'">'+'【'+servants[info["seq"]].class+"】 "+servants[info["seq"]].name+'</option>';
 				$("#servants").append(lst);
 			})
 			$("#servants").val(1); 
@@ -198,18 +198,21 @@
 		$("#craft_build").val(servants[seq].ArtsEff);
 		$("#cards").empty();
 		for(var i=0;i<servants[seq].BusterCards;i++){
-			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Buster.png" style="width:50">';
+			var card='<img src="resources/Buster.png" style="width:50">';
 			$("#cards").append(card);
 		}
 		for(var i=0;i<servants[seq].ArtsCards;i++){
-			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Arts.png" style="width:50">';
+			var card='<img src="resources/Arts.png" style="width:50">';
 			$("#cards").append(card);
 		}
 		for(var i=0;i<servants[seq].QuickCards;i++){
-			var card='<img src="http://fgowiki.com/wp-content/themes/umowang/images/Box/Quick.png" style="width:50">';
+			var card='<img src="resources/Quick.png" style="width:50">';
 			$("#cards").append(card);
 		}
-		$("#skills").load('http://fgowiki.com/guide/petdetail/182');
+		$("#link_to_wiki").empty();
+		var links='<p><a href="http://fgowiki.com/guide/petdetail/'+servants[seq].id+'" target="_blank">点此前往wiki</a></p>';
+		console.log(links);
+		$("#link_to_wiki").append(links);
 	}
 	//查询功能
 	function searchName(){
