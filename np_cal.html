@@ -246,34 +246,34 @@
 	//overkill选择框事件
 	$("#firstok").click(function(){
 		if ($(this).prop("checked")){
-			$("#secondok:checked").attr("checked",true);
-			$("#thirdok:checked").attr("checked",true);
-			$("#exok:checked").attr("checked",true);
+			$("#secondok").attr("checked",true);
+			$("#thirdok").attr("checked",true);
+			$("#exok").attr("checked",true);
 		}
 	});
 	$("#secondok").click(function(){
 		if ($(this).prop("checked")){
-			$("#thirdok:checked").attr("checked",true);
-			$("#exok:checked").attr("checked",true);
+			$("#thirdok").attr("checked",true);
+			$("#exok").attr("checked",true);
 		}
 		else{
-			$("#firstok:checked").attr("checked",false);
+			$("#firstok").attr("checked",false);
 		}
 	});
 	$("#thirdok").click(function(){
 		if ($(this).prop("checked")){
-			$("#exok:checked").attr("checked",true);
+			$("#exok").attr("checked",true);
 		}
 		else{
-			$("#firstok:checked").attr("checked",false);
-			$("#secondok:checked").attr("checked",false);
+			$("#firstok").attr("checked",false);
+			$("#secondok").attr("checked",false);
 		}
 	});
 	$("#exok").click(function(){
 		if (!($(this).prop("checked"))){
-			$("#firstok:checked").attr("checked",false);
-			$("#secondok:checked").attr("checked",false);
-			$("#thirdok:checked").attr("checked",false);
+			$("#firstok").attr("checked",false);
+			$("#secondok").attr("checked",false);
+			$("#thirdok").attr("checked",false);
 		}
 	});
 
