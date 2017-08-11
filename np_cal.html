@@ -80,18 +80,18 @@
 		
 		<tr>
 			<td>iscrit</td>
-			<td><input type="checkbox" id="firstcrit" value="1"></td>
-			<td><input type="checkbox" id="secondcrit" value="1"></td>
-			<td><input type="checkbox" id="thirdcrit" value="1"></td>
+			<td><input type="checkbox" id="firstcrit" value="1.5"></td>
+			<td><input type="checkbox" id="secondcrit" value="1.5"></td>
+			<td><input type="checkbox" id="thirdcrit" value="1.5"></td>
 			<td colspan="4"></td>
 		</tr>
 
 		<tr>
 			<td >isoverkill</td>
-			<td><input type="checkbox" id="firstok" value="1"></td>
-			<td><input type="checkbox" id="secondok" value="1"></td>
-			<td><input type="checkbox" id="thirdok" value="1"></td>
-			<td><input type="checkbox" id="exok" value="1"></td>
+			<td><input type="checkbox" id="firstok" value="2"></td>
+			<td><input type="checkbox" id="secondok" value="2"></td>
+			<td><input type="checkbox" id="thirdok" value="2"></td>
+			<td><input type="checkbox" id="exok" value="2"></td>
 			<td colspan="3"></td>
 		</tr>
 		
@@ -244,15 +244,15 @@
 		}
 	}
 	//overkill选择框事件
-	$("#firstok").change(function(){
-		if($("#firstok:checked").val()){
+	$("#firstok").click(function(){
+		if ($(this).prop("checked")){
 			$("#secondok:checked").attr("checked",true);
 			$("#thirdok:checked").attr("checked",true);
 			$("#exok:checked").attr("checked",true);
 		}
 	});
-	$("#secondok").change(function(){
-		if($("#secondok:checked").val()){
+	$("#secondok").click(function(){
+		if ($(this).prop("checked")){
 			$("#thirdok:checked").attr("checked",true);
 			$("#exok:checked").attr("checked",true);
 		}
@@ -260,8 +260,8 @@
 			$("#firstok:checked").attr("checked",false);
 		}
 	});
-	$("#thirdok").change(function(){
-		if($("#thirdok:checked").val()){
+	$("#thirdok").click(function(){
+		if ($(this).prop("checked")){
 			$("#exok:checked").attr("checked",true);
 		}
 		else{
@@ -269,13 +269,14 @@
 			$("#secondok:checked").attr("checked",false);
 		}
 	});
-	$("#exok").change(function(){
-		if(!$("#thirdok:checked").val()){
+	$("#exok").click(function(){
+		if (!($(this).prop("checked"))){
 			$("#firstok:checked").attr("checked",false);
 			$("#secondok:checked").attr("checked",false);
 			$("#thirdok:checked").attr("checked",false);
 		}
 	});
+
 	
 	function calNp(){
 		var sid=$("#servants").val();
