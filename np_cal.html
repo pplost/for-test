@@ -92,21 +92,22 @@
 			<td><input type="checkbox" id="second_ok" style="width:50px"></td>
 			<td><input type="checkbox" id="third_ok" style="width:50px"></td>
 			<td><input type="checkbox" id="ex_ok" style="width:50px"></td>
-			
 		</tr>
 		
 		<tr>
 			<td>卡序</td>
 			<td>
-				<select id="first_card"  style="width:60px">
+				<input type="checkbox" id="coloring">仅染色</input>
+				<select id="first_card"  style="width:65px">
 					<option value="-1" >无</option>
 					<option value="0">Buster</option>
 					<option value="3">Arts</option>
 					<option value="1">Quick</option>
 				</select>
+				
 			</td>
 			<td>
-				<select id="second_card" style="width:60px">
+				<select id="second_card" style="width:65px">
 					<option value="-1">无</option>
 					<option value="0">Buster</option>
 					<option value="4.5">Arts</option>
@@ -114,7 +115,7 @@
 				</select>
 			</td>
 			<td>
-				<select id="third_card" style="width:60px">
+				<select id="third_card" style="width:65px">
 					<option value="-1">无</option>
 					<option value="0">Buster</option>
 					<option value="6">Arts</option>
@@ -122,7 +123,7 @@
 				</select>
 			</td>
 			<td>
-				<select id="ex_card" style="width:60px">
+				<select id="ex_card" style="width:65px">
 					<option value="-1">无</option>
 					<option value="1">EX</option>
 				</select>
@@ -151,7 +152,7 @@
 		</tr>
 		
 		<tr>
-			<td colspan="8">例外：1.死灵类中鐘を鳴らすもの和エレシュキガル的种类补正是1。<br/>2.クリスティーヌ以狂阶补正计算。</td>
+			<td colspan="8">例外：1.死灵类中鐘を鳴らすもの和エレシュキガル的种类补正是1。<br/>2.クリスティーヌ(Assassin)以狂阶补正计算。</td>
 		</tr>
 	</table>
 </body>
@@ -182,7 +183,7 @@
 	function resetList(){
 		$("#servants").empty();
 		for(var i in servants){
-			var lst='<option value="'+servants[i].seq+'">'+servants[i].id+servants[i].class+":"+servants[i].name+'</option>';
+			var lst='<option value="'+servants[i].seq+'">'+'【'+servants[i].class+"】 "+servants[i].name+'</option>';
 			$("#servants").append(lst);
 		}
 		$("#servants").val(1); 
@@ -229,7 +230,7 @@
 					flag=false;
 					sid=i;
 				}
-				lst+='<option value="'+servants[i].seq+'">'+servants[i].id+servants[i].class+":"+servants[i].name+'</option>';
+				lst+='<option value="'+servants[i].seq+'">'+'【'+servants[i].class+"】 "+servants[i].name+'</option>';
 			}
 		}
 		if(!flag){
@@ -350,10 +351,12 @@
 				critBonus=1.5;
 			}
 		}
-		
 		if($("#first_card").val()=="3")
 		{
 			firstArtsBonus=1;
+			if($("#coloring").prop("checked") && cardSeq==1){
+				return 0;
+			}
 		}
 		//防浮点数误差，多加0.1
 		//红卡
