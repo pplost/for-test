@@ -52,7 +52,10 @@
 			<td><input type="text" id="ride" style="width:50px" disabled></td>
 			<td>阵地建造(%)</td>
 			<td><input type="text" id="craft_build" style="width:50px" disabled></td>
-			<td colspan="4"></td>
+			<td>宝具hit数(%)</td>
+			<td><input type="text" id="np_hits" style="width:50px" disabled></td>
+			<td>宝具NP率(%)</td>
+			<td><input type="text" id="np_np" style="width:50px" disabled></td>
 		</tr>
 		
 		<tr>
@@ -97,32 +100,35 @@
 		<tr>
 			<td>卡序</td>
 			<td>
-				<select id="first_card"  style="width:100px">
+				<select id="first_card"  style="width:65px">
 					<option value="-1" >无</option>
 					<option value="0">Buster</option>
 					<option value="3">Arts</option>
 					<option value="1">Quick</option>
-					<option value="-2">首蓝染色</option>
+					<option value="-11">宝具</option>
+					<option value="-2">仅染色</option>
 				</select>
 			</td>
 			<td>
-				<select id="second_card" style="width:100px">
+				<select id="second_card" style="width:65px">
 					<option value="-1">无</option>
 					<option value="0">Buster</option>
 					<option value="4.5">Arts</option>
 					<option value="1.5">Quick</option>
+					<option value="-11">宝具</option>
 				</select>
 			</td>
 			<td>
-				<select id="third_card" style="width:100px">
+				<select id="third_card" style="width:65px">
 					<option value="-1">无</option>
 					<option value="0">Buster</option>
 					<option value="6">Arts</option>
 					<option value="2">Quick</option>
+					<option value="-11">宝具</option>
 				</select>
 			</td>
 			<td>
-				<select id="ex_card" style="width:100px">
+				<select id="ex_card" style="width:65px">
 					<option value="-1">无</option>
 					<option value="1">EX</option>
 				</select>
@@ -304,7 +310,12 @@
 		$("#cal_result").append(result);
 	}
 	function singleCardNP(card,cardSeq){
+		//无卡或为染色卡
 		if(card.val()=="-1"||card.val()=="-2"){
+			return 0;
+		}
+		//红卡宝具
+		if(card.val()=="-11"&&servants[$("#servants").val()].npColor=="r"){
 			return 0;
 		}
 		var np=0;
@@ -350,13 +361,29 @@
 				critBonus=1.5;
 			}
 		}
-		if($("#first_card").val()=="3"||$("#first_card").val()=="-2")
+		//首卡染色
+		if($("#first_card").val()=="3"||$("#first_card").val()=="-2"||($("#first_card").val()=="-11"&&servants[$("#servants").val()].npColor=="b"))
 		{
 			firstArtsBonus=1;
 		}
-		//防浮点数误差，多加0.01
+		//防浮点数误差，多算0.01
+		if(mag < -10.99){
+			npEff=toFloat($("#np_np").val());
+			hits=parseInt($("#np_hits").val());
+			firstArtsBonus=0;
+			critBonus=1;
+			if(servants[$("#servants").val()].npColor=="b"){
+				mag=3
+				np=npEff*(firstArtsBonus+mag*(1+artsUp))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
+			}
+			else if(servants[$("#servants").val()].npColor=="q"){
+				mag=1
+				np=npEff*(firstArtsBonus+mag*(1+quickUp))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
+			}
+			
+		}
 		//红卡
-		if(mag < 0.01){
+		else if(mag < 0.01){
 			npEff=toFloat($("#buster_np").val());
 			hits=parseInt($("#buster_hits").val());
 			np=npEff*(firstArtsBonus+mag*(1+0))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
