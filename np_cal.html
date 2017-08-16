@@ -209,6 +209,18 @@
 		$("#np_np").val(servants[seq].npNp);
 		$("#np_hits").val(servants[seq].npHits);
 		$("#cards").empty();
+		if(servants[seq].npCard=="Buster"){
+			var card='<img src="resources/Buster.png" style="width:80">';
+			$("#cards").append(card);
+		}
+		else if(servants[seq].npCard=="Arts"){
+			var card='<img src="resources/Arts.png" style="width:80">';
+			$("#cards").append(card);
+		}
+		else if(servants[seq].npCard=="Quick"){
+			var card='<img src="resources/Quick.png" style="width:80">';
+			$("#cards").append(card);
+		}
 		for(var i=0;i<servants[seq].BusterCards;i++){
 			var card='<img src="resources/Buster.png" style="width:50">';
 			$("#cards").append(card);
@@ -317,7 +329,7 @@
 			return 0;
 		}
 		//红卡宝具
-		if(card.val()=="-11"&&servants[$("#servants").val()].npColor=="r"){
+		if(card.val()=="-11" && servants[$("#servants").val()].npCard=="Buster"){
 			return 0;
 		}
 		var np=0;
@@ -364,7 +376,7 @@
 			}
 		}
 		//首卡染色
-		if($("#first_card").val()=="3"||$("#first_card").val()=="-2"||($("#first_card").val()=="-11"&&servants[$("#servants").val()].npColor=="b"))
+		if($("#first_card").val()=="3"||$("#first_card").val()=="-2"||($("#first_card").val()=="-11"&&servants[$("#servants").val()].npCard=="Arts"))
 		{
 			firstArtsBonus=1;
 		}
@@ -374,15 +386,14 @@
 			hits=parseInt($("#np_hits").val());
 			firstArtsBonus=0;
 			critBonus=1;
-			if(servants[$("#servants").val()].npColor=="b"){
+			if(servants[$("#servants").val()].npCard=="Arts"){
 				mag=3
 				np=npEff*(firstArtsBonus+mag*(1+artsUp))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
 			}
-			else if(servants[$("#servants").val()].npColor=="q"){
+			else if(servants[$("#servants").val()].npCard=="Quick"){
 				mag=1
 				np=npEff*(firstArtsBonus+mag*(1+quickUp))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
 			}
-			
 		}
 		//红卡
 		else if(mag < 0.01){
