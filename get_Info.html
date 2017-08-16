@@ -53,13 +53,13 @@ function nphit(){
 	var str="[<br/>";
 	for(var x in master.mstSvt){
 		if((master.mstSvt[x].type==1||master.mstSvt[x].type==2||master.mstSvt[x].type==99)&&master.mstSvt[x].collectionNo>0){
-			var color="";
+			var npCard="";
 			var i=0,j=0;
 			var desc="";
 			var hits=0;
 			for(var y in master.mstSvtTreasureDevice){
 				if(master.mstSvtTreasureDevice[y].svtId==master.mstSvt[x].id&&master.mstSvtTreasureDevice[y].treasureDeviceId!=100&&master.mstSvtTreasureDevice[y].num<10){
-					if(master.mstSvtTreasureDevice[y].cardId==1){color="b";}else if(master.mstSvtTreasureDevice[y].cardId==2){color="r";}else if(master.mstSvtTreasureDevice[y].cardId==3){color="g";}else {color=="unknown";}
+					if(master.mstSvtTreasureDevice[y].cardId==1){npCard="Arts";}else if(master.mstSvtTreasureDevice[y].cardId==2){npCard="Buster";}else if(master.mstSvtTreasureDevice[y].cardId==3){npCard="Quick";}else {npCard=="unknown";}
 					i=master.mstSvt[x].id;
 					j=master.mstSvtTreasureDevice[y].treasureDeviceId;
 					hits=master.mstSvtTreasureDevice[y].damage.length;
@@ -77,7 +77,7 @@ function nphit(){
 			str+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "'+master.mstSvt[x].collectionNo+'",<br/>';
 			str+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "'+findSvtNameZh(master.mstSvt[x].id)+'",<br/>';
 			str+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"npHits": "'+hits+'",<br/>';
-			str+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"npColor": "'+color+'"<br/>';
+			str+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"npColor": "'+npCard+'"<br/>';
 			str+='&nbsp;&nbsp;&nbsp;&nbsp;},<br/>';
 		}
 	}
