@@ -200,17 +200,17 @@
 	}
 	//更新表格数据
 	function updateStatus(seq){
-		$("#buster_hits").val(servants[seq].BusterHits);
-		$("#arts_hits").val(servants[seq].ArtsHits);
-		$("#quick_hits").val(servants[seq].QuickHits);
-		$("#ex_hits").val(servants[seq].EXHits);
-		$("#buster_np").val(servants[seq].BusterNp);
-		$("#arts_np").val(servants[seq].ArtsNp);
-		$("#quick_np").val(servants[seq].QuickNp);
-		$("#ex_np").val(servants[seq].EXNp);
-		$("#ride").val(servants[seq].QuickEff);
-		$("#craft_build").val(servants[seq].ArtsEff);
-		$("#np_np").val(servants[seq].npNp);
+		$("#buster_hits").val(servants[seq].busterHits);
+		$("#arts_hits").val(servants[seq].artsHits);
+		$("#quick_hits").val(servants[seq]..quickHits);
+		$("#ex_hits").val(servants[seq].exHits);
+		$("#buster_np").val(servants[seq].busterNP);
+		$("#arts_np").val(servants[seq].artsNP);
+		$("#quick_np").val(servants[seq].quickNP);
+		$("#ex_np").val(servants[seq].exNP);
+		$("#ride").val(servants[seq].quickEff);
+		$("#craft_build").val(servants[seq].artsEff);
+		$("#np_np").val(servants[seq].npNP);
 		$("#np_hits").val(servants[seq].npHits);
 		$("#cards").empty();
 		if(servants[seq].npCard=="Buster"){
@@ -225,15 +225,15 @@
 			var card='<img src="resources/Quick.png" style="width:81">';
 			$("#cards").append(card);
 		}
-		for(var i=0;i<servants[seq].BusterCards;i++){
+		for(var i=0;i<servants[seq].busterCards;i++){
 			var card='<img src="resources/Buster.png" style="width:50">';
 			$("#cards").append(card);
 		}
-		for(var i=0;i<servants[seq].ArtsCards;i++){
+		for(var i=0;i<servants[seq].artsCards;i++){
 			var card='<img src="resources/Arts.png" style="width:50">';
 			$("#cards").append(card);
 		}
-		for(var i=0;i<servants[seq].QuickCards;i++){
+		for(var i=0;i<servants[seq].quickCards;i++){
 			var card='<img src="resources/Quick.png" style="width:50">';
 			$("#cards").append(card);
 		}
@@ -310,10 +310,10 @@
 	}
 	//计算
 	function calNP(){
-		var firstNP=singleCardNP($("#first_card"),1);
-		var secondNP=singleCardNP($("#second_card"),2);
-		var thirdNP=singleCardNP($("#third_card"),3);
-		var exNP=singleCardNP($("#ex_card"),4);
+		var firstNP=singleCardNP($("#first_card"),1,$("#servants").val());
+		var secondNP=singleCardNP($("#second_card"),2,$("#servants").val());
+		var thirdNP=singleCardNP($("#third_card"),3,$("#servants").val());
+		var exNP=singleCardNP($("#ex_card"),4,$("#servants").val());
 		var totalNP=firstNP+secondNP+thirdNP+exNP;
 		var result="<p>首卡："+Math.round(firstNP*100)/100+"<br/>"
 		result+="次卡："+Math.round(secondNP*100)/100+"<br/>"
@@ -327,13 +327,13 @@
 		$("#cal_result").empty();
 		$("#cal_result").append(result);
 	}
-	function singleCardNP(card,cardSeq){
+	function singleCardNP(card,cardSeq,servantSeq){
 		//无卡或为染色卡
 		if(card.val()=="-1"||card.val()=="-2"){
 			return 0;
 		}
 		//红卡宝具
-		if(card.val()=="-11" && servants[$("#servants").val()].npCard=="Buster"){
+		if(card.val()=="-11" && servants[servantSeq].npCard=="Buster"){
 			return 0;
 		}
 		var np=0;
@@ -343,8 +343,8 @@
 		var mag=toFloat(card.val());
 		var npEff=0;
 		var hits=0;
-		var artsUp=(toFloat($("#craft_build").val())+toFloat($("#arts_up").val()))/100;
-		var quickUp=(toFloat($("#ride").val())+toFloat($("#quick_up").val()))/100;
+		var artsUp=(toFloat(servants[servantSeq].artsEff)+toFloat($("#arts_up").val()))/100;
+		var quickUp=(toFloat(servants[servantSeq].quickEff)+toFloat($("#quick_up").val()))/100;
 		var npUp=(toFloat($("#np_up").val()))/100;
 		var classBonus=toFloat($("#enemy_class").val());
 		var kindBonus=toFloat($("#enemy_kind").val());
@@ -380,49 +380,50 @@
 			}
 		}
 		//首卡染色
-		if($("#first_card").val()=="3"||$("#first_card").val()=="-2"||($("#first_card").val()=="-11"&&servants[$("#servants").val()].npCard=="Arts"))
+		if($("#first_card").val()=="3"||$("#first_card").val()=="-2"||($("#first_card").val()=="-11"&&servants[servantSeq].npCard=="Arts"))
 		{
 			firstArtsBonus=1;
 		}
 		//防浮点数误差，多算0.01
+		//宝具
 		if(mag < -10.99){
-			npEff=toFloat($("#np_np").val());
-			hits=parseInt($("#np_hits").val());
+			npEff=toFloat(servants[servantSeq].npNP);
+			hits=parseInt(servants[servantSeq].npHits);
 			firstArtsBonus=0;
 			critBonus=1;
-			if(servants[$("#servants").val()].npCard=="Arts"){
+			if(servants[servantSeq].npCard=="Arts"){
 				mag=3
 				np=npEff*(firstArtsBonus+mag*(1+artsUp))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
 			}
-			else if(servants[$("#servants").val()].npCard=="Quick"){
+			else if(servants[servantSeq].npCard=="Quick"){
 				mag=1
 				np=npEff*(firstArtsBonus+mag*(1+quickUp))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
 			}
 		}
 		//红卡
 		else if(mag < 0.01){
-			npEff=toFloat($("#buster_np").val());
-			hits=parseInt($("#buster_hits").val());
+			npEff=toFloat(servants[servantSeq].busterNP);
+			hits=parseInt(servants[servantSeq].busterHits);
 			np=npEff*(firstArtsBonus+mag*(1+0))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
 		}
 		else if(mag < 2.01){
 			//Q卡
 			if(cardSeq<=3){
-				npEff=toFloat($("#quick_np").val());
-				hits=parseInt($("#quick_hits").val());
+				npEff=toFloat(servants[servantSeq].quickNP);
+				hits=parseInt(servants[servantSeq].quickHits);
 				np=npEff*(firstArtsBonus+mag*(1+quickUp))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
 			}
 			//EX卡
 			else{
-				npEff=toFloat($("#ex_np").val());
-				hits=parseInt($("#ex_hits").val());
+				npEff=toFloat(servants[servantSeq].exNP);
+				hits=parseInt(servants[servantSeq].exHits);
 				np=npEff*(firstArtsBonus+mag*(1+0))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
 			}
 		}
 		//蓝卡
 		else{
-			npEff=toFloat($("#arts_np").val());
-			hits=parseInt($("#arts_hits").val());
+			npEff=toFloat(servants[servantSeq].artsNP);
+			hits=parseInt(servants[servantSeq].artsHits);
 			np=npEff*(firstArtsBonus+mag*(1+artsUp))*(1+npUp)*critBonus*okBonus*hits*classBonus*kindBonus;
 		}
 		return np;
