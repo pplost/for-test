@@ -20,13 +20,13 @@ function friendship(){
 	var str="[<br/>";
 	for(var x in master.mstSvt){
 		if((master.mstSvt[x].type==1||master.mstSvt[x].type==2||master.mstSvt[x].type==99)&&master.mstSvt[x].collectionNo>1){
-			var sid=findSvtFs(master.mstSvt[x].id);
+			var tid=findSvtFs(master.mstSvt[x].id);
 			var n=[];
 			var m=[];
 			var id=0;
 			var name="";
 			for(var a in master.mstFriendship){
-				if(master.mstFriendship[a].id==sid&&master.mstFriendship[a].rank<10){
+				if(master.mstFriendship[a].id==tid&&master.mstFriendship[a].rank<10){
 					n[master.mstFriendship[a].rank]=master.mstFriendship[a].friendship;
 				}
 			}
