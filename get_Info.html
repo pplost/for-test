@@ -58,6 +58,8 @@ function friendship2(){
 	for(var x in master.mstSvt){
 		if((master.mstSvt[x].type==1||master.mstSvt[x].type==2||master.mstSvt[x].type==99)&&master.mstSvt[x].collectionNo>1){
 			var q=findSvtFs(master.mstSvt[x].id);
+			var n=[];
+			var m=[];
 			for(var a in master.mstFriendship){
 				if(master.mstFriendship[a].id==q&&10>master.mstFriendship[a].rank){
 					n[master.mstFriendship[a].rank]=master.mstFriendship[a].friendship;
