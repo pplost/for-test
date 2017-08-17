@@ -8,7 +8,7 @@
 <script type='text/javascript' src='https://kazemai.github.io/fgo-vz/common/js/master.js'></script>
 <script type='text/javascript' src='https://kazemai.github.io/fgo-vz/common/js/transData.js'></script>
 <script type='text/javascript' src='https://kazemai.github.io/fgo-vz/common/js/svtData.js'></script>
-
+<link rel="stylesheet" href="css/trash.css" type="text/css" />
 <script type="text/javascript">
 //https://kazemai.github.io/fgo-vz/common/js/jquery.min.js
 //https://kazemai.github.io/fgo-vz/common/js/sidebar.js
@@ -54,25 +54,28 @@ function friendship(){
 
 function friendship2(){
 	sortByElmentNo(master.mstSvt);
-	var str="";
+	var tbStr="<table></table>";
 	for(var x in master.mstSvt){
 		if((master.mstSvt[x].type==1||master.mstSvt[x].type==2||master.mstSvt[x].type==99)&&master.mstSvt[x].collectionNo>1){
 			var q=findSvtFs(master.mstSvt[x].id);
-			var n=[];
-			var m=[];
 			for(var a in master.mstFriendship){
 				if(master.mstFriendship[a].id==q&&10>master.mstFriendship[a].rank){
 					n[master.mstFriendship[a].rank]=master.mstFriendship[a].friendship;
 				}
 			}
-			str+=master.mstSvt[x].collectionNo+'    ';
-			str+=findSvtNameZh(master.mstSvt[x].id)+'    ';
+			var trStr="<tr></tr>";
+			var tdStr='<td>'+master.mstSvt[x].collectionNo+'</td>';
+			tdStr+='<td>'+findSvtNameZh(master.mstSvt[x].id)+'</td>';
 			for(var i=4;i<10;i++){
-				str+=n[i]/10000+'    '
+				tdStr+='<td>'+n[i]/10000+'</td>';
 			}
-			str+='<br/>';
+			trStr.append(tdStr);
+			tbStr.append(trStr);
 		}
 	}
+	$("#info").empty();
+	$("#info").append(tbStr);
+	removeItems();
 }
 function nphit(){
 	sortByElmentNo(master.mstSvt);
