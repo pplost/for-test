@@ -54,7 +54,7 @@ function friendship(){
 
 function friendship2(){
 	sortByElmentNo(master.mstSvt);
-	var tbStr="<table></table>";
+	var tbStr= $("<table></table>");
 	for(var x in master.mstSvt){
 		if((master.mstSvt[x].type==1||master.mstSvt[x].type==2||master.mstSvt[x].type==99)&&master.mstSvt[x].collectionNo>1){
 			var q=findSvtFs(master.mstSvt[x].id);
@@ -65,7 +65,7 @@ function friendship2(){
 					n[master.mstFriendship[a].rank]=master.mstFriendship[a].friendship;
 				}
 			}
-			var trStr="<tr></tr>";
+			var trStr= $("<tr></tr>");
 			var tdStr='<td>'+master.mstSvt[x].collectionNo+'</td>';
 			tdStr+='<td>'+findSvtNameZh(master.mstSvt[x].id)+'</td>';
 			for(var i=4;i<10;i++){
