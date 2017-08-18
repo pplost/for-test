@@ -400,11 +400,9 @@
 				a++;
 			}
 			if(ele.busterCards<b||ele.artsCards<a||ele.quickCards<q){
-				var trs=$('<tr class="err"></tr>');
+				continue;
 			}
-			else{
-				var trs=$('<tr></tr>');
-			}
+			var trs=$('<tr></tr>');
 			trs.append(tds);
 			$("#np_list").append(trs);
 		}
