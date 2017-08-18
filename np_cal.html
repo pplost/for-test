@@ -396,7 +396,6 @@
 			else if($("#third_card").val()=="6"){
 				a++;
 			}
-			console.log(b,q,a);
 			if(ele.busterCards<b||ele.artsCards<a||ele.quickCards<q){
 				var trs=$('<tr class="err"></tr>');
 			}
@@ -405,6 +404,9 @@
 			}
 			trs.append(tds);
 			$("#np_list").append(trs);
+			
+			console.log(b,q,a);
+			console.log(ele.busterCards,ele.quickCards,ele.artsCards);
 		}
 	}
 	function singleCardNP(card,cardSeq,servantSeq){
