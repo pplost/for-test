@@ -351,9 +351,7 @@
 				totalNP:totalNP
 			};
 			npList.push(row);
-			npList.sort(function(x, y){
-				return y["totalNP"] – x["totalNP"];
-			});
+			npList.sort(compare("totalNP"));
 		}
 		var trs=$('<tr></tr>');
 		for (var ele of npList){
@@ -367,6 +365,14 @@
 			trs.append(tds);
 		}
 		$("#np_list").append(trs);
+	}
+	//从大到小排序
+	function compare(property) {
+		return function (a, b) {
+			var value1 = a[property];
+			var value2 = b[property];
+			return value2 - value1;
+		}
 	}
 	function singleCardNP(card,cardSeq,servantSeq){
 		//无卡或为染色卡
