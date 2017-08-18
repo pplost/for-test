@@ -155,7 +155,7 @@
 			</td>
 			<td colspan="2">
 				<input type="button" id="cal_np" onclick="calNP()" value="计算">
-				<input type="button" id="cal_np_list" onclick="calList()" value="列表">
+				<input type="button" id="cal_np_list" onclick="calNPList()" value="列表">
 			</td>
 		</tr>
 		
@@ -331,7 +331,7 @@
 		$("#cal_result").empty();
 		$("#cal_result").append(result);
 	}
-	function calList(){
+	function calNPList(){
 		$("#np_list").empty();
 		var npList=new Array();
 		$("#np_list").append('<tr><td>id</td><td>name</td><td>firstNP</td><td>secondNP</td><td>thirdNP</td><td>exNP</td><td>totalNP</td></tr>');
@@ -353,7 +353,7 @@
 			npList.push(row);
 			npList.sort(compare("totalNP"));
 		}
-		var trs=$('<tr></tr>');
+		
 		for (var ele of npList){
 			var tds="<td>"+ele.id+'</td>';
 			tds+="<td>"+ele.name+'</td>';
@@ -362,9 +362,10 @@
 			tds+="<td>"+ele.thirdNP+'</td>';
 			tds+="<td>"+ele.exNP+'</td>';
 			tds+="<td>"+ele.totalNP+'</td>';
+			var trs=$('<tr></tr>');
 			trs.append(tds);
+			$("#np_list").append(trs);
 		}
-		$("#np_list").append(trs);
 	}
 	//从大到小排序
 	function compare(property) {
