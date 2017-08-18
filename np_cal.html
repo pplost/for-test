@@ -334,7 +334,7 @@
 	function calNPList(){
 		$("#np_list").empty();
 		var npList=new Array();
-		$("#np_list").append('<tr><td>id</td><td>name</td><td>firstNP</td><td>secondNP</td><td>thirdNP</td><td>exNP</td><td>totalNP</td></tr>');
+		$("#np_list").append('<tr><td>排名</td><td>ID</td><td>从者</td><td>首卡NP</td><td>次卡NP</td><td>尾卡NP</td><td>EX卡NP</td><td>合计</td></tr>');
 		for(var i in servants){
 			var firstNP=singleCardNP($("#first_card"),1,i);
 			var secondNP=singleCardNP($("#second_card"),2,i);
@@ -363,14 +363,15 @@
 			});
 		}
 		
-		for (var ele of npList){
-			var tds="<td>"+ele.id+'</td>';
-			tds+="<td>"+ele.name+'</td>';
-			tds+="<td>"+ele.firstNP+'</td>';
-			tds+="<td>"+ele.secondNP+'</td>';
-			tds+="<td>"+ele.thirdNP+'</td>';
-			tds+="<td>"+ele.exNP+'</td>';
-			tds+="<td>"+ele.totalNP+'</td>';
+		for (var i of npList){
+			var tds="<td>"+i+'</td>';
+			tds+="<td>"+npList[i].id+'</td>';
+			tds+="<td>"+npList[i].name+'</td>';
+			tds+="<td>"+npList[i].firstNP+'</td>';
+			tds+="<td>"+npList[i].secondNP+'</td>';
+			tds+="<td>"+npList[i].thirdNP+'</td>';
+			tds+="<td>"+npList[i].exNP+'</td>';
+			tds+="<td>"+npList[i].totalNP+'</td>';
 			var b=0,q=0,a=0;
 			if($("#first_card").val()=="0"){
 				b++;
@@ -400,7 +401,7 @@
 				a++;
 			}
 			var trs="";
-			if(ele.busterCards<b||ele.artsCards<a||ele.quickCards<q){
+			if(npList[i].busterCards<b||npList[i].artsCards<a||npList[i].quickCards<q){
 				//trs=$('<tr class="err"></tr>');
 				continue;
 			}
