@@ -396,13 +396,12 @@
 			else if($("#third_card").val()=="6"){
 				a++;
 			}
-			
-			var trs="";
+			console.log(b,q,a);
 			if(ele.busterCards<b||ele.artsCards<a||ele.quickCards<q){
-				trs=$('<tr class="err"></tr>');
+				var trs=$('<tr class="err"></tr>');
 			}
 			else{
-				trs=$('<tr></tr>');
+				var trs=$('<tr></tr>');
 			}
 			trs.append(tds);
 			$("#np_list").append(trs);
