@@ -362,16 +362,16 @@
 				return y["totalNP"]-x["totalNP"];
 			});
 		}
-		
-		for (var i in npList){
-			var tds="<td>"+i+'</td>';
-			tds+="<td>"+npList[i].id+'</td>';
-			tds+="<td>"+npList[i].name+'</td>';
-			tds+="<td>"+npList[i].firstNP+'</td>';
-			tds+="<td>"+npList[i].secondNP+'</td>';
-			tds+="<td>"+npList[i].thirdNP+'</td>';
-			tds+="<td>"+npList[i].exNP+'</td>';
-			tds+="<td>"+npList[i].totalNP+'</td>';
+		var rankSeq=1;
+		for (var ele of npList){
+			var tds="<td>"+rankSeq+'</td>';
+			tds+="<td>"+ele.id+'</td>';
+			tds+="<td>"+ele.name+'</td>';
+			tds+="<td>"+ele.firstNP+'</td>';
+			tds+="<td>"+ele.secondNP+'</td>';
+			tds+="<td>"+ele.thirdNP+'</td>';
+			tds+="<td>"+ele.exNP+'</td>';
+			tds+="<td>"+ele.totalNP+'</td>';
 			var b=0,q=0,a=0;
 			if($("#first_card").val()=="0"){
 				b++;
@@ -401,7 +401,7 @@
 				a++;
 			}
 			var trs="";
-			if(npList[i].busterCards<b||npList[i].artsCards<a||npList[i].quickCards<q){
+			if(ele.busterCards<b||ele.artsCards<a||ele.quickCards<q){
 				//trs=$('<tr class="err"></tr>');
 				continue;
 			}
@@ -410,6 +410,7 @@
 			}
 			trs.append(tds);
 			$("#np_list").append(trs);
+			rankSeq++;
 		}
 	}
 	function singleCardNP(card,cardSeq,servantSeq){
