@@ -155,7 +155,7 @@
 			</td>
 			<td colspan="2">
 				<input type="button" id="cal_np" onclick="calNP()" value="计算">
-				<input type="button" id="cal_np_list" onclick="calList()" value="列表">
+				<input type="button" id="cal_np_list" onclick="calNPList()" value="列表">
 			</td>
 		</tr>
 		
@@ -331,7 +331,7 @@
 		$("#cal_result").empty();
 		$("#cal_result").append(result);
 	}
-	function calList(){
+	function calNPList(){
 		$("#np_list").empty();
 		var npList=new Array();
 		$("#np_list").append('<tr><td>id</td><td>name</td><td>firstNP</td><td>secondNP</td><td>thirdNP</td><td>exNP</td><td>totalNP</td></tr>');
@@ -349,7 +349,7 @@
 				thirdNP:thirdNP,
 				exNP:exNP,
 				totalNP:totalNP
-			}
+			};
 			npList.push(row);
 			npList.sort(function(x, y){
 				return y["totalNP"] – x["totalNP"];
