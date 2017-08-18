@@ -153,8 +153,10 @@
 					<option value="1.2">死灵类 : 1.2</option>
 				</select>
 			</td>
-			<td colspan="2">
+			<td>
 				<input type="button" id="cal_np" onclick="calNP()" value="计算">
+			</td>
+			<td>
 				<input type="button" id="cal_np_list" onclick="calNPList()" value="列表">
 			</td>
 		</tr>
@@ -343,6 +345,7 @@
 			var exNP=singleCardNP($("#ex_card"),4,i);
 			var totalNP=0;
 			var isCertified=true;
+			//配卡不符合的不显示
 			var b=0,q=0,a=0;
 			if($("#first_card").val()=="0"){
 				b++;
@@ -377,8 +380,8 @@
 			//蓝chain
 			if($("#first_card").val()=="-2"){a++};
 			if(a>=3){artsChain=20;}
-			//如果之后有宝具卡，白打，单独计算不考虑这条
-			//同理蓝宝具不计入蓝chain
+			//如果之后有宝具卡，白打，只在列表计算里算这条
+			//同理蓝宝具不计蓝chain，很真实
 			if($("#second_card").val()=="-11"){firstNP=0;}
 			if($("#third_card").val()=="-11"){firstNP=0;secondNP=0;}
 			//保留2位小数
@@ -439,6 +442,12 @@
 		//红卡宝具
 		if(card.val()=="-11" && servants[servantSeq].npCard=="Buster"){
 			return 0;
+		}
+		//无法满足EX卡条件
+		if(cardSeq==4){
+			if($("#first_card").val()=="-1"||$("#first_card").val()=="-2"||$("#second_card").val()=="-1"||$("#third_card").val()=="-1"){
+				return 0;
+			}
 		}
 		var np=0;
 		var firstArtsBonus=0;
