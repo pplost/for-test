@@ -340,10 +340,14 @@
 			var secondNP=singleCardNP($("#second_card"),2,i);
 			var thirdNP=singleCardNP($("#third_card"),3,i);
 			var exNP=singleCardNP($("#ex_card"),4,i);
-			var totalNP=firstNP+secondNP+thirdNP+exNP;
+			var totalNP=Math.round((firstNP+secondNP+thirdNP+exNP)*100)/100;
+			firstNP=Math.round(firstNP*100)/100;
+			secondNP=Math.round(secondNP*100)/100;
+			thirdNP=Math.round(thirdNP*100)/100;
+			exNP=Math.round(exNP*100)/100;
 			var row = {
 				id:servants[i].id,
-				name:servants[i].name,
+				name:'【'+servants[i].class+'】'+servants[i].name,
 				firstNP:firstNP,
 				secondNP:secondNP,
 				thirdNP:thirdNP,
