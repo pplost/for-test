@@ -355,11 +355,14 @@
 				totalNP:totalNP
 			};
 			npList.push(row);
-			npList.sort(compare("totalNP"));
+			npList.sort(function(x, y){
+				return y["totalNP"]-x["totalNP"];
+			});
 		}
 		
 		for (var ele of npList){
-			var tds="<td>"+ele.id+'</td>';
+			var tds="";
+			tds+="<td>"+ele.id+'</td>';
 			tds+="<td>"+ele.name+'</td>';
 			tds+="<td>"+ele.firstNP+'</td>';
 			tds+="<td>"+ele.secondNP+'</td>';
@@ -369,14 +372,6 @@
 			var trs=$('<tr></tr>');
 			trs.append(tds);
 			$("#np_list").append(trs);
-		}
-	}
-	//从大到小排序
-	function compare(property) {
-		return function (a, b) {
-			var value1 = a[property];
-			var value2 = b[property];
-			return value2 - value1;
 		}
 	}
 	function singleCardNP(card,cardSeq,servantSeq){
