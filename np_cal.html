@@ -353,6 +353,9 @@
 				thirdNP:thirdNP,
 				exNP:exNP,
 				totalNP:totalNP
+				busterCards:servants[i].busterCards
+				artsCards:servants[i].artsCards
+				quickCards:servants[i].quickCards
 			};
 			npList.push(row);
 			npList.sort(function(x, y){
@@ -404,9 +407,6 @@
 			}
 			trs.append(tds);
 			$("#np_list").append(trs);
-			
-			console.log(b,q,a);
-			console.log(ele.busterCards,ele.quickCards,ele.artsCards);
 		}
 	}
 	function singleCardNP(card,cardSeq,servantSeq){
