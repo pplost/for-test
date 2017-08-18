@@ -363,15 +363,15 @@
 			});
 		}
 		
-		for (var i of npList){
+		for (var i in npList){
 			var tds="<td>"+i+'</td>';
-			tds+="<td>"+npList[i]["id"]+'</td>';
-			tds+="<td>"+npList[i]["name"]+'</td>';
-			tds+="<td>"+npList[i]["firstNP"]+'</td>';
-			tds+="<td>"+npList[i]["secondNP"]+'</td>';
-			tds+="<td>"+npList[i]["thirdNP"]+'</td>';
-			tds+="<td>"+npList[i]["exNP"]+'</td>';
-			tds+="<td>"+npList[i]["totalNP"]+'</td>';
+			tds+="<td>"+npList[i].id+'</td>';
+			tds+="<td>"+npList[i].name+'</td>';
+			tds+="<td>"+npList[i].firstNP+'</td>';
+			tds+="<td>"+npList[i].secondNP+'</td>';
+			tds+="<td>"+npList[i].thirdNP+'</td>';
+			tds+="<td>"+npList[i].exNP+'</td>';
+			tds+="<td>"+npList[i].totalNP+'</td>';
 			var b=0,q=0,a=0;
 			if($("#first_card").val()=="0"){
 				b++;
