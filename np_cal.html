@@ -399,12 +399,13 @@
 			else if($("#third_card").val()=="6"){
 				a++;
 			}
+			var trs="";
 			if(ele.busterCards<b||ele.artsCards<a||ele.quickCards<q){
+				//trs=$('<tr class="err"></tr>');
 				continue;
-				var trs=$('<tr class="err"></tr>');
 			}
 			else{
-				var trs=$('<tr></tr>');
+				trs=$('<tr></tr>');
 			}
 			trs.append(tds);
 			$("#np_list").append(trs);
