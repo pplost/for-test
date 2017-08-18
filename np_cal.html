@@ -401,8 +401,11 @@
 			}
 			if(ele.busterCards<b||ele.artsCards<a||ele.quickCards<q){
 				continue;
+				var trs=$('<tr class="err"></tr>');
 			}
-			var trs=$('<tr></tr>');
+			else{
+				var trs=$('<tr></tr>');
+			}
 			trs.append(tds);
 			$("#np_list").append(trs);
 		}
