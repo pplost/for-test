@@ -1,0 +1,96 @@
+#设置全局用户
+git config --global user.name <name>
+git config --global user.email <email@example.com>
+
+#设置版本库(master)
+git init <path>
+#或者进入目录直接git init
+
+#增加修改内容到暂存区(stage)
+git add <fileName>
+#git add .可增加所有文件
+
+#提交暂存区(stage)内容到版本库(master)
+git commit -m <"remark">
+
+#查看状态
+git status
+
+#查看修改内容
+git diff <fileName>
+
+#查看日志
+git log
+#用git log --pretty=oneline命令可以简化日志内容
+#git log --graph --pretty=oneline --abbrev-commit命令可以查看分支合并图
+
+#回退一个版本
+git reset --hard HEAD^
+#回退2个版本
+git reset --hard HEAD^^
+#回退100个版本
+git reset --hard HEAD~100
+#回退到指定版本
+git reset --hard <version>
+#git reset命令将版本库内容回复到工作区，并清空暂存区内容
+
+#查看命令日志
+git reflog
+
+#放弃工作区修改内容，用暂存区内容覆盖工作区内容
+git checkout -- <fileName>
+#如果暂存区为空，则用版本库内容覆盖
+
+#删除文件
+git rm <fileName>
+#将删除命令提交到暂存区，提交后删除版本库内容
+
+#复制一个已存在的库
+git clone <user@server:path>
+
+#关联到远程库
+git remote add <origin> <user@server:path>
+#推送文件到远程库
+git push <origin> master
+
+#创建分支
+git branch <branchName>
+#切换分支
+git checkout <branchName>
+#git checkout后加参数-b可以直接创建并切换分支
+#查看所有分支
+git branch
+#合并目标分支到当前分支
+git merge <tragetBranch>
+#删除分支
+git branch -d <branchName>
+
+#隐藏当前工作状态
+git stash
+#查看隐藏的工作列表
+git stash list
+#恢复工作状态
+git stash apply (stash@{<NO>})
+#删除工作状态
+git stash drop (stash@{<NO>})
+#恢复并删除工作状态
+git stash pop (stash@{<NO>})
+
+#查看标签
+git tag
+#创建标签
+git tag <name> (<version>)
+#查看标签信息
+git show <name>
+#删除标签
+git tag -d <name>
+#创建带注释的标签
+git tag -a <name> -m <"remark">
+#推送全部标签到服务器
+git push <origin> --tags
+#推送指定标签到服务器
+git push <origin> <name>
+#删除服务器标签，先删除本地标签，然后git push <origin> :refs/tags/<name>
+
+#设置别名
+git config --global alias.<newCMD> <oldCMD>
