@@ -2,6 +2,9 @@
 git config --global user.name <name>
 git config --global user.email <email@example.com>
 
+#
+git config user.name <name>
+git config user.email <email@example.com>
 #设置版本库(master)
 git init <path>
 #或者进入目录直接git init
