@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
@@ -219,27 +220,27 @@
 		$("#np_hits").val(servants[seq].npHits);
 		$("#cards").empty();
 		if(servants[seq].npCard=="Buster"){
-			var card='<img src="resources/Buster.png" style="width:81">';
+			var card='<img src="resources/Buster.png" style="width:81px">';
 			$("#cards").append(card);
 		}
 		else if(servants[seq].npCard=="Arts"){
-			var card='<img src="resources/Arts.png" style="width:81">';
+			var card='<img src="resources/Arts.png" style="width:81px">';
 			$("#cards").append(card);
 		}
 		else if(servants[seq].npCard=="Quick"){
-			var card='<img src="resources/Quick.png" style="width:81">';
+			var card='<img src="resources/Quick.png" style="width:81px">';
 			$("#cards").append(card);
 		}
 		for(var i=0;i<servants[seq].busterCards;i++){
-			var card='<img src="resources/Buster.png" style="width:50">';
+			var card='<img src="resources/Buster.png" style="width:50px">';
 			$("#cards").append(card);
 		}
 		for(var i=0;i<servants[seq].artsCards;i++){
-			var card='<img src="resources/Arts.png" style="width:50">';
+			var card='<img src="resources/Arts.png" style="width:50px">';
 			$("#cards").append(card);
 		}
 		for(var i=0;i<servants[seq].quickCards;i++){
-			var card='<img src="resources/Quick.png" style="width:50">';
+			var card='<img src="resources/Quick.png" style="width:50px">';
 			$("#cards").append(card);
 		}
 		$("#link_to_wiki").empty();
