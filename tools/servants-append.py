@@ -28,16 +28,6 @@ for x in js:
 			l.append(d)
 			break 
 
-str='[\n'
-for x in l:	
-	str+='\t{\n'
-	for y in x:
-		str+='\t\t"'+y+'": "'+x[y]+'",\n'
-	str=str[0:-2]
-	str+='\n\t},\n'
-str=str[0:-2]
-str+='\n]'
-
 with open('servants.json','w+',encoding='utf-8') as wpoint:
-	wpoint.write(str)
+	json.dump(l,wpoint,ensure_ascii=False,indent=4)
 		

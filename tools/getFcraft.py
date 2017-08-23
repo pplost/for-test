@@ -10,7 +10,7 @@ from collections import OrderedDict
 
 def getServantInfo(id):
 	baseUrl="http://fgowiki.com/guide/petdetail/"
-	page=(baseUrl+str(id))
+	page=getPage(baseUrl+str(id))
 	name=getInfo(r'"NAME":"(.*?)"',page,1)
 	name=name.encode().decode('unicode_escape')
 	name=re.sub(r'・',r'·',name)
@@ -61,12 +61,7 @@ with open('fcraft-append.json','r',encoding='utf-8') as rpoint:
 sortList=["id","name","servantID","servant","friendship","desc"]
 sortListIn=["0-5","5-6","6-7","7-8","8-9","9-10","total"]
 
-i=len(js)
-j=len(jsa)
 l=[]
-
-print(i,j)
-
 for x in jsa:
 	flag=True
 	for y in js:
@@ -83,11 +78,30 @@ for x in jsa:
 			flag=False
 			l.append(d)
 			break
-	if flag:
-		print(x["servantID"],x["id"])
-		#name=getServantInfo(y["servantID"])
-		#cftList=getServantInfo(y["id"])
-
-print(l)
+	if (flag):
+		print(x["servantID"])
+		name=getServantInfo(x["servantID"])
+		cftList=getCraftInfo(x["id"])
+		d=OrderedDict()
+		for y in sortList:
+			if(y=="friendship"):
+				dIn=OrderedDict()
+				for z in sortListIn:
+					dIn[z]=x[y][z]
+				d[y]=dIn
+			elif(y=="servant"):
+				d[y]=name
+			elif(y=="name"):
+				d[y]=cftList[0]
+			elif(y=="desc"):
+				d[y]=cftList[1]
+			else:
+				d[y]=x[y]
+		l.append(d)
 		
-	
+outStr=json.dumps(l,ensure_ascii=False,indent=4)
+outStr.replace('    ','\t')
+with open('aaaa.json','w+',encoding='utf-8') as wpoint:
+	wpoint.write(outStr)
+# with open('fcraft.json','w+',encoding='utf-8') as wpoint:
+	# json.dump(l,wpoint,ensure_ascii=False,indent=4)
