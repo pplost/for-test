@@ -65,7 +65,29 @@ i=len(js)
 j=len(jsa)
 l=[]
 
-while i<j:
+print(i,j)
+
+for x in jsa:
+	flag=True
+	for y in js:
+		if(x["servantID"]==y["servantID"]):
+			d=OrderedDict()
+			for z in sortList:
+				if(z=="friendship"):
+					dIn=OrderedDict()
+					for a in sortListIn:
+						dIn[a]=y[z][a]
+					d[z]=dIn
+				else:
+					d[z]=y[z]
+			flag=False
+			l.append(d)
+			break
+	if flag:
+		print(x["servantID"],x["id"])
+		#name=getServantInfo(y["servantID"])
+		#cftList=getServantInfo(y["id"])
+
+print(l)
+		
 	
-	
-	i+=1

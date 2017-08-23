@@ -175,14 +175,13 @@
 
 <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
-	var $ = jQuery.noConflict();
 	var servants = new Array();
 	//读取数据
 	$(function(){  
 		$.getJSON("data/servants.json",function(data){  
 			$.each(data,function(infoIndex,info){
 				servants[info["seq"]]=info;
-				var lst='<option value="'+servants[info["seq"]].seq+'">'+'【'+servants[info["seq"]].class+"】 "+servants[info["seq"]].name+'</option>';
+				var lst='<option value="'+servants[info["seq"]].seq+'">'+'【'+servants[info["seq"]]["class"]+"】 "+servants[info["seq"]].name+'</option>';
 				$("#servants").append(lst);
 			})
 			$("#servants").val(1); 
@@ -198,7 +197,7 @@
 	function resetList(){
 		$("#servants").empty();
 		for(var i in servants){
-			var lst='<option value="'+servants[i].seq+'">'+'【'+servants[i].class+"】 "+servants[i].name+'</option>';
+			var lst='<option value="'+servants[i].seq+'">'+'【'+servants[i]["class"]+"】 "+servants[i].name+'</option>';
 			$("#servants").append(lst);
 		}
 		$("#servants").val(1); 
@@ -259,7 +258,7 @@
 					flag=false;
 					sid=i;
 				}
-				lst+='<option value="'+servants[i].seq+'">'+'【'+servants[i].class+"】 "+servants[i].name+'</option>';
+				lst+='<option value="'+servants[i].seq+'">'+'【'+servants[i]["class"]+"】 "+servants[i].name+'</option>';
 			}
 		}
 		if(!flag){
@@ -398,7 +397,7 @@
 			exNP=Math.round(exNP*100)/100;
 			var row = {
 				id:servants[i].id,
-				name:'【'+servants[i].class+'】'+servants[i].name,
+				name:'【'+servants[i]["class"]+'】'+servants[i].name,
 				firstNP:firstNP,
 				secondNP:secondNP,
 				thirdNP:thirdNP,
