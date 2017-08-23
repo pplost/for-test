@@ -415,19 +415,19 @@
 			});
 		}
 		var rankSeq=1;
-		for (var ele of npList){
+		for (var i in npList){
 			
 			var tds="<td>"+rankSeq+'</td>';
-			tds+="<td>"+ele.id+'</td>';
-			tds+="<td>"+ele.name+'</td>';
-			tds+="<td>"+ele.firstNP+'</td>';
-			tds+="<td>"+ele.secondNP+'</td>';
-			tds+="<td>"+ele.thirdNP+'</td>';
-			tds+="<td>"+ele.exNP+'</td>';
-			tds+="<td>"+ele.artsChain+'</td>';
-			tds+="<td>"+ele.totalNP+'</td>';
+			tds+="<td>"+npList[i].id+'</td>';
+			tds+="<td>"+npList[i].name+'</td>';
+			tds+="<td>"+npList[i].firstNP+'</td>';
+			tds+="<td>"+npList[i].secondNP+'</td>';
+			tds+="<td>"+npList[i].thirdNP+'</td>';
+			tds+="<td>"+npList[i].exNP+'</td>';
+			tds+="<td>"+npList[i].artsChain+'</td>';
+			tds+="<td>"+npList[i].totalNP+'</td>';
 			var trs="";
-			if(!ele.isCertified){
+			if(!npList[i].isCertified){
 				//trs=$('<tr class="err"></tr>');
 				continue;
 			}
