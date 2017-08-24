@@ -15,7 +15,7 @@
 	</style>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript">
-	var data;
+	var info;
 	$(function(){  
 		loadData();
 		createTable();
@@ -23,6 +23,7 @@
 	
 	function loadData(){
 		$.getJSON("data/fcraft.json",function(data){
+			info=data;
 		});
 	}
 	
@@ -34,22 +35,22 @@
 			if((line % 2) == 1){
 				sty=' class="odd"';
 			}
-			var clink = 'href="http://fgowiki.com/guide/equipdetail/' + data[i]["id"] + '"';
-			var slink = 'href="http://fgowiki.com/guide/petdetail/' + data[i]["servantID"] + '"';
+			var clink = 'href="http://fgowiki.com/guide/equipdetail/' + info[i]["id"] + '"';
+			var slink = 'href="http://fgowiki.com/guide/petdetail/' + info[i]["servantID"] + '"';
 			var tr = $('<tr' + sty + '></tr>');
-			var tds = '<td><a ' + clink + ' target="_blank">' + data[i]["id"] + '</a></td>';
-			tds += '<td><a ' + clink + ' target="_blank"><img src="http://fgowiki.com/fgo/equip/' + data[i]["id"] + '.jpg" style="width:60px ;height:auto"></a></td>';
-			tds += '<td><a ' + clink + ' target="_blank">' + data[i]["name"] + '</a></td>';
-			tds += '<td><a ' + slink + ' target="_blank">' + data[i]["servant"] + '</a></td>';
-			tds += '<td><a ' + slink + ' target="_blank"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + (Array(3).join('0') + data[i]["servantID"]).slice(-3) + '.jpg" style="width:60px ;height:auto"></a></td>';
-			tds += '<td>' + data[i]["friendship"]["0-5"] + '</td>';
-			tds += '<td>' + data[i]["friendship"]["5-6"] + '</td>';
-			tds += '<td>' + data[i]["friendship"]["6-7"] + '</td>';
-			tds += '<td>' + data[i]["friendship"]["7-8"] + '</td>';
-			tds += '<td>' + data[i]["friendship"]["8-9"] + '</td>';
-			tds += '<td>' + data[i]["friendship"]["9-10"] + '</td>';
-			tds += '<td>' + data[i]["friendship"]["total"] + '</td>';
-			tds += '<td style="text-align:left">' + data[i]["desc"] + '</td>';
+			var tds = '<td><a ' + clink + ' target="_blank">' + info[i]["id"] + '</a></td>';
+			tds += '<td><a ' + clink + ' target="_blank"><img src="http://fgowiki.com/fgo/equip/' + info[i]["id"] + '.jpg" style="width:60px ;height:auto"></a></td>';
+			tds += '<td><a ' + clink + ' target="_blank">' + info[i]["name"] + '</a></td>';
+			tds += '<td><a ' + slink + ' target="_blank">' + info[i]["servant"] + '</a></td>';
+			tds += '<td><a ' + slink + ' target="_blank"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + (Array(3).join('0') + info[i]["servantID"]).slice(-3) + '.jpg" style="width:60px ;height:auto"></a></td>';
+			tds += '<td>' + info[i]["friendship"]["0-5"] + '</td>';
+			tds += '<td>' + info[i]["friendship"]["5-6"] + '</td>';
+			tds += '<td>' + info[i]["friendship"]["6-7"] + '</td>';
+			tds += '<td>' + info[i]["friendship"]["7-8"] + '</td>';
+			tds += '<td>' + info[i]["friendship"]["8-9"] + '</td>';
+			tds += '<td>' + info[i]["friendship"]["9-10"] + '</td>';
+			tds += '<td>' + info[i]["friendship"]["total"] + '</td>';
+			tds += '<td style="text-align:left">' + info[i]["desc"] + '</td>';
 			tr.append(tds);
 			$("#cftable").append(tr);
 			line++;
