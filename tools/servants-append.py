@@ -28,6 +28,10 @@ for x in js:
 			l.append(d)
 			break 
 
+outStr=json.dumps(l,ensure_ascii=False,indent=4)
+outStr=outStr.replace('    ','\t')
 with open('servants.json','w+',encoding='utf-8') as wpoint:
-	json.dump(l,wpoint,ensure_ascii=False,indent=4)
+	wpoint.write(outStr)
+# with open('servants.json','w+',encoding='utf-8') as wpoint:
+	# json.dump(l,wpoint,ensure_ascii=False,indent=4)
 		

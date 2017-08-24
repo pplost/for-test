@@ -100,8 +100,7 @@ for x in jsa:
 		l.append(d)
 		
 outStr=json.dumps(l,ensure_ascii=False,indent=4)
-outStr.replace('    ','\t')
-with open('aaaa.json','w+',encoding='utf-8') as wpoint:
+outStr=outStr.replace('    ','\t')
+# outStr=re.sub(r'"id": (\d+),',r'"id": "\1",',outStr)
+with open('fcraft.json','w+',encoding='utf-8') as wpoint:
 	wpoint.write(outStr)
-# with open('fcraft.json','w+',encoding='utf-8') as wpoint:
-	# json.dump(l,wpoint,ensure_ascii=False,indent=4)
