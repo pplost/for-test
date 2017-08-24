@@ -26,6 +26,7 @@
 <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
 	var info = new Array();
+	
 	$(function(){  
 		loadData();
 		createTable();
@@ -40,7 +41,7 @@
 	function createTable(){
 		$("#cftable").empty();
 		createTableHead();
-		var line = 1
+		var line = 1;
 		for(var i in info){
 			var sty=""
 			if((line % 2) == 1){
