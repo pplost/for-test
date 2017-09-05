@@ -74,12 +74,12 @@ function createTableHead(){
 	var tr1 = $('<tr></tr>');
 	var tr2 = $('<tr></tr>');
 	var ths = '<th id="thID" rowspan="2" class="clickable" onclick="sortTable(\'id\')">ID</th>';
-	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'id\')">Í¼±ê</th>';
-	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'name\')">Àñ×°Ãû³Æ</th>';
-	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'servantID\')">Í·Ïñ</th>';
-	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'servant\')">Á¥Êô´ÓÕß</th>';
-	ths += '<th colspan="7" class="clickable" onclick="sortTable(\'total\')">î¿°íµãÊı(Íò)</th>';
-	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'desc\')">ËµÃ÷</th>';
+	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'id\')">å›¾æ ‡</th>';
+	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'name\')">ç¤¼è£…åç§°</th>';
+	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'servantID\')">å¤´åƒ</th>';
+	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'servant\')">éš¶å±ä»è€…</th>';
+	ths += '<th colspan="7" class="clickable" onclick="sortTable(\'total\')">ç¾ç»Šç‚¹æ•°(ä¸‡)</th>';
+	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'desc\')">è¯´æ˜</th>';
 	tr1.append(ths);
 	thd.append(tr1);
 	ths = '<th class="clickable" onclick="sortTable(\'0-5\')">0-5</th>';
@@ -88,7 +88,7 @@ function createTableHead(){
 	ths += '<th class="clickable" onclick="sortTable(\'7-8\')">7-8</th>';
 	ths += '<th class="clickable" onclick="sortTable(\'8-9\')">8-9</th>';
 	ths += '<th class="clickable" onclick="sortTable(\'9-10\')">9-10</th>';
-	ths += '<th class="clickable" onclick="sortTable(\'total\')">×Ü¼Æ</th>';
+	ths += '<th class="clickable" onclick="sortTable(\'total\')">æ€»è®¡</th>';
 	tr2.append(ths);
 	thd.append(tr2);
 	$("#cftable").append(thd);
