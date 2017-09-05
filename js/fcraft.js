@@ -59,6 +59,9 @@ function createTableBody(){
 		if(picFlag){
 			tds += '<td><a ' + slink + ' target="_blank"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + info[i]["servantID"]+ '.jpg" style="width:60px ;height:auto"></a></td>';
 		}
+		else{
+			tds += '<td><a ' + slink + ' target="_blank">' + parseInt(info[i]["servantID"]) + '</a></td>';
+		}
 		tds += '<td><a ' + slink + ' target="_blank">' + info[i]["servant"] + '</a></td>';
 		tds += '<td>' + info[i]["0-5"] + '</td>';
 		tds += '<td>' + info[i]["5-6"] + '</td>';
@@ -85,6 +88,9 @@ function createTableHead(){
 	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'name\')">礼装名称</th>';
 	if(picFlag){
 		ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'servantID\')">头像</th>';
+	}
+	else{
+		ths += '<th rowspan="2" class="clickable" style="width:51px" onclick="sortTable(\'servantID\')">从者ID</th>';
 	}
 	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'servant\')">隶属从者</th>';
 	ths += '<th colspan="7" class="clickable" onclick="sortTable(\'total\')">羁绊点数(万)</th>';
