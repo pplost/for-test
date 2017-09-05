@@ -1,6 +1,7 @@
-
+//国服开放进度
+var process = 275;
 var info = new Array();
-var sortStatus={
+var sortStatus = {
 	id:false,
 	name:false,
 	servant:false,
@@ -13,6 +14,7 @@ var sortStatus={
 	"9-10":false,
 	total:false
 };
+
 $(function(){  
 	$.getJSON("data/fcraft.json",function(data){
 		for (var i in data){
@@ -24,36 +26,39 @@ $(function(){
 				desc:data[i].desc
 			};
 			for(var j in data[i]["friendship"]){
-				row[j]=data[i]["friendship"][j];
+				row[j] = data[i]["friendship"][j];
 			}
 			info.push(row);
 		};
-		sortStatus["servantID"]=true;
+		sortStatus["servantID"] = true;
 		createTableHead();
 		createTableBody();
 	});
-	
-})
+});
 
 function createTableBody(){
 	$("#mainTable").empty();
 	var line = 1;
 	for(var i in info){
-		var tr_sty="";
-		var td_sty="";
+		var trSty = "";
+		var tdSty = "";
 		if((line % 2) == 1){
-			tr_sty=' class="odd"';
+			trSty = ' class="odd"';
 		}
-		if(parseInt(info[i]["id"])>275){
-			td_sty=' class="unopened"';
+		if(parseInt(info[i]["id"]) > process){
+			tdSty = ' class="unopened"';
 		}
 		var clink = 'href="http://fgowiki.com/guide/equipdetail/' + info[i]["id"] + '"';
 		var slink = 'href="http://fgowiki.com/guide/petdetail/' + info[i]["servantID"] + '"';
-		var tr = $('<tr' + tr_sty + '></tr>');
-		var tds = '<td'+td_sty+'><a ' + clink + ' target="_blank">' + info[i]["id"] + '</a></td>';
-		tds += '<td><a ' + clink + ' target="_blank"><img src="http://fgowiki.com/fgo/equip/' + info[i]["id"] + '.jpg" style="width:60px ;height:auto"></a></td>';
+		var tr = $('<tr' + trSty + '></tr>');
+		var tds = '<td' + tdSty + '><a ' + clink + ' target="_blank">' + info[i]["id"] + '</a></td>';
+		if(picFlag){
+			tds += '<td><a ' + clink + ' target="_blank"><img src="http://fgowiki.com/fgo/equip/' + info[i]["id"] + '.jpg" style="width:60px ;height:auto"></a></td>';
+		}
 		tds += '<td><a ' + clink + ' target="_blank">' + info[i]["name"] + '</a></td>';
-		tds += '<td><a ' + slink + ' target="_blank"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + info[i]["servantID"]+ '.jpg" style="width:60px ;height:auto"></a></td>';
+		if(picFlag){
+			tds += '<td><a ' + slink + ' target="_blank"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + info[i]["servantID"]+ '.jpg" style="width:60px ;height:auto"></a></td>';
+		}
 		tds += '<td><a ' + slink + ' target="_blank">' + info[i]["servant"] + '</a></td>';
 		tds += '<td>' + info[i]["0-5"] + '</td>';
 		tds += '<td>' + info[i]["5-6"] + '</td>';
@@ -74,9 +79,13 @@ function createTableHead(){
 	var tr1 = $('<tr></tr>');
 	var tr2 = $('<tr></tr>');
 	var ths = '<th id="thID" rowspan="2" class="clickable" onclick="sortTable(\'id\')">ID</th>';
-	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'id\')">图标</th>';
+	if(picFlag){
+		ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'id\')">图标</th>';
+	}
 	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'name\')">礼装名称</th>';
-	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'servantID\')">头像</th>';
+	if(picFlag){
+		ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'servantID\')">头像</th>';
+	}
 	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'servant\')">隶属从者</th>';
 	ths += '<th colspan="7" class="clickable" onclick="sortTable(\'total\')">羁绊点数(万)</th>';
 	ths += '<th rowspan="2" class="clickable" onclick="sortTable(\'desc\')">说明</th>';
@@ -92,14 +101,14 @@ function createTableHead(){
 	tr2.append(ths);
 	thd.append(tr2);
 	$("#cftable").append(thd);
-	var tby=$('<tbody id="mainTable"></tbody>');
+	var tby = $('<tbody id="mainTable"></tbody>');
 	$("#cftable").append(tby);
 }
 
 function sortTable(col){
 	if(sortStatus[col]){
 		for(var x in sortStatus){
-			sortStatus[x]=false;
+			sortStatus[x] = false;
 		}
 		info.sort(function(x, y){
 			return y[col].localeCompare(x[col]);
@@ -107,9 +116,9 @@ function sortTable(col){
 	}
 	else{
 		for(var x in sortStatus){
-			sortStatus[x]=false;
+			sortStatus[x] = false;
 		}
-		sortStatus[col]=true;
+		sortStatus[col] = true;
 		info.sort(function(x, y){
 			return x[col].localeCompare(y[col]);
 		});
