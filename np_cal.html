@@ -16,7 +16,7 @@
 			<td>查询</td>
 			<td colspan="3">
 				<input type="text" id="search_str">
-				<input type="button" id="search" onclick="searchName()" value="查询">
+				<input type="button" id="search" value="查询">
 				<input type="button" id="reset" onclick="resetList()" value="重置">
 			</td>
 		</tr>
@@ -179,7 +179,7 @@
 	var servants = new Array();
 	//读取数据
 	$(function(){  
-		$.getJSON("data/servants.json",function(data){  
+		$.getJSON("https://pplost.github.io/for-test/data/servants.json",function(data){  
 			$.each(data,function(infoIndex,info){
 				servants[info["seq"]]=info;
 				var lst='<option value="'+servants[info["seq"]].seq+'">'+'【'+servants[info["seq"]]["class"]+"】 "+servants[info["seq"]].name+'</option>';
@@ -248,7 +248,7 @@
 		$("#link_to_wiki").append(links);
 	}
 	//查询功能
-	function searchName(){
+	$("#search_str").change(function(){
 		var str=$("#search_str").val();
 		var flag=true;
 		var sid=1;
@@ -269,9 +269,9 @@
 			updateStatus(sid);
 		}
 		else{
-			alert('未找到结果！');
+			resetList();
 		}
-	}
+	});
 	//overkill选择框事件
 	$("#first_ok").click(function(){
 		if ($(this).prop("checked")){
