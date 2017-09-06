@@ -1,5 +1,3 @@
-//国服开放进度
-var process = 275;
 var info = new Array();
 var sortStatus = {
 	id:false,
@@ -19,7 +17,7 @@ $(function(){
 	$.getJSON("data/fcraft.json",function(data){
 		for (var i in data){
 			var row = {
-				id:data[i].id,
+				id:("000" + data[i]["id"]).slice(-3),
 				name:data[i].name,
 				servantID:("000" + data[i]["servantID"]).slice(-3),
 				servant:data[i].servant,

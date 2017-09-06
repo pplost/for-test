@@ -248,7 +248,7 @@
 		$("#link_to_wiki").append(links);
 	}
 	//查询功能
-	$("#search_str").change(function(){
+	$("#search_str").on('input propertychange', function(){
 		var str=$("#search_str").val();
 		var flag=true;
 		var sid=1;
