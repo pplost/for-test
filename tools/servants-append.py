@@ -13,7 +13,7 @@ with open('servants-append.json','r',encoding='utf-8') as rpoint:
 	jsa = json.load(rpoint)
 	
 #sortList=["seq","id","name","class","atk","hp","busterCards","artsCards","quickCards","busterHits","artsHits","quickHits","exHits","npHits","busterNP","artsNP","quickNP","exNP","npNP","npCard","busterEff","artsEff","quickEff","npEff","hitedNP","dropStar","starEff","critDamage","attaDamage"]
-sortList=["seq","id","name","class","busterCards","artsCards","quickCards","busterHits","artsHits","quickHits","exHits","npHits","busterNP","artsNP","quickNP","exNP","npNP","npCard","busterEff","artsEff","quickEff","npEff","hitedNP"]
+sortList=["seq","id","name","nickName","class","busterCards","artsCards","quickCards","busterHits","artsHits","quickHits","exHits","npHits","busterNP","artsNP","quickNP","exNP","npNP","npCard","busterEff","artsEff","quickEff","npEff","hitedNP"]
 l=[]
 
 for x in js:

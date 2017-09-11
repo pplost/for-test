@@ -39,7 +39,7 @@ class FWIKI:
 					
 f=FWIKI()
 whiteList=[83,149,151,152,168]
-startPage=179
+startPage=1
 endPage=182
 lines=None
 seq=0
@@ -67,6 +67,7 @@ while startPage<=endPage:
 		name=name.encode().decode('unicode_escape')
 		name=re.sub(r'・',r'·',name)
 		name=re.sub(r'〔(.*?)〕',r'(\1)',name)
+		name=re.sub(r'（(.*?)）',r'(\1)',name)
 		clss=f.getInf(r'"CLASS":"(.*?)"',page,1)
 		hp=BusterNp=f.getInf(r'"LVMAX4_HP":"(\d+)"',page,1)
 		atk=f.getInf(r'"LVMAX4_ATK":"(\d+)"',page,1)
@@ -84,7 +85,14 @@ while startPage<=endPage:
 		EXHit=f.getInf(r'"EXHit":"(\d+)"',page,1)
 		HitedNP=f.getInf(r'"Passive":"(\d*\.?\d+)%"',page,1)
 		dropStar=f.getInf(r'"Crit":"(\d*\.?\d+)%"',page,1)
-		
+		nickName=f.getInf(r'<td><div class="textsmall Circle"></div></td>\n<td colspan="2" title="(.*?)"><div class="spetext">\1</div></td>',page,1)
+		if(nickName):
+			nickName=re.sub(r'・',r'·',nickName)
+			nickName=re.sub(r'〔(.*?)〕',r'(\1)',nickName)
+			nickName=re.sub(r'（(.*?)）',r'(\1)',nickName)
+			nickName = nickName+','+name
+		else:
+			nickName = name
 		BusterEff=f.getInf(r'Buster\\u5361.{1,60}(\\uff08|\()(\d*\.?\d+)%(\\uff09|\))',page,2)
 		if BusterEff==None:
 			BusterEff='0'
@@ -109,13 +117,23 @@ while startPage<=endPage:
 		attaDamage=f.getInf(r'\\u7ed9\\u81ea\\u5df1\\u8d4b\\u4e88\\u4f24\\u5bb3\\u63d0\\u5347\\u72b6\\u6001(\\uff08|\()(\d+)(\\uff09|\))',page,2)
 		if attaDamage==None:
 			attaDamage='0'
-		if(startPage!=108):
-			lines='\t{\n\t\t"seq": "'+str(seq)+'",\n\t\t"id": "'+str(startPage)+'",\n\t\t"name": "'+name+'",\n\t\t"class": "'+str(clss)+'",\n\t\t"atk": "'+atk+'",\n\t\t"hp": "'+hp+'",\n\t\t"busterCards": "'+str(BusterCard)+'",\n\t\t"artsCards": "'+str(ArtsCard)+'",\n\t\t"quickCards": "'+str(QuickCard)+'",\n\t\t"busterHits": "'+str(BusterHit)+'",\n\t\t"artsHits": "'+str(ArtsHit)+'",\n\t\t"quickHits": "'+str(QuickHit)+'",\n\t\t"exHits": "'+str(EXHit)+'",\n\t\t"busterNP": "'+str(BusterNp)+'",\n\t\t"artsNP": "'+str(ArtsNp)+'",\n\t\t"quickNP": "'+str(QuickNp)+'",\n\t\t"exNP": "'+str(EXNp)+'",\n\t\t"npNP": "'+str(npNp)+'",\n\t\t"busterEff": "'+str(BusterEff)+'",\n\t\t"artsEff": "'+str(ArtsEff)+'",\n\t\t"quickEff": "'+str(QuickEff)+'",\n\t\t"npEff": "'+str(NPEff)+'",\n\t\t"hitedNP": "'+str(HitedNP)+'",\n\t\t"dropStar": "'+str(dropStar)+'",\n\t\t"starEff": "'+str(StarEff)+'",\n\t\t"critDamage": "'+str(CritDamage)+'",\n\t\t"attaDamage": "'+str(attaDamage)+'"\n\t},\n'
-		else:
-			#嫁王EX为5，杰基尔有2个
-			lines='\t{\n\t\t"seq": "'+str(seq)+'",\n\t\t"id": "'+str(startPage)+'",\n\t\t"name": "'+name+' (强化前)'+'",\n\t\t"class": "'+str(clss)+'",\n\t\t"atk": "'+atk+'",\n\t\t"hp": "'+hp+'",\n\t\t"busterCards": "'+str(BusterCard)+'",\n\t\t"artsCards": "'+str(ArtsCard)+'",\n\t\t"quickCards": "'+str(QuickCard)+'",\n\t\t"busterHits": "'+str(BusterHit)+'",\n\t\t"artsHits": "'+str(ArtsHit)+'",\n\t\t"quickHits": "'+str(QuickHit)+'",\n\t\t"exHits": "'+str(EXHit)+'",\n\t\t"busterNP": "'+str(BusterNp)+'",\n\t\t"artsNP": "'+str(ArtsNp)+'",\n\t\t"quickNP": "'+str(QuickNp)+'",\n\t\t"exNP": "'+str(EXNp)+'",\n\t\t"npNP": "'+str(npNp)+'",\n\t\t"busterEff": "'+str(BusterEff)+'",\n\t\t"artsEff": "'+str(ArtsEff)+'",\n\t\t"quickEff": "'+str(QuickEff)+'",\n\t\t"npEff": "'+str(NPEff)+'",\n\t\t"hitedNP": "'+str(HitedNP)+'",\n\t\t"dropStar": "'+str(dropStar)+'",\n\t\t"starEff": "'+str(StarEff)+'",\n\t\t"critDamage": "'+str(CritDamage)+'",\n\t\t"attaDamage": "'+str(attaDamage)+'"\n\t},\n'
+		if(startPage==108):
+		#大帝np率分强化前后
+			lines='\t{\n\t\t"seq": "'+str(seq)+'",\n\t\t"id": "'+str(startPage)+'",\n\t\t"name": "'+name+' (强化前)'+'",\n\t\t"nickName": "'+str(nickName)+'",\n\t\t"class": "'+str(clss)+'",\n\t\t"atk": "'+atk+'",\n\t\t"hp": "'+hp+'",\n\t\t"busterCards": "'+str(BusterCard)+'",\n\t\t"artsCards": "'+str(ArtsCard)+'",\n\t\t"quickCards": "'+str(QuickCard)+'",\n\t\t"busterHits": "'+str(BusterHit)+'",\n\t\t"artsHits": "'+str(ArtsHit)+'",\n\t\t"quickHits": "'+str(QuickHit)+'",\n\t\t"exHits": "'+str(EXHit)+'",\n\t\t"busterNP": "'+str(BusterNp)+'",\n\t\t"artsNP": "'+str(ArtsNp)+'",\n\t\t"quickNP": "'+str(QuickNp)+'",\n\t\t"exNP": "'+str(EXNp)+'",\n\t\t"npNP": "'+str(npNp)+'",\n\t\t"busterEff": "'+str(BusterEff)+'",\n\t\t"artsEff": "'+str(ArtsEff)+'",\n\t\t"quickEff": "'+str(QuickEff)+'",\n\t\t"npEff": "'+str(NPEff)+'",\n\t\t"hitedNP": "'+str(HitedNP)+'",\n\t\t"dropStar": "'+str(dropStar)+'",\n\t\t"starEff": "'+str(StarEff)+'",\n\t\t"critDamage": "'+str(CritDamage)+'",\n\t\t"attaDamage": "'+str(attaDamage)+'"\n\t},\n'	
 			seq+=1
-			lines+='\t{\n\t\t"seq": "'+str(seq)+'",\n\t\t"id": "'+str(startPage)+'",\n\t\t"name": "'+name+' (强化后)'+'",\n\t\t"class": "'+str(clss)+'",\n\t\t"atk": "'+atk+'",\n\t\t"hp": "'+hp+'",\n\t\t"busterCards": "'+str(BusterCard)+'",\n\t\t"artsCards": "'+str(ArtsCard)+'",\n\t\t"quickCards": "'+str(QuickCard)+'",\n\t\t"busterHits": "'+str(BusterHit)+'",\n\t\t"artsHits": "'+str(ArtsHit)+'",\n\t\t"quickHits": "'+str(QuickHit)+'",\n\t\t"exHits": "'+str(EXHit)+'",\n\t\t"busterNP": "'+'0.86'+'",\n\t\t"artsNP": "'+'0.86'+'",\n\t\t"quickNP": "'+'0.86'+'",\n\t\t"exNP": "'+'0.86'+'",\n\t\t"npNP": "'+'0.86'+'",\n\t\t"busterEff": "'+str(BusterEff)+'",\n\t\t"artsEff": "'+str(ArtsEff)+'",\n\t\t"quickEff": "'+str(QuickEff)+'",\n\t\t"npEff": "'+str(NPEff)+'",\n\t\t"hitedNP": "'+str(HitedNP)+'",\n\t\t"dropStar": "'+str(dropStar)+'",\n\t\t"starEff": "'+str(StarEff)+'",\n\t\t"critDamage": "'+str(CritDamage)+'",\n\t\t"attaDamage": "'+str(attaDamage)+'"\n\t},\n'
+			lines+='\t{\n\t\t"seq": "'+str(seq)+'",\n\t\t"id": "'+str(startPage)+'",\n\t\t"name": "'+name+' (强化后)'+'",\n\t\t"nickName": "'+str(nickName)+'",\n\t\t"class": "'+str(clss)+'",\n\t\t"atk": "'+atk+'",\n\t\t"hp": "'+hp+'",\n\t\t"busterCards": "'+str(BusterCard)+'",\n\t\t"artsCards": "'+str(ArtsCard)+'",\n\t\t"quickCards": "'+str(QuickCard)+'",\n\t\t"busterHits": "'+str(BusterHit)+'",\n\t\t"artsHits": "'+str(ArtsHit)+'",\n\t\t"quickHits": "'+str(QuickHit)+'",\n\t\t"exHits": "'+str(EXHit)+'",\n\t\t"busterNP": "'+'0.86'+'",\n\t\t"artsNP": "'+'0.86'+'",\n\t\t"quickNP": "'+'0.86'+'",\n\t\t"exNP": "'+'0.86'+'",\n\t\t"npNP": "'+'0.86'+'",\n\t\t"busterEff": "'+str(BusterEff)+'",\n\t\t"artsEff": "'+str(ArtsEff)+'",\n\t\t"quickEff": "'+str(QuickEff)+'",\n\t\t"npEff": "'+str(NPEff)+'",\n\t\t"hitedNP": "'+str(HitedNP)+'",\n\t\t"dropStar": "'+str(dropStar)+'",\n\t\t"starEff": "'+str(StarEff)+'",\n\t\t"critDamage": "'+str(CritDamage)+'",\n\t\t"attaDamage": "'+str(attaDamage)+'"\n\t},\n'
+		elif(startPage==81):
+		#杰基尔有2个
+			lines='\t{\n\t\t"seq": "'+str(seq)+'",\n\t\t"id": "'+str(startPage)+'",\n\t\t"name": "'+name+' (杰基尔)'+'",\n\t\t"nickName": "'+str(nickName)+'",\n\t\t"class": "'+str(clss)+'",\n\t\t"atk": "'+atk+'",\n\t\t"hp": "'+hp+'",\n\t\t"busterCards": "'+str(BusterCard)+'",\n\t\t"artsCards": "'+str(ArtsCard)+'",\n\t\t"quickCards": "'+str(QuickCard)+'",\n\t\t"busterHits": "'+str(BusterHit)+'",\n\t\t"artsHits": "'+str(ArtsHit)+'",\n\t\t"quickHits": "'+str(QuickHit)+'",\n\t\t"exHits": "'+str(EXHit)+'",\n\t\t"busterNP": "'+str(BusterNp)+'",\n\t\t"artsNP": "'+str(ArtsNp)+'",\n\t\t"quickNP": "'+str(QuickNp)+'",\n\t\t"exNP": "'+str(EXNp)+'",\n\t\t"npNP": "'+str(npNp)+'",\n\t\t"busterEff": "'+str(BusterEff)+'",\n\t\t"artsEff": "'+str(ArtsEff)+'",\n\t\t"quickEff": "'+str(QuickEff)+'",\n\t\t"npEff": "'+str(NPEff)+'",\n\t\t"hitedNP": "'+str(HitedNP)+'",\n\t\t"dropStar": "'+str(dropStar)+'",\n\t\t"starEff": "'+str(StarEff)+'",\n\t\t"critDamage": "'+str(CritDamage)+'",\n\t\t"attaDamage": "'+str(attaDamage)+'"\n\t},\n'	
+			seq+=1
+			lines+='\t{\n\t\t"seq": "'+str(seq)+'",\n\t\t"id": "'+str(startPage)+'",\n\t\t"name": "'+name+' (海德)'+'",\n\t\t"nickName": "'+str(nickName)+'",\n\t\t"class": "'+'Berserker'+'",\n\t\t"atk": "'+str(7551)+'",\n\t\t"hp": "'+str(8592)+'",\n\t\t"busterCards": "'+str(BusterCard)+'",\n\t\t"artsCards": "'+str(ArtsCard)+'",\n\t\t"quickCards": "'+str(QuickCard)+'",\n\t\t"busterHits": "'+str(BusterHit)+'",\n\t\t"artsHits": "'+str(ArtsHit)+'",\n\t\t"quickHits": "'+str(QuickHit)+'",\n\t\t"exHits": "'+str(EXHit)+'",\n\t\t"busterNP": "'+'1.02'+'",\n\t\t"artsNP": "'+'1.02'+'",\n\t\t"quickNP": "'+'1.02'+'",\n\t\t"exNP": "'+'1.02'+'",\n\t\t"npNP": "'+'1.02'+'",\n\t\t"busterEff": "'+str(10)+'",\n\t\t"artsEff": "'+str(ArtsEff)+'",\n\t\t"quickEff": "'+str(QuickEff)+'",\n\t\t"npEff": "'+str(NPEff)+'",\n\t\t"hitedNP": "'+str(5)+'",\n\t\t"dropStar": "'+str(5)+'",\n\t\t"starEff": "'+str(0)+'",\n\t\t"critDamage": "'+str(CritDamage)+'",\n\t\t"attaDamage": "'+str(attaDamage)+'"\n\t},\n'
+		elif(startPage==90):
+		#嫁王EX为5
+			lines='\t{\n\t\t"seq": "'+str(seq)+'",\n\t\t"id": "'+str(startPage)+'",\n\t\t"name": "'+name+'",\n\t\t"nickName": "'+str(nickName)+'",\n\t\t"class": "'+str(clss)+'",\n\t\t"atk": "'+atk+'",\n\t\t"hp": "'+hp+'",\n\t\t"busterCards": "'+str(BusterCard)+'",\n\t\t"artsCards": "'+str(ArtsCard)+'",\n\t\t"quickCards": "'+str(QuickCard)+'",\n\t\t"busterHits": "'+str(BusterHit)+'",\n\t\t"artsHits": "'+str(ArtsHit)+'",\n\t\t"quickHits": "'+str(QuickHit)+'",\n\t\t"exHits": "'+str(5)+'",\n\t\t"busterNP": "'+str(BusterNp)+'",\n\t\t"artsNP": "'+str(ArtsNp)+'",\n\t\t"quickNP": "'+str(QuickNp)+'",\n\t\t"exNP": "'+str(EXNp)+'",\n\t\t"npNP": "'+str(npNp)+'",\n\t\t"busterEff": "'+str(BusterEff)+'",\n\t\t"artsEff": "'+str(ArtsEff)+'",\n\t\t"quickEff": "'+str(QuickEff)+'",\n\t\t"npEff": "'+str(NPEff)+'",\n\t\t"hitedNP": "'+str(HitedNP)+'",\n\t\t"dropStar": "'+str(dropStar)+'",\n\t\t"starEff": "'+str(StarEff)+'",\n\t\t"critDamage": "'+str(CritDamage)+'",\n\t\t"attaDamage": "'+str(attaDamage)+'"\n\t},\n'
+		else:
+			lines='\t{\n\t\t"seq": "'+str(seq)+'",\n\t\t"id": "'+str(startPage)+'",\n\t\t"name": "'+name+'",\n\t\t"nickName": "'+str(nickName)+'",\n\t\t"class": "'+str(clss)+'",\n\t\t"atk": "'+atk+'",\n\t\t"hp": "'+hp+'",\n\t\t"busterCards": "'+str(BusterCard)+'",\n\t\t"artsCards": "'+str(ArtsCard)+'",\n\t\t"quickCards": "'+str(QuickCard)+'",\n\t\t"busterHits": "'+str(BusterHit)+'",\n\t\t"artsHits": "'+str(ArtsHit)+'",\n\t\t"quickHits": "'+str(QuickHit)+'",\n\t\t"exHits": "'+str(EXHit)+'",\n\t\t"busterNP": "'+str(BusterNp)+'",\n\t\t"artsNP": "'+str(ArtsNp)+'",\n\t\t"quickNP": "'+str(QuickNp)+'",\n\t\t"exNP": "'+str(EXNp)+'",\n\t\t"npNP": "'+str(npNp)+'",\n\t\t"busterEff": "'+str(BusterEff)+'",\n\t\t"artsEff": "'+str(ArtsEff)+'",\n\t\t"quickEff": "'+str(QuickEff)+'",\n\t\t"npEff": "'+str(NPEff)+'",\n\t\t"hitedNP": "'+str(HitedNP)+'",\n\t\t"dropStar": "'+str(dropStar)+'",\n\t\t"starEff": "'+str(StarEff)+'",\n\t\t"critDamage": "'+str(CritDamage)+'",\n\t\t"attaDamage": "'+str(attaDamage)+'"\n\t},\n'
+			
+			
 		if(startPage==endPage):
 			lines=lines[:-2]+"\n]"
 		with open('servants.json','a+',encoding='utf-8') as wpoint:

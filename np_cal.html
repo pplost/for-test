@@ -138,11 +138,12 @@
 			<td>敌方补正</td>
 			<td>
 				<select id="enemy_class">
-					<option value="1">其他 : 1</option>
-					<option value="1.1">Rider : 1.1</option>
-					<option value="1.2">Caster : 1.2</option>
-					<option value="0.9">Assassin : 0.9</option>
-					<option value="0.8">Berserker : 0.8</option>
+					<option value="1">其他:1</option>
+					<option value="1.1">Rider:1.1</option>
+					<option value="1.2">Caster:1.2</option>
+					<option value="0.9">Assassin:0.9</option>
+					<option value="0.8">Berserker:0.8</option>
+					<option value="1.2">MoonCancer:1.2</option>
 				</select>
 			</td>
 			<td>
@@ -215,27 +216,27 @@
 			$("#np_hits").val(servants[seq].npHits);
 			$("#cards").empty();
 			if(servants[seq].npCard=="Buster"){
-				var card='<img src="resources/Buster.png" style="width:81px">';
+				var card='<img src="resources/others/Buster.png" style="width:81px">';
 				$("#cards").append(card);
 			}
 			else if(servants[seq].npCard=="Arts"){
-				var card='<img src="resources/Arts.png" style="width:81px">';
+				var card='<img src="resources/others/Arts.png" style="width:81px">';
 				$("#cards").append(card);
 			}
 			else if(servants[seq].npCard=="Quick"){
-				var card='<img src="resources/Quick.png" style="width:81px">';
+				var card='<img src="resources/others/Quick.png" style="width:81px">';
 				$("#cards").append(card);
 			}
 			for(var i=0;i<servants[seq].busterCards;i++){
-				var card='<img src="resources/Buster.png" style="width:50px">';
+				var card='<img src="resources/others/Buster.png" style="width:50px">';
 				$("#cards").append(card);
 			}
 			for(var i=0;i<servants[seq].artsCards;i++){
-				var card='<img src="resources/Arts.png" style="width:50px">';
+				var card='<img src="resources/others/Arts.png" style="width:50px">';
 				$("#cards").append(card);
 			}
 			for(var i=0;i<servants[seq].quickCards;i++){
-				var card='<img src="resources/Quick.png" style="width:50px">';
+				var card='<img src="resources/others/Quick.png" style="width:50px">';
 				$("#cards").append(card);
 			}
 			$("#link_to_wiki").empty();
@@ -249,7 +250,7 @@
 			var sid=1;
 			var lst='';
 			for(var i in servants){
-				if(servants[i].name.match(str)){
+				if(servants[i].nickName.match(str)){
 					if(flag){
 						flag=false;
 						sid=i;
