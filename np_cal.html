@@ -175,7 +175,7 @@
 		var servants = new Array();
 		//读取数据
 		$(function(){  
-			$.getJSON("https://pplost.github.io/for-test/data/servants.json",function(data){  
+			$.getJSON("data/servants.json",function(data){  
 				$.each(data,function(infoIndex,info){
 					servants[info["seq"]]=info;
 					var lst='<option value="'+servants[info["seq"]].seq+'">'+'【'+servants[info["seq"]]["class"]+"】 "+servants[info["seq"]].name+'</option>';
