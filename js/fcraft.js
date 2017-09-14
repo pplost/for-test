@@ -13,7 +13,6 @@ var sortStatus = {
 	total:false
 };
 
-//$(function(){  
 $(document).ready(function(){
 	$.getJSON("data/fcraft.json",function(data){
 		for (var i in data){
