@@ -21,6 +21,8 @@
 	</style>
 </head>
 <body>
+	<div id="title_link">
+	</div>
 	<table id="cftable">
 	</table>
 	<p style="text-align:right; font-size:12px;"><a href="http://kazemai.github.io/fgo-vz/">数据来源：茹西教王的理想乡</a></p>
@@ -31,11 +33,17 @@
 	<script type="text/javascript" src="js/fcraft.js"></script>
 	<script type="text/javascript">
 		//国服开放进度
-		var process = 290;
-		var picFlag=true;
-		if(window.location.search == "?no_pic"){
-			picFlag=false;
-		}
+		$(document).ready(function(){
+			var process = 290;
+			var picFlag=true;
+			if(window.location.search == "?no_pic"){
+				picFlag=false;
+				$("#").append('<a href="./fcraft.html">羁绊礼装表</a>');
+			}
+			else{
+				$("#").append('<a href="./fcraft.html?no_pic">羁绊礼装表(无图版)</a>');
+			}
+		});
 	</script>  
 </body>
 </html>
