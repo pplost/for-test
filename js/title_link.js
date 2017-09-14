@@ -7,7 +7,7 @@ $(document).ready(function(){
 		'/exp_cal.html' : '狗粮计算器'
 	};
 	var page = window.location.pathname + window.location.search;
-	page = page.split('/')[2];
+	page = '/' + page.split('/')[2];
 	for(var i in pages){
 		if(page == i){
 			continue;
