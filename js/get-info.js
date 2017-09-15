@@ -1,5 +1,5 @@
 function removeItems() {
-	document.getElementById("buttonArea").remove();
+	document.getElementById("button_area").remove();
 }
 
 function friendship() {
