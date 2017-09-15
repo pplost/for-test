@@ -4,7 +4,8 @@ $(document).ready(function () {
 		'fcraft.html' : '羁绊礼装表',
 		'fcraft.html?no_pic' : '羁绊礼装表(无图版)',
 		'np_cal.html' : 'NP计算器',
-		'exp_cal.html' : '狗粮计算器'
+		'exp_cal.html' : '狗粮计算器',
+		'drop_chance.html':'材料掉率(转自效率剧场)'
 	};
 	var page = window.location.pathname + window.location.search;
 	if (page.split('/')[2]) {
