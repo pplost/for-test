@@ -14,16 +14,15 @@ for (var x in master.mstSvt) {
 						}
 						var npColor = master.mstSvtTreasureDevice[y].cardId; //卡色	
 						var npHits = master.mstSvtTreasureDevice[y].damage.length; //hits
-						if (color == "1") {
-							color = "Arts";
-						} else if (color == "2") {
-							color = "Buster";
-						} else if (color == "3") {
-							color = "Quick";
+						if (npColor == "1") {
+							npColor = "Arts";
+						} else if (npColor == "2") {
+							npColor = "Buster";
+						} else if (npColor == "3") {
+							npColor = "Quick";
 						} else {
-							color == "unknown";
+							npColor == "unknown";
 						}
-						console.log(color);
 						var l = [];
 						for (var i in tdDetail) {
 							if (master.mstTreasureDevice[z].id == tdDetail[i][0]) {
@@ -134,7 +133,7 @@ for (var x in master.mstSvt) {
 				var o = [];
 				for (var i = 0; i < len; i++) {
 					var t = [];
-					t.push(l[1].split(/＆|＋/))[i]);
+					t.push(l[1].split(/＆|＋/)[i]);
 					t.push(l[i + 2]);
 					o.push(t);
 				}

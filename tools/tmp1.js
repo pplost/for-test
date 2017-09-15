@@ -10,6 +10,7 @@ for (var x in master.mstSvt) {
 			skills : [],
 			noblePhantasm : []
 		};
+		//宝具
 		for (var y in master.mstSvtTreasureDevice) {
 			if (master.mstSvtTreasureDevice[y].svtId == master.mstSvt[x].id && 100 != master.mstSvtTreasureDevice[y].treasureDeviceId) {
 				var npLists = [];
@@ -41,7 +42,7 @@ for (var x in master.mstSvt) {
 						}
 						l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
 						l[1] = l[1].replace("[Lv.]", "");
-
+						l[1] = l[1].replace("的話", "");
 						//hits修正
 						if (l[1].search(/攻擊[^力]|攻撃[^力]/) == -1) {
 							npHits = 0;
@@ -66,6 +67,7 @@ for (var x in master.mstSvt) {
 				}
 			}
 		}
+		//技能
 		for (var y in master.mstSvtSkill) {
 			if (master.mstSvtSkill[y].svtId == master.mstSvt[x].id) {
 				var skillChargeTurn = "";
@@ -109,12 +111,11 @@ for (var x in master.mstSvt) {
 			}
 		}
 		if (master.mstSvt[x].classPassive.length != 0) {
-			var s = [];
 			for (var y in master.mstSvt[x].classPassive) {
-
+				var pSkillName="";
 				for (var i in master.mstSkill) {
 					if (master.mstSvt[x].classPassive[y] == master.mstSkill[i].id) {
-						console.log(master.mstSkill[i].name);
+						pSkillName=master.mstSkill[i].name;
 						break;
 					}
 				}
@@ -138,13 +139,15 @@ for (var x in master.mstSvt) {
 					t.push(l[i + 2]);
 					o.push(t);
 				}
-				s.push(o);
-
+				var pSkillInf = {
+					name : pSkillName,
+					desc : o
+				};
+				inf.passiveSkills.push(pSkillInf);
 			}
-			console.log(s);
 		}
-
 		lists.push(inf);
 	}
 }
-console.log(lists);
+//console.log(lists);
+console.log(JSON.stringify(lists)); 
