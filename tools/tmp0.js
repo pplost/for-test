@@ -8,21 +8,17 @@ for (var x in master.mstSvt) {
 				for (var z in master.mstTreasureDevice) {
 					if (master.mstTreasureDevice[z].id == master.mstSvtTreasureDevice[y].treasureDeviceId) {
 
-						var npName = master.mstTreasureDevice[z].name; //名字
-						if (npName == "？？？"||npName.split(" ")[0]=="") {
+						var npName = master.mstTreasureDevice[z].name;
+						if (npName == "？？？") {
 							break;
 						}
-						var npColor = master.mstSvtTreasureDevice[y].cardId; //卡色	
-						var npHits = master.mstSvtTreasureDevice[y].damage.length; //hits
-						if (npColor == "1") {
-							npColor = "Arts";
-						} else if (npColor == "2") {
-							npColor = "Buster";
-						} else if (npColor == "3") {
-							npColor = "Quick";
-						} else {
-							npColor == "unknown";
+						if (noblePhantasmsDict[npName]) {
+							npName = noblePhantasmsDict[npName];
 						}
+						var npHits = master.mstSvtTreasureDevice[y].damage.length; //hits
+						var npColor = master.mstSvtTreasureDevice[y].cardId;
+						npColor = cardColorsDict[npColor];
+						
 						var l = [];
 						for (var i in tdDetail) {
 							if (master.mstTreasureDevice[z].id == tdDetail[i][0]) {
@@ -31,11 +27,16 @@ for (var x in master.mstSvt) {
 							}
 						}
 						l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
-						l[1] = l[1].replace("[Lv.]", "");
+						l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
+						l[1] = l[1].replace(/\[Lv\.\]/g, "");
+						l[1] = l[1].replace(/的話/g, "");
+						l[1] = l[1].replace(/<br>/g, " ");
+						
 						if (l[1].search(/攻擊[^力]|攻撃[^力]/) == -1) {
 							hits = 0;
 						}
 						len = l[1].split(/＆|＋/).length;
+						console.log(l);
 						var o = [];
 						for (var i = 0; i < len; i++) {
 							var t = [];
@@ -43,16 +44,10 @@ for (var x in master.mstSvt) {
 							t.push(l[i + 2]);
 							o.push(t);
 						}
-						if (o.length > 0) {
-							console.log(o);
-						}
-
 					}
 				}
-
 			}
 		}
-
 	}
 }
 
@@ -84,7 +79,9 @@ for (var x in master.mstSvt) {
 					}
 				}
 				l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
-				l[1] = l[1].replace("[Lv.]", "");
+				l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
+				l[1] = l[1].replace(/\[Lv\.\]/g, "");
+				l[1] = l[1].replace(/<br>/g, " ");
 				
 				len = l[1].split(/＆|＋/).length;
 				console.log(l[1].split(/＆|＋/)[0]);
@@ -127,7 +124,9 @@ for (var x in master.mstSvt) {
 				}
 
 				l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
-				l[1] = l[1].replace("[Lv.]", "");
+				l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
+				l[1] = l[1].replace(/\[Lv\.\]/g, "");
+				l[1] = l[1].replace(/<br>/g, " ");
 				
 				len = l[1].split(/＆|＋/).length;
 				var o = [];
@@ -144,3 +143,50 @@ for (var x in master.mstSvt) {
 		}
 	}
 }
+
+
+
+
+
+
+
+//
+sortByElmentNo(master.mstSvt);
+var list=[];
+var l=[];
+for (var x in master.mstSvt) {
+	if ((master.mstSvt[x].type == 1 || master.mstSvt[x].type == 2 || master.mstSvt[x].type == 99) && master.mstSvt[x].collectionNo > 0) {
+		var s = [];
+		for (var y in master.mstSvtSkill) {
+			if (master.mstSvtSkill[y].svtId == master.mstSvt[x].id) {
+
+				for (var z in master.mstSkill) {
+					if (master.mstSvtSkill[y].skillId == master.mstSkill[z].id) {	
+						var ts = master.mstSkill[z].name.split(' ');
+						if (ts.length > 1 ){
+							list.push(ts[0]);
+						}
+						else{
+							list.push(master.mstSkill[z].name);
+                        }
+						break;
+					}
+				}
+				
+			}
+		}
+	}
+}
+for (var x of list){
+	var flag=true;
+	for(var y of l){
+		if(x==y){
+			flag=false;
+			break;
+        }
+    }
+	if(flag){
+		l.push(x);
+    }
+}
+console.log(l);

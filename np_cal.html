@@ -9,165 +9,172 @@
 	<div id="title_link">
 	</div>
 	<table>
-		<tr>
-			<td>从者</td>
-			<td colspan="3" style="text-align:center">
-				<select id="servants"></select>
-			</td>
-			<td>查询</td>
-			<td colspan="3">
-				<input type="text" id="search_str">
-			</td>
-		</tr>
-		
-		<tr>
-			<td>配卡</td>
-			<td colspan="7" id="cards"></td>
-		</tr>
-		
-		<tr>
-			<td>红卡hit数</td>
-			<td><input type="text" id="buster_hits" style="width:50px" disabled></td>
-			<td>蓝卡hit数</td>
-			<td><input type="text" id="arts_hits" style="width:50px" disabled></td>
-			<td>绿卡hit数</td>
-			<td><input type="text" id="quick_hits" style="width:50px" disabled></td>
-			<td>EX卡hit数</td>
-			<td><input type="text" id="ex_hits" style="width:50px" disabled></td>
-		</tr>
-		
-		<tr>
-			<td>红卡np率(%)</td>
-			<td><input type="text" id="buster_np" style="width:50px" disabled></td>
-			<td>蓝卡np率(%)</td>
-			<td><input type="text" id="arts_np" style="width:50px" disabled></td>
-			<td>绿卡np率(%)</td>
-			<td><input type="text" id="quick_np" style="width:50px" disabled></td>
-			<td>ex卡np率(%)</td>
-			<td><input type="text" id="ex_np" style="width:50px" disabled></td>
-		</tr>
-		
-		<tr>
-			<td>骑乘(%)</td>
-			<td><input type="text" id="ride" style="width:50px" disabled></td>
-			<td>阵地建造(%)</td>
-			<td><input type="text" id="craft_build" style="width:50px" disabled></td>
-			<td>宝具hit数</td>
-			<td><input type="text" id="np_hits" style="width:50px" disabled></td>
-			<td>宝具np率(%)</td>
-			<td><input type="text" id="np_np" style="width:50px" disabled></td>
-		</tr>
-		
-		<tr>
-			<td>np获取提升(%)</td>
-			<td><input type="text" id="np_up" style="width:50px"></td>
-			<td>蓝魔放(%)</td>
-			<td><input type="text" id="arts_up" style="width:50px"></td>
-			<td>绿魔放(%)</td>
-			<td><input type="text" id="quick_up" style="width:50px"></td>
-			<td colspan="2"></td>
-		</tr>
-		
-		<tr>
-			<td colspan="8" id="link_to_wiki"></td>
-		</tr>
-		
-		<tr>
-			<td></td>
-			<td>首卡</td>
-			<td>次卡</td>
-			<td>尾卡</td>
-			<td>ex卡</td>
-			<td colspan="3" rowspan="5" id="cal_result"></td>
-		</tr>
-		
-		<tr>
-			<td>是否暴击</td>
-			<td><input type="checkbox" id="first_crit" style="width:50px"></td>
-			<td><input type="checkbox" id="second_crit" style="width:50px"></td>
-			<td><input type="checkbox" id="third_crit" style="width:50px"></td>
-			<td colspan="1"></td>
-		</tr>
-
-		<tr>
-			<td >是否鞭尸</td>
-			<td><input type="checkbox" id="first_ok" style="width:50px"></td>
-			<td><input type="checkbox" id="second_ok" style="width:50px"></td>
-			<td><input type="checkbox" id="third_ok" style="width:50px"></td>
-			<td><input type="checkbox" id="ex_ok" style="width:50px"></td>
-		</tr>
-		
-		<tr>
-			<td>卡序</td>
-			<td>
-				<select id="first_card"  style="width:65px">
-					<option value="-1" >无</option>
-					<option value="0">Buster</option>
-					<option value="3">Arts</option>
-					<option value="1">Quick</option>
-					<option value="-11">宝具</option>
-					<option value="-2">仅染色</option>
-				</select>
-			</td>
-			<td>
-				<select id="second_card" style="width:65px">
-					<option value="-1">无</option>
-					<option value="0">Buster</option>
-					<option value="4.5">Arts</option>
-					<option value="1.5">Quick</option>
-					<option value="-11">宝具</option>
-				</select>
-			</td>
-			<td>
-				<select id="third_card" style="width:65px">
-					<option value="-1">无</option>
-					<option value="0">Buster</option>
-					<option value="6">Arts</option>
-					<option value="2">Quick</option>
-					<option value="-11">宝具</option>
-				</select>
-			</td>
-			<td>
-				<select id="ex_card" style="width:65px">
-					<option value="-1">无</option>
-					<option value="1">EX</option>
-				</select>
-			</td>
+		<tbody>
+			<tr>
+				<td>从者</td>
+				<td colspan="3" style="text-align:center">
+					<select id="servants"></select>
+				</td>
+				<td>查询</td>
+				<td colspan="2">
+					<input type="text" id="search_str">
+				</td>
+				<td id="link_to_wiki"></td>
+			</tr>
 			
-		</tr>
+			<tr>
+				<td>配卡</td>
+				<td colspan="7" id="cards"></td>
+			</tr>
+			
+			<tr>
+				<td>红卡hit数</td>
+				<td><input type="text" id="buster_hits" style="width:50px" disabled></td>
+				<td>蓝卡hit数</td>
+				<td><input type="text" id="arts_hits" style="width:50px" disabled></td>
+				<td>绿卡hit数</td>
+				<td><input type="text" id="quick_hits" style="width:50px" disabled></td>
+				<td>EX卡hit数</td>
+				<td><input type="text" id="ex_hits" style="width:50px" disabled></td>
+			</tr>
+			
+			<tr>
+				<td>红卡np率(%)</td>
+				<td><input type="text" id="buster_np" style="width:50px" disabled></td>
+				<td>蓝卡np率(%)</td>
+				<td><input type="text" id="arts_np" style="width:50px" disabled></td>
+				<td>绿卡np率(%)</td>
+				<td><input type="text" id="quick_np" style="width:50px" disabled></td>
+				<td>ex卡np率(%)</td>
+				<td><input type="text" id="ex_np" style="width:50px" disabled></td>
+			</tr>
+			
+			<tr>
+				<td>骑乘(%)</td>
+				<td><input type="text" id="ride" style="width:50px" disabled></td>
+				<td>阵地建造(%)</td>
+				<td><input type="text" id="craft_build" style="width:50px" disabled></td>
+				<td>宝具hit数</td>
+				<td><input type="text" id="np_hits" style="width:50px" disabled></td>
+				<td>宝具np率(%)</td>
+				<td><input type="text" id="np_np" style="width:50px" disabled></td>
+			</tr>
+			
+			<tr>
+				<td>np获取提升(%)</td>
+				<td><input type="text" id="np_up" style="width:50px"></td>
+				<td>蓝魔放(%)</td>
+				<td><input type="text" id="arts_up" style="width:50px"></td>
+				<td>绿魔放(%)</td>
+				<td><input type="text" id="quick_up" style="width:50px"></td>
+				<td colspan="2"></td>
+			</tr>
+		</tbody>
 		
-		<tr>
-			<td>敌方补正</td>
-			<td>
-				<select id="enemy_class">
-					<option value="1">其他:1</option>
-					<option value="1.1">Rider:1.1</option>
-					<option value="1.2">Caster:1.2</option>
-					<option value="0.9">Assassin:0.9</option>
-					<option value="0.8">Berserker:0.8</option>
-					<option value="1.2">MoonCancer:1.2</option>
-				</select>
-			</td>
-			<td>
-				<select id="enemy_kind">
-					<option value="1">其他 : 1</option>
-					<option value="1.2">死灵类 : 1.2</option>
-				</select>
-			</td>
-			<td>
-				<input type="button" id="cal_np" onclick="calNP()" value="计算">
-			</td>
-			<td>
-				<input type="button" id="cal_np_list" onclick="calNPList()" value="列表">
-			</td>
-		</tr>
+		<tbody id ="skills">
+			<tr>
+				
+			</tr>
+		</tbody>
 		
-		<tr>
-			<td colspan="8">例外：1.死灵类中鐘を鳴らすもの和エレシュキガル的种类补正是1。<br/>2.クリスティーヌ(Assassin)以狂阶补正计算。</td>
-		</tr>
-		<tr>
-			<td colspan="8" style="text-align:right; font-size:12px; border:1px solid #fff;"><a href="https://xianlechuanshuo.github.io/fgo/calc4.html">友情链接：宝具计算器</a></td>
-		</tr>
+		<tbody>
+			<tr>
+				<td></td>
+				<td>首卡</td>
+				<td>次卡</td>
+				<td>尾卡</td>
+				<td>ex卡</td>
+				<td colspan="3" rowspan="5" id="cal_result"></td>
+			</tr>
+			
+			<tr>
+				<td>是否暴击</td>
+				<td><input type="checkbox" id="first_crit" style="width:50px"></td>
+				<td><input type="checkbox" id="second_crit" style="width:50px"></td>
+				<td><input type="checkbox" id="third_crit" style="width:50px"></td>
+				<td colspan="1"></td>
+			</tr>
+
+			<tr>
+				<td >是否鞭尸</td>
+				<td><input type="checkbox" id="first_ok" style="width:50px"></td>
+				<td><input type="checkbox" id="second_ok" style="width:50px"></td>
+				<td><input type="checkbox" id="third_ok" style="width:50px"></td>
+				<td><input type="checkbox" id="ex_ok" style="width:50px"></td>
+			</tr>
+			
+			<tr>
+				<td>卡序</td>
+				<td>
+					<select id="first_card"  style="width:65px">
+						<option value="-1" >无</option>
+						<option value="0">Buster</option>
+						<option value="3">Arts</option>
+						<option value="1">Quick</option>
+						<option value="-11">宝具</option>
+						<option value="-2">仅染色</option>
+					</select>
+				</td>
+				<td>
+					<select id="second_card" style="width:65px">
+						<option value="-1">无</option>
+						<option value="0">Buster</option>
+						<option value="4.5">Arts</option>
+						<option value="1.5">Quick</option>
+						<option value="-11">宝具</option>
+					</select>
+				</td>
+				<td>
+					<select id="third_card" style="width:65px">
+						<option value="-1">无</option>
+						<option value="0">Buster</option>
+						<option value="6">Arts</option>
+						<option value="2">Quick</option>
+						<option value="-11">宝具</option>
+					</select>
+				</td>
+				<td>
+					<select id="ex_card" style="width:65px">
+						<option value="-1">无</option>
+						<option value="1">EX</option>
+					</select>
+				</td>
+				
+			</tr>
+			
+			<tr>
+				<td>敌方补正</td>
+				<td>
+					<select id="enemy_class">
+						<option value="1">其他:1</option>
+						<option value="1.1">Rider:1.1</option>
+						<option value="1.2">Caster:1.2</option>
+						<option value="0.9">Assassin:0.9</option>
+						<option value="0.8">Berserker:0.8</option>
+						<option value="1.2">MoonCancer:1.2</option>
+					</select>
+				</td>
+				<td>
+					<select id="enemy_kind">
+						<option value="1">其他 : 1</option>
+						<option value="1.2">死灵类 : 1.2</option>
+					</select>
+				</td>
+				<td>
+					<input type="button" id="cal_np" onclick="calNP()" value="计算">
+				</td>
+				<td>
+					<input type="button" id="cal_np_list" onclick="calNPList()" value="列表">
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="8">例外：1.死灵类中鐘を鳴らすもの和エレシュキガル的种类补正是1。<br/>2.クリスティーヌ(Assassin)以狂阶补正计算。</td>
+			</tr>
+			<tr>
+				<td colspan="8" style="text-align:right; font-size:12px; border:1px solid #fff;"><a href="https://xianlechuanshuo.github.io/fgo/calc4.html">友情链接：宝具计算器</a></td>
+			</tr>
+		<tbody>
 	</table>
 	<p></p>
 	<table id="np_list"></table>

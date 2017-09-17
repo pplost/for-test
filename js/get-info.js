@@ -102,15 +102,7 @@ function nphit() {
 			var hits = 0;
 			for (var y in master.mstSvtTreasureDevice) {
 				if (master.mstSvtTreasureDevice[y].svtId == master.mstSvt[x].id && master.mstSvtTreasureDevice[y].treasureDeviceId != 100 && master.mstSvtTreasureDevice[y].num < 10) {
-					if (master.mstSvtTreasureDevice[y].cardId == 1) {
-						npCard = "Arts";
-					} else if (master.mstSvtTreasureDevice[y].cardId == 2) {
-						npCard = "Buster";
-					} else if (master.mstSvtTreasureDevice[y].cardId == 3) {
-						npCard = "Quick";
-					} else {
-						npCard == "unknown";
-					}
+					npCard = cardColorsDict[master.mstSvtTreasureDevice[y].cardId];
 					i = master.mstSvt[x].id;
 					j = master.mstSvtTreasureDevice[y].treasureDeviceId;
 					hits = master.mstSvtTreasureDevice[y].damage.length;
@@ -140,17 +132,26 @@ function nphit() {
 	document.getElementById("info").innerHTML = str;
 }
 
-function detail_info(){
+function detail_info() {
 	sortByElmentNo(master.mstSvt);
+
 	var lists = [];
 	for (var x in master.mstSvt) {
 		if ((master.mstSvt[x].type == 1 || master.mstSvt[x].type == 2 || master.mstSvt[x].type == 99) && master.mstSvt[x].collectionNo > 0) {
+			var servantName="";
+			if (servantsDict[master.mstSvt[x].collectionNo]) {
+				servantName = servantsDict[master.mstSvt[x].collectionNo];
+			}
+			else
+			{
+				servantName = findSvtNameZh(master.mstSvt[x].id);
+			}
 			var inf = {
-				id : master.mstSvt[x].collectionNo,
-				name : findSvtNameZh(master.mstSvt[x].id),
-				passiveSkills : [],
-				skills : [],
-				noblePhantasm : []
+				id: master.mstSvt[x].collectionNo,
+				name: servantName,
+				passiveSkills: [],
+				skills: [],
+				noblePhantasm: []
 			};
 			//宝具
 			for (var y in master.mstSvtTreasureDevice) {
@@ -163,18 +164,12 @@ function detail_info(){
 							if (npName == "？？？") {
 								break;
 							}
+							if (noblePhantasmsDict[npName]) {
+								npName = noblePhantasmsDict[npName];
+							}
 							var npHits = master.mstSvtTreasureDevice[y].damage.length;
 							var npColor = master.mstSvtTreasureDevice[y].cardId;
-							if (npColor == "1") {
-								npColor = "Arts";
-							} else if (npColor == "2") {
-								npColor = "Buster";
-							} else if (npColor == "3") {
-								npColor = "Quick";
-							} else {
-								npColor == "unknown";
-							}
-
+							npColor = cardColorsDict[npColor];
 							var l = [];
 							for (var i in tdDetail) {
 								if (master.mstTreasureDevice[z].id == tdDetail[i][0]) {
@@ -183,9 +178,11 @@ function detail_info(){
 								}
 							}
 							l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
-							l[1] = l[1].replace("[Lv.]", "");
-							l[1] = l[1].replace("的話", "");
-					
+							l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
+							l[1] = l[1].replace(/的話/g, "");
+							l[1] = l[1].replace(/\[Lv\.\]/g, "");
+							l[1] = l[1].replace(/<br>/g, " ");
+							
 							//hits修正
 							if (l[1].search(/攻擊[^力]|攻撃[^力]/) == -1) {
 								npHits = 0;
@@ -200,10 +197,10 @@ function detail_info(){
 							}
 
 							var npInf = {
-								name : npName,
-								hits : npHits,
-								color : npColor,
-								desc : o
+								name: npName,
+								hits: npHits,
+								color: npColor,
+								desc: o
 							};
 							inf.noblePhantasm.push(npInf);
 						}
@@ -221,6 +218,12 @@ function detail_info(){
 							break;
 						}
 					}
+					var ts = skillName.split(' ');
+					if (ts.length > 1 && skillsDict[ts[0]]) {
+						skillName = skillsDict[ts[0]] + ' ' + ts[1];
+					} else if (skillsDict[skillName]) {
+						skillName = skillsDict[skillName];
+					}
 					for (var i in master.mstSkillLv) {
 						if (master.mstSvtSkill[y].skillId == master.mstSkillLv[i].skillId && 1 == master.mstSkillLv[i].lv) {
 							skillChargeTurn = master.mstSkillLv[i].chargeTurn;
@@ -235,7 +238,9 @@ function detail_info(){
 						}
 					}
 					l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
-					l[1] = l[1].replace("[Lv.]", "");
+					l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
+					l[1] = l[1].replace(/\[Lv\.\]/g, "");
+					l[1] = l[1].replace(/<br>/g, " ");
 					
 					len = l[1].split(/＆|＋/).length;
 					var o = [];
@@ -246,21 +251,29 @@ function detail_info(){
 						o.push(t);
 					}
 					var skillInf = {
-						name : skillName,
-						chargeTurn : skillChargeTurn,
-						desc : o
+						name: skillName,
+						chargeTurn: skillChargeTurn,
+						desc: o
 					};
 					inf.skills.push(skillInf);
 				}
 			}
 			if (master.mstSvt[x].classPassive.length != 0) {
 				for (var y in master.mstSvt[x].classPassive) {
-					var pSkillName="";
+					var pSkillName = "";
 					for (var i in master.mstSkill) {
 						if (master.mstSvt[x].classPassive[y] == master.mstSkill[i].id) {
-							pSkillName=master.mstSkill[i].name;
+							pSkillName = master.mstSkill[i].name;
 							break;
 						}
+					}
+
+					var ts = pSkillName.split(' ');
+					if (ts.length > 1 && passiveSkillsDict[ts[0]]) {
+
+						pSkillName = passiveSkillsDict[ts[0]] + ' ' + ts[1];
+					} else if (passiveSkillsDict[pSkillName]) {
+						pSkillName = passiveSkillsDict[pSkillName];
 					}
 
 					var l = [];
@@ -272,8 +285,10 @@ function detail_info(){
 					}
 
 					l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
-					l[1] = l[1].replace("[Lv.]", "");
-					
+					l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
+					l[1] = l[1].replace(/\[Lv\.\]/g, "");
+					l[1] = l[1].replace(/<br>/g, " ");
+							
 					len = l[1].split(/＆|＋/).length;
 					var o = [];
 					for (var i = 0; i < len; i++) {
@@ -283,8 +298,8 @@ function detail_info(){
 						o.push(t);
 					}
 					var pSkillInf = {
-						name : pSkillName,
-						desc : o
+						name: pSkillName,
+						desc: o
 					};
 					inf.passiveSkills.push(pSkillInf);
 				}
@@ -294,5 +309,5 @@ function detail_info(){
 	}
 	//console.log(lists);
 	removeItems();
-	document.getElementById("info").innerHTML = (JSON.stringify(lists)); 
+	document.getElementById("info").innerHTML = (JSON.stringify(lists));
 }
