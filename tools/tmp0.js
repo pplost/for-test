@@ -143,8 +143,26 @@ for (var x in master.mstSvt) {
 		}
 	}
 }
-
-
+//card
+sortByElmentNo(master.mstSvt);
+for (var x in master.mstSvt) {
+	if ((master.mstSvt[x].type == 1 || master.mstSvt[x].type == 2 || master.mstSvt[x].type == 99) && master.mstSvt[x].collectionNo >0) {
+		var c1=0,c2=0,c3=0;
+		console.log(master.mstSvt[x].cardIds);
+		for (var x in master.mstSvt[x].cardIds){
+			if(master.mstSvt[x].cardIds[x] == "1"){
+				c1++;
+			}
+			else if(master.mstSvt[x].cardIds[x] == "2"){
+				c2++;
+			}
+			else if(master.mstSvt[x].cardIds[x] == "3"){
+				c3++;
+			}
+		}
+		console.log(c1,c2,c3);
+	}
+}
 
 
 

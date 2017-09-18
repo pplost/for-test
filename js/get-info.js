@@ -137,7 +137,7 @@ function detail_info() {
 
 	var lists = [];
 	for (var x in master.mstSvt) {
-		if ((master.mstSvt[x].type == 1 || master.mstSvt[x].type == 2 || master.mstSvt[x].type == 99) && master.mstSvt[x].collectionNo > 0) {
+		if ((master.mstSvt[x].type == 1 || master.mstSvt[x].type == 2 || master.mstSvt[x].type == 99) && master.mstSvt[x].collectionNo >= 0) {
 			var servantName="";
 			if (servantsDict[master.mstSvt[x].collectionNo]) {
 				servantName = servantsDict[master.mstSvt[x].collectionNo];
@@ -149,10 +149,15 @@ function detail_info() {
 			var inf = {
 				id: master.mstSvt[x].collectionNo,
 				name: servantName,
+				starRate:master.mstSvt[x].starRate / 10,
+				deathRate:master.mstSvt[x].deathRate / 10,
 				passiveSkills: [],
 				skills: [],
 				noblePhantasm: []
 			};
+			//card
+			
+			
 			//宝具
 			for (var y in master.mstSvtTreasureDevice) {
 				if (master.mstSvtTreasureDevice[y].svtId == master.mstSvt[x].id && 100 != master.mstSvtTreasureDevice[y].treasureDeviceId) {
