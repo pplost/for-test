@@ -134,34 +134,101 @@ function nphit() {
 
 function detail_info() {
 	sortByElmentNo(master.mstSvt);
-
+	var s = new Set();
 	var lists = [];
 	for (var x in master.mstSvt) {
 		if ((master.mstSvt[x].type == 1 || master.mstSvt[x].type == 2 || master.mstSvt[x].type == 99) && master.mstSvt[x].collectionNo >= 0) {
-			var servantName="";
-			if (servantsDict[master.mstSvt[x].collectionNo]) {
-				servantName = servantsDict[master.mstSvt[x].collectionNo];
-			}
-			else
-			{
-				servantName = findSvtNameZh(master.mstSvt[x].id);
-			}
 			var inf = {
-				id: master.mstSvt[x].collectionNo,
-				name: servantName,
-				starRate:master.mstSvt[x].starRate / 10,
-				deathRate:master.mstSvt[x].deathRate / 10,
-				passiveSkills: [],
-				skills: [],
-				noblePhantasm: []
+				"id" : master.mstSvt[x].collectionNo,
+				"name" : servantNamesDict[master.mstSvt[x].collectionNo],
+				"class" : classNamesDict[master.mstSvt[x].classId],
+				"rarity" : 0,
+				"gender" : genderTypeDict[master.mstSvt[x].genderType],
+				"attr" : attrDict[master.mstSvt[x].attri],
+				"policy" : "",
+				"personality" : "",
+				"individuality" : [],
+				"atkBase" : 0,
+				"hpBase" : 0,
+				"atkMax" : 0,
+				"hpMax" : 0,
+				"starRate" : master.mstSvt[x].starRate / 10,
+				"deathRate" : master.mstSvt[x].deathRate / 10,
+				"criticalWeight" : 0,
+				"passiveSkills" : [],
+				"skills" : [],
+				"noblePhantasm" : []
 			};
+
+			//
+			var pos = 0;
+			for (var i in master.mstSvtLimit) {
+				if (master.mstSvtLimit[i].svtId == master.mstSvt[x].id) {
+					pos = i;
+					inf["criticalWeight"] = master.mstSvtLimit[i].criticalWeight;
+					inf["policy"] = policyDict[master.mstSvtLimit[i].policy];
+					inf["personality"] = personalityDict[master.mstSvtLimit[i].personality];
+					break;
+				}
+			}
+			for (var i in master.mstSvtLimit) {
+				if (master.mstSvtLimit[i].svtId == master.mstSvt[x].id && master.mstSvtLimit[i].limitCount == master.mstSvt[x].limitMax) {
+					if (master.mstSvtLimit[pos].hpBase != master.mstSvtLimit[i].hpBase || master.mstSvtLimit[pos].hpMax != master.mstSvtLimit[i].hpMax) {
+						inf["hpBase"] = master.mstSvtLimit[i].hpBase;
+						inf["hpMax"] = master.mstSvtLimit[i].hpMax;
+					} else {
+						inf["hpBase"] = master.mstSvtLimit[pos].hpBase;
+						inf["hpMax"] = master.mstSvtLimit[pos].hpMax;
+					}
+					if (master.mstSvtLimit[pos].atkBase != master.mstSvtLimit[i].atkBase || master.mstSvtLimit[pos].atkMax != master.mstSvtLimit[i].atkMax) {
+						inf["atkBase"] = master.mstSvtLimit[i].atkBase;
+						inf["atkMax"] = master.mstSvtLimit[i].atkMax;
+					} else {
+						inf["atkBase"] = master.mstSvtLimit[pos].atkBase;
+						inf["atkMax"] = master.mstSvtLimit[pos].atkMax;
+					}
+					inf["rarity"] = master.mstSvtLimit[i].rarity;
+					break;
+				}
+			}
+			for (var i in master.mstSvt[x].individuality) {
+				if (individualityDict[master.mstSvt[x].individuality[i]]) {
+					inf["individuality"].push(individualityDict[master.mstSvt[x].individuality[i]]);
+				} else {
+					s.add(master.mstSvt[x].individuality[i]);
+				}
+			}
+
 			//card
-			
-			
+			var tdPos = 0;
+			for (var i in master.mstSvtTreasureDevice) {
+				if (master.mstSvtTreasureDevice[i].svtId == master.mstSvt[x].id && 100 != master.mstSvtTreasureDevice[i].treasureDeviceId) {
+					for (var j in master.mstTreasureDeviceLv) {
+						if (master.mstTreasureDeviceLv[j].treaureDeviceId == master.mstSvtTreasureDevice[i].treasureDeviceId) {
+							tdPos = j;
+							break;
+						}
+					}
+					if (tdPos != 0) {
+						break;
+					}
+				}
+			}
+
 			//宝具
 			for (var y in master.mstSvtTreasureDevice) {
 				if (master.mstSvtTreasureDevice[y].svtId == master.mstSvt[x].id && 100 != master.mstSvtTreasureDevice[y].treasureDeviceId) {
 					var npLists = [];
+					var continueFlag = false;
+					for (var z in noblePhantasmsWhiteList) {
+						if (noblePhantasmsWhiteList[z] == master.mstSvtTreasureDevice[y].treasureDeviceId) {
+							continueFlag = true;
+							break;
+						}
+					}
+					if (continueFlag) {
+						continue;
+					}
 					for (var z in master.mstTreasureDevice) {
 						if (master.mstTreasureDevice[z].id == master.mstSvtTreasureDevice[y].treasureDeviceId) {
 
@@ -171,10 +238,17 @@ function detail_info() {
 							}
 							if (noblePhantasmsDict[npName]) {
 								npName = noblePhantasmsDict[npName];
+							} else {
+								console.log("------------Noble Phantasm------------");
+								console.log('collectionNo:', master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'treasureDeviceId:', master.mstSvtTreasureDevice[y].treasureDeviceId, 'npName:', npName);
 							}
 							var npHits = master.mstSvtTreasureDevice[y].damage.length;
 							var npColor = master.mstSvtTreasureDevice[y].cardId;
 							npColor = cardColorsDict[npColor];
+							if (!npColor) {
+								console.log("------------npColor------------");
+								console.log('collectionNo:', master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'treasureDeviceId:', master.mstSvtTreasureDevice[y].treasureDeviceId, 'cardId:', master.mstSvtTreasureDevice[y].cardId);
+							}
 							var l = [];
 							for (var i in tdDetail) {
 								if (master.mstTreasureDevice[z].id == tdDetail[i][0]) {
@@ -187,7 +261,8 @@ function detail_info() {
 							l[1] = l[1].replace(/的話/g, "");
 							l[1] = l[1].replace(/\[Lv\.\]/g, "");
 							l[1] = l[1].replace(/<br>/g, " ");
-							
+							l[1] = l[1].replace(/Critical/g, "暴击");
+
 							//hits修正
 							if (l[1].search(/攻擊[^力]|攻撃[^力]/) == -1) {
 								npHits = 0;
@@ -202,10 +277,11 @@ function detail_info() {
 							}
 
 							var npInf = {
-								name: npName,
-								hits: npHits,
-								color: npColor,
-								desc: o
+								name : npName,
+								hits : npHits,
+								color : npColor,
+								np : master.mstTreasureDeviceLv[tdPos].tdPoint/100,
+								desc : o
 							};
 							inf.noblePhantasm.push(npInf);
 						}
@@ -217,9 +293,11 @@ function detail_info() {
 				if (master.mstSvtSkill[y].svtId == master.mstSvt[x].id) {
 					var skillChargeTurn = "";
 					var skillName = "";
+					var skillIcoId = 0;
 					for (var z in master.mstSkill) {
 						if (master.mstSvtSkill[y].skillId == master.mstSkill[z].id) {
 							skillName = master.mstSkill[z].name;
+							skillIcoId = master.mstSkill[z].iconId;
 							break;
 						}
 					}
@@ -228,7 +306,11 @@ function detail_info() {
 						skillName = skillsDict[ts[0]] + ' ' + ts[1];
 					} else if (skillsDict[skillName]) {
 						skillName = skillsDict[skillName];
+					} else {
+						console.log("------------skill------------");
+						console.log('collectionNo:', master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'skillId:', master.mstSvtSkill[y].skillId, 'name:', master.mstSkill[z].name);
 					}
+
 					for (var i in master.mstSkillLv) {
 						if (master.mstSvtSkill[y].skillId == master.mstSkillLv[i].skillId && 1 == master.mstSkillLv[i].lv) {
 							skillChargeTurn = master.mstSkillLv[i].chargeTurn;
@@ -246,7 +328,8 @@ function detail_info() {
 					l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
 					l[1] = l[1].replace(/\[Lv\.\]/g, "");
 					l[1] = l[1].replace(/<br>/g, " ");
-					
+					l[1] = l[1].replace(/Critical/g, "暴击");
+
 					len = l[1].split(/＆|＋/).length;
 					var o = [];
 					for (var i = 0; i < len; i++) {
@@ -256,19 +339,33 @@ function detail_info() {
 						o.push(t);
 					}
 					var skillInf = {
-						name: skillName,
-						chargeTurn: skillChargeTurn,
-						desc: o
+						name : skillName,
+						chargeTurn : skillChargeTurn,
+						icoId : skillIcoId,
+						desc : o
 					};
 					inf.skills.push(skillInf);
 				}
 			}
+			//被动
 			if (master.mstSvt[x].classPassive.length != 0) {
 				for (var y in master.mstSvt[x].classPassive) {
+					var continueFlag = false;
+					for (var z in passiveSkillsWhiteList) {
+						if (passiveSkillsWhiteList[z] == master.mstSvt[x].classPassive[y]) {
+							continueFlag = true;
+							break;
+						}
+					}
+					if (continueFlag) {
+						continue;
+					}
 					var pSkillName = "";
+					var pSkillIcoId = 0;
 					for (var i in master.mstSkill) {
 						if (master.mstSvt[x].classPassive[y] == master.mstSkill[i].id) {
 							pSkillName = master.mstSkill[i].name;
+							pSkillIcoId = master.mstSkill[i].iconId;
 							break;
 						}
 					}
@@ -279,8 +376,10 @@ function detail_info() {
 						pSkillName = passiveSkillsDict[ts[0]] + ' ' + ts[1];
 					} else if (passiveSkillsDict[pSkillName]) {
 						pSkillName = passiveSkillsDict[pSkillName];
+					} else {
+						console.log("------------Passive Skill------------");
+						console.log('collectionNo:', master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'skillId:', master.mstSvt[x].classPassive[y], 'SkillName:', pSkillName);
 					}
-
 					var l = [];
 					for (var i in skDetail) {
 						if (master.mstSvt[x].classPassive[y] == skDetail[i][0]) {
@@ -293,7 +392,8 @@ function detail_info() {
 					l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
 					l[1] = l[1].replace(/\[Lv\.\]/g, "");
 					l[1] = l[1].replace(/<br>/g, " ");
-							
+					l[1] = l[1].replace(/Critical/g, "暴击");
+
 					len = l[1].split(/＆|＋/).length;
 					var o = [];
 					for (var i = 0; i < len; i++) {
@@ -303,16 +403,46 @@ function detail_info() {
 						o.push(t);
 					}
 					var pSkillInf = {
-						name: pSkillName,
-						desc: o
+						name : pSkillName,
+						icoId : pSkillIcoId,
+						desc : o
 					};
 					inf.passiveSkills.push(pSkillInf);
 				}
 			}
 			lists.push(inf);
+
+			//log
+			if (!inf["name"]) {
+				console.log("------------name------------");
+				console.log("collectionNo:", master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'name:', findSvtNameZh2[master.mstSvt[x].id]);
+			}
+			if (!inf["class"]) {
+				console.log("------------classId------------");
+				console.log("collectionNo:", master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'classId:', master.mstSvt[x].classId);
+			}
+			if (!inf["gender"]) {
+				console.log("------------gender------------");
+				console.log("collectionNo:", master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'gender:', master.mstSvt[x].genderType);
+			}
+			if (!inf["attr"]) {
+				console.log("------------attri------------");
+				console.log("collectionNo:", master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'attri:', master.mstSvt[x].attri);
+			}
+			if (!inf["policy"]) {
+				console.log("------------policy------------");
+				console.log("collectionNo:", master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'policy:', master.mstSvtLimit[pos].policy);
+			}
+			if (!inf["personality"]) {
+				console.log("------------personality------------");
+				console.log("collectionNo:", master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'attri:', master.mstSvtLimit[pos].personality);
+			}
 		}
 	}
 	//console.log(lists);
+	if (s.size != 215) {
+		console.log('individuality has changed', s.size);
+	}
 	removeItems();
 	document.getElementById("info").innerHTML = (JSON.stringify(lists));
 }

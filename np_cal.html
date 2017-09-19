@@ -190,10 +190,10 @@
 					servants[info["seq"]]=info;
 					var lst='<option value="'+servants[info["seq"]].seq+'">'+'【'+servants[info["seq"]]["class"]+"】 "+servants[info["seq"]].name+'</option>';
 					$("#servants").append(lst);
-				})
+				});
 				$("#servants").val(1); 
 				updateStatus(1);
-			})
+			});
 		});
 		//选择下拉框事件
 		$("#servants").change(function(){
