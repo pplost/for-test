@@ -155,9 +155,12 @@ function detail_info() {
 				"starRate" : master.mstSvt[x].starRate / 10,
 				"deathRate" : master.mstSvt[x].deathRate / 10,
 				"criticalWeight" : 0,
+				"card":{},
 				"passiveSkills" : [],
 				"skills" : [],
-				"noblePhantasm" : []
+				"noblePhantasm" : [],
+				"limitItems":{},
+				"SkillItems":{},
 			};
 
 			//
@@ -199,22 +202,89 @@ function detail_info() {
 				}
 			}
 
-			//card
-			var tdPos = 0;
+			//配卡
+			var rawCardNp = [];
 			for (var i in master.mstSvtTreasureDevice) {
 				if (master.mstSvtTreasureDevice[i].svtId == master.mstSvt[x].id && 100 != master.mstSvtTreasureDevice[i].treasureDeviceId) {
 					for (var j in master.mstTreasureDeviceLv) {
 						if (master.mstTreasureDeviceLv[j].treaureDeviceId == master.mstSvtTreasureDevice[i].treasureDeviceId) {
-							tdPos = j;
+							var t=[];
+							t.push(master.mstTreasureDeviceLv[j].tdPointA/100);
+							t.push(master.mstTreasureDeviceLv[j].tdPointB/100);
+							t.push(master.mstTreasureDeviceLv[j].tdPointQ/100);
+							t.push(master.mstTreasureDeviceLv[j].tdPointEx/100);
+							t.push(master.mstTreasureDeviceLv[j].tdPoint/100);
+							rawCardNp.push(t);
 							break;
 						}
 					}
-					if (tdPos != 0) {
+				}
+			}
+			var transCardNp=[];
+			var cardNp=[];
+			for (var i = 0; i < 5 ; i++){
+				transCardNp[i] = new Set();
+				cardNp[i]=[];
+			}
+			for(var i in rawCardNp){
+				for (var j in rawCardNp[i]){
+					transCardNp[j].add(rawCardNp[i][j]);
+				}
+			}
+			for(var i in transCardNp){
+				cardNp[i]=Array.from(transCardNp[i]);
+			}
+			var cardQuantity=[0,0,0];
+			var cardHits=[0,0,0,0];
+			for (var i in master.mstSvt[x].cardIds) {
+				if (master.mstSvt[x].cardIds[i] == "1") {
+					cardQuantity[0]++;
+				} else if (master.mstSvt[x].cardIds[i] == "2") {
+					cardQuantity[1]++;
+				} else if (master.mstSvt[x].cardIds[i] == "3") {
+					cardQuantity[2]++;
+				}
+			}
+			for (var i in master.mstSvtCard) {
+				if (master.mstSvtCard[i].svtId == master.mstSvt[x].id) {
+					if (master.mstSvtCard[i].cardId == "1") {
+						cardHits[0] = master.mstSvtCard[i].normalDamage.length;
+					} else if (master.mstSvtCard[i].cardId == "2") {
+						cardHits[1] = master.mstSvtCard[i].normalDamage.length;
+					} else if (master.mstSvtCard[i].cardId == "3") {
+						cardHits[2] = master.mstSvtCard[i].normalDamage.length;
+					} else if (master.mstSvtCard[i].cardId == "4") {
+						cardHits[3] = master.mstSvtCard[i].normalDamage.length;
+					}
+					if (cardHits[0] != 0 && 　cardHits[1] != 0 && cardHits[2] != 0 && cardHits[3] != 0) {
 						break;
 					}
 				}
 			}
-
+			inf["card"]["Arts"]={
+				Quantity:cardQuantity[0],
+				hits:cardHits[0],
+				np:cardNp[0]
+			};
+			inf["card"]["Buster"]={
+				Quantity:cardQuantity[1],
+				hits:cardHits[1],
+				np:cardNp[1]
+			};
+			inf["card"]["Quick"]={
+				Quantity:cardQuantity[2],
+				hits:cardHits[2],
+				np:cardNp[2]
+			};
+			inf["card"]["EX"]={
+				hits:cardHits[3],
+				np:cardNp[3]
+			};
+			
+			//items
+			
+			
+			
 			//宝具
 			for (var y in master.mstSvtTreasureDevice) {
 				if (master.mstSvtTreasureDevice[y].svtId == master.mstSvt[x].id && 100 != master.mstSvtTreasureDevice[y].treasureDeviceId) {
@@ -256,6 +326,8 @@ function detail_info() {
 									break;
 								}
 							}
+							var t=[];
+
 							l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
 							l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
 							l[1] = l[1].replace(/的話/g, "");
@@ -280,7 +352,7 @@ function detail_info() {
 								name : npName,
 								hits : npHits,
 								color : npColor,
-								np : master.mstTreasureDeviceLv[tdPos].tdPoint/100,
+								np : cardNp[4],
 								desc : o
 							};
 							inf.noblePhantasm.push(npInf);
