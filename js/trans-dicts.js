@@ -862,5 +862,8 @@ var passiveSkillsDict = {
 	"道具作成(奇)" : "道具作成(奇)",
 };
 
+var itemsDict={
+	
+}
 var noblePhantasmsWhiteList = [700599];
 var passiveSkillsWhiteList = [296150, 348550];
