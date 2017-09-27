@@ -84,7 +84,7 @@
 				<td>次卡</td>
 				<td>尾卡</td>
 				<td>ex卡</td>
-				<td colspan="3" rowspan="5" id="cal_result"></td>
+				<td colspan="3" rowspan="6" id="cal_result"></td>
 			</tr>
 			
 			<tr>
@@ -101,6 +101,14 @@
 				<td><input type="checkbox" id="second_ok" style="width:50px"></td>
 				<td><input type="checkbox" id="third_ok" style="width:50px"></td>
 				<td><input type="checkbox" id="ex_ok" style="width:50px"></td>
+			</tr>
+			
+			<tr>
+				<td >鞭尸hit数</td>
+				<td><input type="text" id="first_ok_hits" style="width:50px"></td>
+				<td><input type="text" id="second_ok_hits" style="width:50px"></td>
+				<td><input type="text" id="third_ok_hits" style="width:50px"></td>
+				<td><input type="text" id="ex_ok_hits" style="width:50px"></td>
 			</tr>
 			
 			<tr>
@@ -174,7 +182,7 @@
 			<tr>
 				<td colspan="8" style="text-align:right; font-size:12px; border:1px solid #fff;"><a href="https://xianlechuanshuo.github.io/fgo/calc4.html">友情链接：宝具计算器</a></td>
 			</tr>
-		<tbody>
+		</tbody>
 	</table>
 	<p></p>
 	<table id="np_list"></table>
@@ -417,10 +425,10 @@
 					isCertified:isCertified
 				};
 				npList.push(row);
-				npList.sort(function(x, y){
-					return y["totalNP"]-x["totalNP"];
-				});
 			}
+			npList.sort(function(x, y){
+				return y["totalNP"]-x["totalNP"];
+			});
 			var rankSeq=1;
 			for (var i in npList){
 				

@@ -155,12 +155,14 @@ function detail_info() {
 				"starRate" : master.mstSvt[x].starRate / 10,
 				"deathRate" : master.mstSvt[x].deathRate / 10,
 				"criticalWeight" : 0,
-				"card":{},
+				"card" : {},
 				"passiveSkills" : [],
 				"skills" : [],
 				"noblePhantasm" : [],
-				"limitItems":{},
-				"SkillItems":{},
+				"limitItems" : [],
+				"limitQPs" : [],
+				"SkillItems" : [],
+				"SkillQPs" : [],
 			};
 
 			//
@@ -208,34 +210,34 @@ function detail_info() {
 				if (master.mstSvtTreasureDevice[i].svtId == master.mstSvt[x].id && 100 != master.mstSvtTreasureDevice[i].treasureDeviceId) {
 					for (var j in master.mstTreasureDeviceLv) {
 						if (master.mstTreasureDeviceLv[j].treaureDeviceId == master.mstSvtTreasureDevice[i].treasureDeviceId) {
-							var t=[];
-							t.push(master.mstTreasureDeviceLv[j].tdPointA/100);
-							t.push(master.mstTreasureDeviceLv[j].tdPointB/100);
-							t.push(master.mstTreasureDeviceLv[j].tdPointQ/100);
-							t.push(master.mstTreasureDeviceLv[j].tdPointEx/100);
-							t.push(master.mstTreasureDeviceLv[j].tdPoint/100);
+							var t = [];
+							t.push(master.mstTreasureDeviceLv[j].tdPointA / 100);
+							t.push(master.mstTreasureDeviceLv[j].tdPointB / 100);
+							t.push(master.mstTreasureDeviceLv[j].tdPointQ / 100);
+							t.push(master.mstTreasureDeviceLv[j].tdPointEx / 100);
+							t.push(master.mstTreasureDeviceLv[j].tdPoint / 100);
 							rawCardNp.push(t);
 							break;
 						}
 					}
 				}
 			}
-			var transCardNp=[];
-			var cardNp=[];
-			for (var i = 0; i < 5 ; i++){
+			var transCardNp = [];
+			var cardNp = [];
+			for (var i = 0; i < 5; i++) {
 				transCardNp[i] = new Set();
-				cardNp[i]=[];
+				cardNp[i] = [];
 			}
-			for(var i in rawCardNp){
-				for (var j in rawCardNp[i]){
+			for (var i in rawCardNp) {
+				for (var j in rawCardNp[i]) {
 					transCardNp[j].add(rawCardNp[i][j]);
 				}
 			}
-			for(var i in transCardNp){
-				cardNp[i]=Array.from(transCardNp[i]);
+			for (var i in transCardNp) {
+				cardNp[i] = Array.from(transCardNp[i]);
 			}
-			var cardQuantity=[0,0,0];
-			var cardHits=[0,0,0,0];
+			var cardQuantity = [0, 0, 0];
+			var cardHits = [0, 0, 0, 0];
 			for (var i in master.mstSvt[x].cardIds) {
 				if (master.mstSvt[x].cardIds[i] == "1") {
 					cardQuantity[0]++;
@@ -261,28 +263,73 @@ function detail_info() {
 					}
 				}
 			}
-			inf["card"]["Arts"]={
-				Quantity:cardQuantity[0],
-				hits:cardHits[0],
-				np:cardNp[0]
+			inf["card"]["Arts"] = {
+				Quantity : cardQuantity[0],
+				hits : cardHits[0],
+				np : cardNp[0].sort()
 			};
-			inf["card"]["Buster"]={
-				Quantity:cardQuantity[1],
-				hits:cardHits[1],
-				np:cardNp[1]
+			inf["card"]["Buster"] = {
+				Quantity : cardQuantity[1],
+				hits : cardHits[1],
+				np : cardNp[1].sort()
 			};
-			inf["card"]["Quick"]={
-				Quantity:cardQuantity[2],
-				hits:cardHits[2],
-				np:cardNp[2]
+			inf["card"]["Quick"] = {
+				Quantity : cardQuantity[2],
+				hits : cardHits[2],
+				np : cardNp[2].sort()
 			};
-			inf["card"]["EX"]={
-				hits:cardHits[3],
-				np:cardNp[3]
+			inf["card"]["EX"] = {
+				hits : cardHits[3],
+				np : cardNp[3].sort()
 			};
-			
-			//items
-			
+
+			//材料
+			//limit
+			for (var i = 0; i < 4; i++) {
+				var tmp = [];
+				for (var j in master.mstCombineLimit) {
+					if (master.mstCombineLimit[j].id == master.mstSvt[x].id && master.mstCombineLimit[j].svtLimit == i) {
+						for (var k in master.mstCombineLimit[j].itemIds) {
+							var t = [];
+							t.push(master.mstCombineLimit[j].itemIds[k]);
+							if(itemsDict[master.mstCombineLimit[j].itemIds[k]]){
+								t.push(itemsDict[master.mstCombineLimit[j].itemIds[k]]);
+							}
+							else{
+								t.push(findItemName(master.mstCombineLimit[j].itemIds[k]));
+								console.log(master.mstCombineLimit[j].itemIds[k],findItemName(master.mstCombineLimit[j].itemIds[k]));
+							}
+							t.push(master.mstCombineLimit[j].itemNums[k]);
+							tmp.push(t);
+						}
+						inf["limitQPs"].push(master.mstCombineLimit[j].qp);
+					}
+				}
+				inf["limitItems"].push(tmp);
+			}
+			//skill
+			for (var i in master.mstCombineSkill) {
+				var tmp = [];
+				if (master.mstCombineSkill[i].id == master.mstSvt[x].id) {
+					for (var j in master.mstCombineSkill[i].itemIds) {
+						var t = [];
+						t.push(master.mstCombineSkill[i].itemIds[j]);
+						if(itemsDict[master.mstCombineSkill[i].itemIds[j]]){
+							t.push(itemsDict[master.mstCombineSkill[i].itemIds[j]]);
+						}
+						else{
+							t.push(findItemName(master.mstCombineSkill[i].itemIds[j]));
+							console.log(master.mstCombineSkill[i].itemIds[j],findItemName(master.mstCombineSkill[i].itemIds[j]));
+						}
+						t.push(master.mstCombineSkill[i].itemNums[j]);
+						tmp.push(t);
+					}
+					inf["SkillQPs"].push(master.mstCombineSkill[i].qp);
+				}
+				if (tmp.length != 0) {
+					inf["SkillItems"].push(tmp);
+				}
+			}
 			
 			
 			//宝具
@@ -326,7 +373,7 @@ function detail_info() {
 									break;
 								}
 							}
-							var t=[];
+							var t = [];
 
 							l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
 							l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
@@ -334,9 +381,9 @@ function detail_info() {
 							l[1] = l[1].replace(/\[Lv\.\]/g, "");
 							l[1] = l[1].replace(/<br>/g, " ");
 							l[1] = l[1].replace(/Critical/g, "暴击");
-
+							l[1] = l[1].replace(/攻擊|攻撃/g, "攻击");
 							//hits修正
-							if (l[1].search(/攻擊[^力]|攻撃[^力]/) == -1) {
+							if ((l[1]+' ').search(/攻击[^力]/) == -1) {
 								npHits = 0;
 							}
 							len = l[1].split(/＆|＋/).length;
@@ -349,10 +396,11 @@ function detail_info() {
 							}
 
 							var npInf = {
+								id : master.mstSvtTreasureDevice[y].treasureDeviceId,
 								name : npName,
 								hits : npHits,
 								color : npColor,
-								np : cardNp[4],
+								np : cardNp[4].sort(),
 								desc : o
 							};
 							inf.noblePhantasm.push(npInf);
@@ -411,6 +459,8 @@ function detail_info() {
 						o.push(t);
 					}
 					var skillInf = {
+						id:master.mstSvtSkill[y].skillId,
+						num : master.mstSvtSkill[y].num,
 						name : skillName,
 						chargeTurn : skillChargeTurn,
 						icoId : skillIcoId,
@@ -475,6 +525,7 @@ function detail_info() {
 						o.push(t);
 					}
 					var pSkillInf = {
+						id:master.mstSvt[x].classPassive[y],
 						name : pSkillName,
 						icoId : pSkillIcoId,
 						desc : o
