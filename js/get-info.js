@@ -377,8 +377,7 @@ function detail_info() {
 
 							l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
 							l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
-							l[1] = l[1].replace(/的話/g, "");
-							l[1] = l[1].replace(/\[Lv\.\]/g, "");
+							l[1] = l[1].replace(/的話|┗|\[Lv\.\]/g, "");
 							l[1] = l[1].replace(/<br>/g, " ");
 							l[1] = l[1].replace(/Critical/g, "暴击");
 							l[1] = l[1].replace(/攻擊|攻撃/g, "攻击");
@@ -446,7 +445,7 @@ function detail_info() {
 					}
 					l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
 					l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
-					l[1] = l[1].replace(/\[Lv\.\]/g, "");
+					l[1] = l[1].replace(/\[Lv\.\]|┗/g, "");
 					l[1] = l[1].replace(/<br>/g, " ");
 					l[1] = l[1].replace(/Critical/g, "暴击");
 
@@ -563,7 +562,7 @@ function detail_info() {
 		}
 	}
 	//console.log(lists);
-	if (s.size != 215) {
+	if (s.size != 221) {
 		console.log('individuality has changed', s.size);
 	}
 	removeItems();
