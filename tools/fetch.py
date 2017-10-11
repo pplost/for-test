@@ -39,8 +39,8 @@ class FWIKI:
 					
 f=FWIKI()
 whiteList=[83,149,151,152,168]
-startPage=1
-endPage=182
+startPage=183
+endPage=183
 lines=None
 seq=0
 with open('servants.json','r+',encoding='utf-8') as rpoint:
