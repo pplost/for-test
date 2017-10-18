@@ -134,7 +134,6 @@ function nphit() {
 
 function detail_info() {
 	sortByElmentNo(master.mstSvt);
-	var s = new Set();
 	var lists = [];
 	for (var x in master.mstSvt) {
 		if ((master.mstSvt[x].type == 1 || master.mstSvt[x].type == 2 || master.mstSvt[x].type == 99) && master.mstSvt[x].collectionNo >= 0) {
@@ -166,7 +165,7 @@ function detail_info() {
 				"SkillItems" : [],
 				"SkillQPs" : [],
 			};
-			
+
 			//
 			var pos = 0;
 			for (var i in master.mstSvtLimit) {
@@ -201,8 +200,6 @@ function detail_info() {
 			for (var i in master.mstSvt[x].individuality) {
 				if (individualityDict[master.mstSvt[x].individuality[i]]) {
 					inf["individuality"].push(individualityDict[master.mstSvt[x].individuality[i]]);
-				} else {
-					s.add(master.mstSvt[x].individuality[i]);
 				}
 			}
 
@@ -561,9 +558,14 @@ function detail_info() {
 		}
 	}
 	//console.log(lists);
-	if (s.size != 221) {
-		console.log('individuality has changed', s.size);
+	var individualityLength = 0;
+	for (var x in individualityDict) {
+		individualityLength++;
 	}
+	if (individualityDict.length != individualityLength) {
+		console.log('individuality has changed');
+	}
+
 	removeItems();
 	document.getElementById("info").innerHTML = (JSON.stringify(lists));
 }
