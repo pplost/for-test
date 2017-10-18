@@ -661,7 +661,7 @@
     },
     {
         "id": "112",
-        "name": "酒呑童子",
+        "name": "酒吞童子",
         "npHits": "1",
         "npCard": "Arts"
     },
@@ -1066,5 +1066,35 @@
         "name": "帕爾瓦蒂",
         "npHits": "4",
         "npCard": "Quick"
+    },
+    {
+        "id": "184",
+        "name": "Archer・煉獄",
+        "npHits": "1",
+        "npCard": "Buster"
+    },
+    {
+        "id": "185",
+        "name": "Assassin・樂園",
+        "npHits": "5",
+        "npCard": "Arts"
+    },
+    {
+        "id": "186",
+        "name": "寶藏院胤舜",
+        "npHits": "0",
+        "npCard": "Arts"
+    },
+    {
+        "id": "187",
+        "name": "柳生但馬守宗矩",
+        "npHits": "4",
+        "npCard": "Arts"
+    },
+    {
+        "id": "188",
+        "name": "加藤段藏",
+        "npHits": "3",
+        "npCard": "Buster"
     }
 ]
