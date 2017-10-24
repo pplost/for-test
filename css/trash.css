@@ -22,3 +22,15 @@ table tr.odd{
 table tr.err{
 	background-color:red;
 }
+ul.display li{
+	list-style: none;
+	margin: 8px;
+	border: 3px solid #ccc;
+	padding: 15px;
+	border-radius: 15px;
+	float: left;
+	cursor: pointer;
+}
+ul.display li:hover{
+	border: 3px solid #96c8ff;
+}
