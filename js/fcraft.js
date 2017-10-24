@@ -49,7 +49,7 @@ function createTableBody() {
 		let clink = 'href="http://fgowiki.com/guide/equipdetail/' + info[i]["id"] + '"';
 		let slink = 'href="http://fgowiki.com/guide/petdetail/' + info[i]["servantID"] + '"';
 		let tr = $('<tr' + trSty + '></tr>');
-		let tds = '<td' + tdSty + '><a ' + clink + ' target="_blank">' + info[i]["id"] + '</a></td>';
+		let tds = '<td' + tdSty + '><a ' + clink + ' target="_blank">' + parseInt(info[i]["id"]) + '</a></td>';
 		if (picFlag) {
 			tds += '<td><a ' + clink + ' target="_blank"><img src="http://fgowiki.com/fgo/equip/' + info[i]["id"] + '.jpg" style="width:60px ;height:auto"></a></td>';
 		}
@@ -60,13 +60,13 @@ function createTableBody() {
 			tds += '<td><a ' + slink + ' target="_blank">' + parseInt(info[i]["servantID"]) + '</a></td>';
 		}
 		tds += '<td><a ' + slink + ' target="_blank">' + info[i]["servant"] + '</a></td>';
-		tds += '<td>' + info[i]["0-5"] + '</td>';
+		tds += '<td>' + parseInt(info[i]["0-5"]) + '</td>';
 		tds += '<td>' + parseInt(info[i]["5-6"]) + '</td>';
-		tds += '<td>' + info[i]["6-7"] + '</td>';
-		tds += '<td>' + info[i]["7-8"] + '</td>';
-		tds += '<td>' + info[i]["8-9"] + '</td>';
-		tds += '<td>' + info[i]["9-10"] + '</td>';
-		tds += '<td>' + info[i]["total"] + '</td>';
+		tds += '<td>' + parseInt(info[i]["6-7"]) + '</td>';
+		tds += '<td>' + parseInt(info[i]["7-8"]) + '</td>';
+		tds += '<td>' + parseInt(info[i]["8-9"]) + '</td>';
+		tds += '<td>' + parseInt(info[i]["9-10"]) + '</td>';
+		tds += '<td>' + parseInt(info[i]["total"]) + '</td>';
 		tds += '<td style="text-align:left">' + info[i]["desc"] + '</td>';
 		tr.append(tds);
 		$("#main_table").append(tr);
