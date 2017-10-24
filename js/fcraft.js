@@ -24,7 +24,7 @@ $(document).ready(function () {
 				desc : data[i].desc
 			};
 			for (var j in data[i]["friendship"]) {
-				row[j] = data[i]["friendship"][j];
+				row[j] = ("000" + data[i]["friendship"][j]).slice(-3);
 			}
 			info.push(row);
 		};
@@ -61,7 +61,7 @@ function createTableBody() {
 		}
 		tds += '<td><a ' + slink + ' target="_blank">' + info[i]["servant"] + '</a></td>';
 		tds += '<td>' + info[i]["0-5"] + '</td>';
-		tds += '<td>' + info[i]["5-6"] + '</td>';
+		tds += '<td>' + parseInt(info[i]["5-6"]) + '</td>';
 		tds += '<td>' + info[i]["6-7"] + '</td>';
 		tds += '<td>' + info[i]["7-8"] + '</td>';
 		tds += '<td>' + info[i]["8-9"] + '</td>';

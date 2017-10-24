@@ -2,9 +2,6 @@
 git config --global user.name <name>
 git config --global user.email <email@example.com>
 
-#
-git config user.name <name>
-git config user.email <email@example.com>
 #设置版本库(master)
 git init <path>
 #或者进入目录直接git init
@@ -52,9 +49,9 @@ git rm <fileName>
 git clone <user@server:path>
 
 #关联到远程库
-git remote add <origin> <user@server:path>
+git remote add origin <user@server:path>
 #推送文件到远程库
-git push <origin> master
+git push origin master
 
 #创建分支
 git branch <branchName>
@@ -73,16 +70,16 @@ git stash
 #查看隐藏的工作列表
 git stash list
 #恢复工作状态
-git stash apply (stash@{<NO>})
+git stash apply stash@{<NO>}
 #删除工作状态
-git stash drop (stash@{<NO>})
+git stash drop stash@{<NO>}
 #恢复并删除工作状态
-git stash pop (stash@{<NO>})
+git stash pop stash@{<NO>}
 
 #查看标签
 git tag
 #创建标签
-git tag <name> (<version>)
+git tag <name> <version>
 #查看标签信息
 git show <name>
 #删除标签
@@ -93,7 +90,19 @@ git tag -a <name> -m <"remark">
 git push <origin> --tags
 #推送指定标签到服务器
 git push <origin> <name>
-#删除服务器标签，先删除本地标签，然后git push <origin> :refs/tags/<name>
+#删除服务器标签，先删除本地标签，然后git push origin:refs/tags/<name>
 
 #设置别名
 git config --global alias.<newCMD> <oldCMD>
+
+#查看大文件
+git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print$1}')"
+
+#从版本库内移除忘记ignore的文件
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch <fileName>' --prune-empty --tag-name-filter cat -- --all
+#清除快取和回收空间
+rm -rf .git/refs/original/ 
+git reflog expire --expire=now --all
+#压缩版本库
+git gc --prune=now
+git gc --aggressive --prune=now
