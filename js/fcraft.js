@@ -15,15 +15,15 @@ var sortStatus = {
 
 $(document).ready(function () {
 	$.getJSON("data/fcraft.json", function (data) {
-		for (let i in data) {
-			let row = {
+		for (var i in data) {
+			var row = {
 				id : ("000" + data[i]["id"]).slice(-3),
 				name : data[i].name,
 				servantID : ("000" + data[i]["servantID"]).slice(-3),
 				servant : data[i].servant,
 				desc : data[i].desc
 			};
-			for (let j in data[i]["friendship"]) {
+			for (var j in data[i]["friendship"]) {
 				row[j] = ("000000" + data[i]["friendship"][j] * 1000).slice(-6);
 			}
 			info.push(row);
@@ -37,19 +37,19 @@ $(document).ready(function () {
 function createTableBody() {
 	$("#main_table").empty();
 	var line = 1;
-	for (let i in info) {
-		let trSty = "";
-		let tdSty = "";
+	for (var i in info) {
+		var trSty = "";
+		var tdSty = "";
 		if ((line % 2) == 1) {
 			trSty = ' class="odd"';
 		}
 		if (parseInt(info[i]["id"]) > process) {
 			tdSty = ' class="unopened"';
 		}
-		let clink = 'href="http://fgowiki.com/guide/equipdetail/' + info[i]["id"] + '"';
-		let slink = 'href="http://fgowiki.com/guide/petdetail/' + info[i]["servantID"] + '"';
-		let tr = $('<tr' + trSty + '></tr>');
-		let tds = '<td' + tdSty + '><a ' + clink + ' target="_blank">' + parseInt(info[i]["id"]) + '</a></td>';
+		var clink = 'href="http://fgowiki.com/guide/equipdetail/' + info[i]["id"] + '"';
+		var slink = 'href="http://fgowiki.com/guide/petdetail/' + info[i]["servantID"] + '"';
+		var tr = $('<tr' + trSty + '></tr>');
+		var tds = '<td' + tdSty + '><a ' + clink + ' target="_blank">' + parseInt(info[i]["id"]) + '</a></td>';
 		if (picFlag) {
 			tds += '<td><a ' + clink + ' target="_blank"><img src="http://fgowiki.com/fgo/equip/' + info[i]["id"] + '.jpg" style="width:60px ;height:auto"></a></td>';
 		}
@@ -109,14 +109,14 @@ function createTableHead() {
 
 function sortTable(col) {
 	if (sortStatus[col]) {
-		for (let x in sortStatus) {
+		for (var x in sortStatus) {
 			sortStatus[x] = false;
 		}
 		info.sort(function (x, y) {
 			return y[col].localeCompare(x[col]);
 		});
 	} else {
-		for (let x in sortStatus) {
+		for (var x in sortStatus) {
 			sortStatus[x] = false;
 		}
 		sortStatus[col] = true;

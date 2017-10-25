@@ -7,27 +7,27 @@ $(document).ready(function() {
 });
 
 function createItemList() {
-  let itemList = [];
-  for (let i in itemsDict) {
+  var itemList = [];
+  for (var i in itemsDict) {
     if (i >= 6500 && i <= 8000) {
       itemList.push(i);
     }
   }
   itemList.sort();
-  let u = $("<ul></ul>");
+  var u = $("<ul></ul>");
   u.attr("class", "display");
-  for (let i in itemList) {
-    let liStr = '<li><a href="require.html?' + itemList[i] + '"><img src="resources/items/' + itemList[i] + '.png" onerror="this.src=\'resources/items/0.png\'" /></a></li>';
+  for (var i in itemList) {
+    var liStr = '<li><a href="require.html?' + itemList[i] + '"><img src="resources/items/' + itemList[i] + '.png" onerror="this.src=\'resources/items/0.png\'" /></a></li>';
     u.append(liStr);
   }
   $("#main").append(u);
 }
 
 function createItemReqInf() {
-  let limitNum = 0;
-  let skillNum = 0;
-  let totalList = [];
-  let itemId = window.location.search.match(/\d+/g);
+  var limitNum = 0;
+  var skillNum = 0;
+  var totalList = [];
+  var itemId = window.location.search.match(/\d+/g);
   if(!itemsDict[itemId]){
     window.location.href="require.html";
     return;
@@ -36,9 +36,9 @@ function createItemReqInf() {
   $.getJSON("https://pplost.github.io/for-test/data/data.json", function(data) {
     $.each(data, function(i, info) {
       if (info["id"] > 0) {
-        let singleLmtNum = 0;
-        let singleSklNum = 0;
-        let single = [];
+        var singleLmtNum = 0;
+        var singleSklNum = 0;
+        var single = [];
         $.each(info["limitItems"], function(j, items) {
           $.each(items, function(k, item) {
             if (item[0] == itemId) {
@@ -66,18 +66,18 @@ function createItemReqInf() {
 }
 
 function createItemReqList(totalList, limitNum, skillNum) {
-  let t = $("<table></table>");
+  var t = $("<table></table>");
   t.attr("class", "no_side_border");
   if (limitNum > 0) {
-    let tr = $("<tr></tr>");
+    var tr = $("<tr></tr>");
     tr.append("<td style='width:100px'>突破总共需要素材：" + limitNum + "</td>");
-    let td = $("<td></td>");
-    let ul = $("<ul></ul>");
-    for (let i in totalList) {
+    var td = $("<td></td>");
+    var ul = $("<ul></ul>");
+    for (var i in totalList) {
       if (totalList[i][1] > 0) {
-        let li = $("<li></li>");
-        let pic_div = $("<div></div>");
-        let num_div = $("<div></div>");
+        var li = $("<li></li>");
+        var pic_div = $("<div></div>");
+        var num_div = $("<div></div>");
         pic_div.attr("class", "bg_pic");
         num_div.attr("class", "float_num");
         pic_div.append("<a href='http://fgowiki.com/guide/petdetail/"+ totalList[i][0]+"'><img src='http://file.fgowiki.fgowiki.com/fgo/head/" + numLenFormat(totalList[i][0], 3) + ".jpg'></a>");
@@ -92,15 +92,15 @@ function createItemReqList(totalList, limitNum, skillNum) {
     t.append(tr);
   }
   if (skillNum > 0) {
-		let tr = $("<tr></tr>");
+		var tr = $("<tr></tr>");
 		tr.append("<td style='width:100px'>技能总共需要素材：" + skillNum + "</td>");
-		let td = $("<td></td>");
-		let ul = $("<ul></ul>");
-		for (let i in totalList) {
+		var td = $("<td></td>");
+		var ul = $("<ul></ul>");
+		for (var i in totalList) {
 			if (totalList[i][2] > 0) {
-				let li = $("<li></li>");
-				let pic_div = $("<div></div>");
-				let num_div = $("<div></div>");
+				var li = $("<li></li>");
+				var pic_div = $("<div></div>");
+				var num_div = $("<div></div>");
 				pic_div.attr("class", "bg_pic");
 				num_div.attr("class", "float_num");
 				 pic_div.append("<a href='http://fgowiki.com/guide/petdetail/"+ numLenFormat(totalList[i][0], 3)+"'><img src='http://file.fgowiki.fgowiki.com/fgo/head/" + numLenFormat(totalList[i][0], 3) + ".jpg'></a>");
