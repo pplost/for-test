@@ -32,6 +32,7 @@ table.no_side_border, table.no_side_border td {
   border-right: none;
   border-bottom: 1px solid #aaa;
   border-left: none;
+  vertical-align: top;
 }
 
 ul.display li {
@@ -66,12 +67,13 @@ div.bg_pic {
   height: auto;
 }
 
-div.float_num {
+div.float_num a, div.float_num {
   position: absolute;
   bottom: 30%;
   right: 8%;
   font-size: 12px;
   font-weight: bold;
   color: #fff;
+  text-decoration: none;
   text-shadow: #000 1px 0 0, #000 0 1px 0, #000 -1px 0 0, #000 0 -1px 0;
 }

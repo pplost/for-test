@@ -9,7 +9,7 @@ $(document).ready(function() {
 function createItemList() {
   var itemList = [];
   for (var i in itemsDict) {
-    if (i >= 6500 && i <= 8000) {
+    if (i >= 6000 && i <= 8000) {
       itemList.push(i);
     }
   }
@@ -17,7 +17,7 @@ function createItemList() {
   var u = $("<ul></ul>");
   u.attr("class", "display");
   for (var i in itemList) {
-    var liStr = '<li><a href="require.html?' + itemList[i] + '"><img src="resources/items/' + itemList[i] + '.png" onerror="this.src=\'resources/items/0.png\'" /></a></li>';
+    var liStr = '<li><a href="require.html?' + itemList[i] + '"><img src="resources/items/' + itemList[i] + '.png" /></a></li>';
     u.append(liStr);
   }
   $("#main").append(u);
@@ -28,11 +28,20 @@ function createItemReqInf() {
   var skillNum = 0;
   var totalList = [];
   var itemId = window.location.search.match(/\d+/g);
-  if(!itemsDict[itemId]){
-    window.location.href="require.html";
+  if (!itemsDict[itemId]) {
+    window.location.href = "require.html";
     return;
   }
-  document.title=itemsDict[itemId];
+  document.title = itemsDict[itemId];
+  var tb = $("<table></table>");
+  tb.attr("style", "margin:10px 10px");
+  tb.append("<tr><td rowspan='6' style='width:140px'><img src='resources/items/" + itemId + ".png'</></td><td>AP效率前5</td><td>掉率前5</td></tr>");
+  tb.append("<tr><td>鶸鷄祈祷中</td><td>鶸鷄祈祷中</td></tr>");
+  tb.append("<tr><td>鶸鷄祈祷中</td><td>鶸鷄祈祷中</td></tr>");
+  tb.append("<tr><td>鶸鷄祈祷中</td><td>鶸鷄祈祷中</td></tr>");
+  tb.append("<tr><td>鶸鷄祈祷中</td><td>鶸鷄祈祷中</td></tr>");
+  tb.append("<tr><td>鶸鷄祈祷中</td><td>鶸鷄祈祷中</td></tr>");
+  $("#main").append(tb);
   $.getJSON("https://pplost.github.io/for-test/data/data.json", function(data) {
     $.each(data, function(i, info) {
       if (info["id"] > 0) {
@@ -50,13 +59,13 @@ function createItemReqInf() {
         $.each(info["SkillItems"], function(j, items) {
           $.each(items, function(k, item) {
             if (item[0] == itemId) {
-              skillNum += (item[2]*3);
+              skillNum += (item[2] * 3);
               singleSklNum += item[2];
             }
           });
         });
         if (singleLmtNum > 0 || singleSklNum > 0) {
-          single.push(info["id"], singleLmtNum, singleSklNum*3);
+          single.push(info["id"], singleLmtNum, singleSklNum * 3);
           totalList.push(single);
         }
       }
@@ -70,7 +79,7 @@ function createItemReqList(totalList, limitNum, skillNum) {
   t.attr("class", "no_side_border");
   if (limitNum > 0) {
     var tr = $("<tr></tr>");
-    tr.append("<td style='width:100px'>突破总共需要素材：" + limitNum + "</td>");
+    tr.append("<td style='width:100px;padding-top:25px'>突破总共需要素材：" + limitNum + "</td>");
     var td = $("<td></td>");
     var ul = $("<ul></ul>");
     for (var i in totalList) {
@@ -80,8 +89,8 @@ function createItemReqList(totalList, limitNum, skillNum) {
         var num_div = $("<div></div>");
         pic_div.attr("class", "bg_pic");
         num_div.attr("class", "float_num");
-        pic_div.append("<a href='http://fgowiki.com/guide/petdetail/"+ totalList[i][0]+"'><img src='http://file.fgowiki.fgowiki.com/fgo/head/" + numLenFormat(totalList[i][0], 3) + ".jpg'></a>");
-        num_div.append(totalList[i][1]);
+        pic_div.append("<a href='http://fgowiki.com/guide/petdetail/" + totalList[i][0] + "'><img src='http://file.fgowiki.fgowiki.com/fgo/head/" + numLenFormat(totalList[i][0], 3) + ".jpg'></a>");
+        num_div.append("<a href='http://fgowiki.com/guide/petdetail/" + totalList[i][0] + "'>" + totalList[i][1] + "</a>");
         pic_div.append(num_div);
         li.append(pic_div);
         ul.append(li);
@@ -92,27 +101,27 @@ function createItemReqList(totalList, limitNum, skillNum) {
     t.append(tr);
   }
   if (skillNum > 0) {
-		var tr = $("<tr></tr>");
-		tr.append("<td style='width:100px'>技能总共需要素材：" + skillNum + "</td>");
-		var td = $("<td></td>");
-		var ul = $("<ul></ul>");
-		for (var i in totalList) {
-			if (totalList[i][2] > 0) {
-				var li = $("<li></li>");
-				var pic_div = $("<div></div>");
-				var num_div = $("<div></div>");
-				pic_div.attr("class", "bg_pic");
-				num_div.attr("class", "float_num");
-				 pic_div.append("<a href='http://fgowiki.com/guide/petdetail/"+ numLenFormat(totalList[i][0], 3)+"'><img src='http://file.fgowiki.fgowiki.com/fgo/head/" + numLenFormat(totalList[i][0], 3) + ".jpg'></a>");
-				num_div.append(totalList[i][2]);
-				pic_div.append(num_div);
-				li.append(pic_div);
-				ul.append(li);
-			}
-		}
-		td.append(ul);
-		tr.append(td);
-		t.append(tr);
+    var tr = $("<tr></tr>");
+    tr.append("<td style='width:100px;padding-top:25px'>技能总共需要素材：" + skillNum + "</td>");
+    var td = $("<td></td>");
+    var ul = $("<ul></ul>");
+    for (var i in totalList) {
+      if (totalList[i][2] > 0) {
+        var li = $("<li></li>");
+        var pic_div = $("<div></div>");
+        var num_div = $("<div></div>");
+        pic_div.attr("class", "bg_pic");
+        num_div.attr("class", "float_num");
+        pic_div.append("<a href='http://fgowiki.com/guide/petdetail/" + numLenFormat(totalList[i][0], 3) + "'><img src='http://file.fgowiki.fgowiki.com/fgo/head/" + numLenFormat(totalList[i][0], 3) + ".jpg'></a>");
+        num_div.append(totalList[i][2]);
+        pic_div.append(num_div);
+        li.append(pic_div);
+        ul.append(li);
+      }
+    }
+    td.append(ul);
+    tr.append(td);
+    t.append(tr);
   }
   $("#main").append(t);
 }
