@@ -43,7 +43,7 @@ startPage=112
 endPage=188
 lines=None
 seq=0
-with open('servants.json','r+',encoding='utf-8') as rpoint:
+with open('text\servants.json','r+',encoding='utf-8') as rpoint:
 	lines=rpoint.read()
 if lines=="":
 	lines="[\n"
@@ -52,7 +52,7 @@ else:
 	seq=len(js_s)
 	lines=lines[:-2]+",\n"
 	
-with open('servants.json','w+',encoding='utf-8') as wpoint:
+with open('text\servants.json','w+',encoding='utf-8') as wpoint:
 	wpoint.write(lines)
 	
 while startPage<=endPage:
@@ -131,7 +131,7 @@ while startPage<=endPage:
 			
 		if(startPage==endPage):
 			lines=lines[:-2]+"\n]"
-		with open('servants.json','a+',encoding='utf-8') as wpoint:
+		with open('text\servants.json','a+',encoding='utf-8') as wpoint:
 			wpoint.write(lines)
 		print(str(startPage))
 		if startPage <= endPage:

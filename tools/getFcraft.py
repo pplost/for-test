@@ -52,10 +52,10 @@ def getInfo(regExpress,page,pos):
 		return None
 	
 	
-with open('fcraft.json','r',encoding='utf-8') as rpoint:
+with open('text\fcraft.json','r',encoding='utf-8') as rpoint:
 	js = json.load(rpoint)
 	
-with open('fcraft-append.json','r',encoding='utf-8') as rpoint:
+with open('text\fcraft-append.json','r',encoding='utf-8') as rpoint:
 	jsa = json.load(rpoint)
 	
 sortList=["id","name","servantID","servant","friendship","desc"]
@@ -102,5 +102,5 @@ for x in jsa:
 outStr=json.dumps(l,ensure_ascii=False,indent=4)
 outStr=outStr.replace('    ','\t')
 # outStr=re.sub(r'"id": (\d+),',r'"id": "\1",',outStr)
-with open('fcraft.json','w+',encoding='utf-8') as wpoint:
+with open('text\fcraft.json','w+',encoding='utf-8') as wpoint:
 	wpoint.write(outStr)
