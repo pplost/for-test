@@ -42,7 +42,7 @@ function createItemReqInf() {
 	tb.append("<tr><td>鶸鷄祈祷中</td><td>鶸鷄祈祷中</td></tr>");
 	tb.append("<tr><td>鶸鷄祈祷中</td><td>鶸鷄祈祷中</td></tr>");
 	$("#main").append(tb);
-	var data = readLocalJson("fgo_archive_data_time", "fgo_archive_data", "https://pplost.github.io/for-test/data/data.json");
+	var data = readLocalJson("https://pplost.github.io/for-test/data/data.json");
 	console.log(data);
 	$.each(data, function (i, info) {
 		if (info["id"] > 0) {
