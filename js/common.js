@@ -15,5 +15,5 @@ function readJson(url) {
       readData=data;
     },
   });
-  return readData;;
+  return readData;
 }

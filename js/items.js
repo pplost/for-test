@@ -125,7 +125,7 @@ function createItemDropInf(itemId){
 	tb.attr("style", "margin:10px 10px");
 	var tr=$("<tr></tr>");
 	var td=$("<td></td>");
-	td.attr("rowspan",data["ApEfficiency"].length);
+	td.attr("rowspan",data["ApEfficiency"].length+1);
 	td.attr("style","width:140px");
 	td.append("<img src='resources/items/" + itemId + ".png'</>");
 	tr.append(td);
