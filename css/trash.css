@@ -27,7 +27,7 @@ table tr.err {
   background-color: red;
 }
 
-table.no_side_border, table.no_side_border td {
+table.no_side_border,table.no_side_border td{
   border-top: 1px solid #aaa;
   border-right: none;
   border-bottom: 1px solid #aaa;

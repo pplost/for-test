@@ -34,7 +34,7 @@ function createItemReqInf() {
     }
     document.title = itemsDict[itemId];
     createItemDropInf(itemId);
-    var data = readJson("data/data.json");
+    var data = readJson("https://pplost.github.io/for-test/data/data.json");
     $.each(data, function(i, info) {
         if (info["id"] > 0) {
             var singleLmtNum = 0;
@@ -119,14 +119,14 @@ function createItemReqList(totalList, limitNum, skillNum) {
 }
 
 function createItemDropInf(itemId) {
-    var data = readJson("data/drop_chance.json")[itemId];
+    var data = readJson("https://pplost.github.io/for-test/data/drop_chance.json")[itemId];
     var tb = $("<table></table>");
+    tb.attr("style", "margin:10px 10px;");
     tb.attr("class", "no_side_border");
-    tb.attr("style", "margin:10px 10px");
     var tr = $("<tr></tr>");
     var td = $("<td></td>");
-    td.attr("rowspan", data["ApEfficiency"].length + 1);
-    td.attr("style", "width:140px");
+    td.attr("rowspan", 6);
+    td.attr("style", "width:140px;");
     td.append("<img src='resources/items/" + itemId + ".png'</>");
     tr.append(td);
     tr.append("<td>AP效率前5</td><td>平均AP</td><td>样本数</td><td>掉率前5</td><td>掉率</td><td>样本数</td>");
