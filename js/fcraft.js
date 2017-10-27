@@ -17,14 +17,14 @@ $(document).ready(function() {
     $.getJSON("data/fcraft.json", function(data) {
         for (var i in data) {
             var row = {
-                id: ("000" + data[i]["id"]).slice(-3),
+                id: numLenFormat(data[i]["id"], 3),
                 name: data[i].name,
-                servantID: ("000" + data[i]["servantID"]).slice(-3),
+                servantID: numLenFormat(data[i]["servantID"], 3),
                 servant: data[i].servant,
                 desc: data[i].desc
             };
             for (var j in data[i]["friendship"]) {
-                row[j] = ("000000" + data[i]["friendship"][j] * 1000).slice(-6);
+                row[j] = numLenFormat(data[i]["friendship"][j] * 1000, 6);
             }
             info.push(row);
         };
