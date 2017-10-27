@@ -2,6 +2,17 @@ function removeItems() {
     document.getElementById("button_area").remove();
 }
 
+function downloadData(exportData) {
+    var w = window.open("about:blank", "导出", "height=0,width=0,toolbar=no,menubar=no,scrollbars=no,resizable=on,location=no,status=no");
+    var dt = new Date();
+    w.document.write(exportData);
+    try {
+        w.document.charset = "utf-8";
+    } catch (err) {}
+    w.document.execCommand("SaveAs", false, "data.txt");
+    w.close();
+}
+
 function friendship() {
     sortByElmentNo(master.mstSvt);
     var str = "[<br/>";
@@ -563,10 +574,11 @@ function detail_info() {
     for (var x in individualityDict) {
         individualityLength++;
     }
-    if (individualityDict.length != individualityLength) {
-        console.log('individuality has changed');
+    if (individualityList.length != individualityLength) {
+        console.log('individuality has changed!',individualityList);
     }
 
     removeItems();
     document.getElementById("info").innerHTML = (JSON.stringify(lists));
+    downloadData(JSON.stringify(lists));
 }
