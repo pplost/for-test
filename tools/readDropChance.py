@@ -107,8 +107,8 @@ def readFile(path,headLine,readLine,flag):
 					#数值
 					a.append(float(l[x]))
 					l[x]=a
-			#不需要全取，在后面加[:5]
-			b=sorted(l[1:], key=lambda x:x[3],reverse=flag)
+			#只取前10
+			b=sorted(l[1:], key=lambda x:x[3],reverse=flag)[:10]
 			for x in range(len(b)):
 				if(b[-1][3]<0.1 or b[-1][3]==9999):
 					b.pop()
