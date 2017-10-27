@@ -107,7 +107,8 @@ def readFile(path,headLine,readLine,flag):
 					#数值
 					a.append(float(l[x]))
 					l[x]=a
-			b=sorted(l[1:], key=lambda x:x[3],reverse=flag)[:5]
+			#不需要全取，在后面加[:5]
+			b=sorted(l[1:], key=lambda x:x[3],reverse=flag)
 			for x in range(len(b)):
 				if(b[-1][3]<0.1 or b[-1][3]==9999):
 					b.pop()
@@ -116,6 +117,8 @@ def readFile(path,headLine,readLine,flag):
 			b.insert(0,itemDict[l[0]])
 			outList.append(b)
 			print(b)
+	#插入结晶
+	outList.append(["6999",["活动","不定",0,"不定"],["棱镜商店","$",0,"$"]])
 	return outList
 
 def listFormat(l1,l2):

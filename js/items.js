@@ -3,6 +3,7 @@ $(document).ready(function() {
         createItemList();
     } else {
         createItemReqInf();
+        $("#main").after("<p style='text-align:right;'><input type='button' onclick='removeLocalCahce(\"fgoArchive_main_data\",\"fgoArchive_dropChance_data\")' value='清理缓存'></p>");
     }
 });
 
@@ -34,13 +35,13 @@ function createItemReqInf() {
     }
     document.title = itemsDict[itemId];
     createItemDropInf(itemId);
-    var data = readJson("https://pplost.github.io/for-test/data/data.json");
+    var data = readJson("https://pplost.github.io/for-test/data/data.json","fgoArchive_main_time","fgoArchive_main_data");
     $.each(data, function(i, info) {
-        if (info["id"] > 0) {
+        if (info.id > 0) {
             var singleLmtNum = 0;
             var singleSklNum = 0;
             var single = [];
-            $.each(info["limitItems"], function(j, items) {
+            $.each(info.limitItems, function(j, items) {
                 $.each(items, function(k, item) {
                     if (item[0] == itemId) {
                         limitNum += item[2];
@@ -48,7 +49,7 @@ function createItemReqInf() {
                     }
                 });
             });
-            $.each(info["SkillItems"], function(j, items) {
+            $.each(info.SkillItems, function(j, items) {
                 $.each(items, function(k, item) {
                     if (item[0] == itemId) {
                         skillNum += (item[2] * 3);
@@ -57,7 +58,7 @@ function createItemReqInf() {
                 });
             });
             if (singleLmtNum > 0 || singleSklNum > 0) {
-                single.push(info["id"], singleLmtNum, singleSklNum * 3);
+                single.push(info.id, singleLmtNum, singleSklNum * 3);
                 totalList.push(single);
             }
         }
@@ -119,20 +120,20 @@ function createItemReqList(totalList, limitNum, skillNum) {
 }
 
 function createItemDropInf(itemId) {
-    var data = readJson("https://pplost.github.io/for-test/data/drop_chance.json")[itemId];
+    var data = readJson("https://pplost.github.io/for-test/data/drop_chance.json","fgoArchive_dropChance_time","fgoArchive_dropChance_data")[itemId];
     var tb = $("<table></table>");
     tb.attr("style", "margin:10px 10px;");
     tb.attr("class", "no_side_border");
     var tr = $("<tr></tr>");
     var td = $("<td></td>");
-    td.attr("rowspan", 6);
+    td.attr("rowspan", data.ApEfficiency.length+1);
     td.attr("style", "width:140px;");
     td.append("<img src='resources/items/" + itemId + ".png'</>");
     tr.append(td);
-    tr.append("<td>AP效率前5</td><td>平均AP</td><td>样本数</td><td>掉率前5</td><td>掉率</td><td>样本数</td>");
+    tr.append("<td style='border-right:1px solid #aaa'>AP效率前"+data.ApEfficiency.length+"</td><td style='border-right:1px solid #aaa'>平均AP</td><td style='border-right:1px solid #aaa'>样本数</td><td style='border-right:1px solid #aaa'>掉率前"+data.ApEfficiency.length+"</td><td>掉率</td><td>样本数</td>");
     tb.append(tr);
-    for (var i in data["ApEfficiency"]) {
-        tb.append("<tr><td>" + data["ApEfficiency"][i][0] + "</td><td>" + data["ApEfficiency"][i][3] + "</td><td>" + data["ApEfficiency"][i][2] + "</td><td>" + data["dropChance"][i][0] + "</td><td>" + data["dropChance"][i][3] + "</td><td>" + data["dropChance"][i][2] + "</td></tr>");
+    for (var i in data.ApEfficiency) {
+        tb.append("<tr><td>" + data.ApEfficiency[i][0] + "</td><td>" + data.ApEfficiency[i][3] + "</td><td>" + data.ApEfficiency[i][2] + "</td><td>" + data.dropChance[i][0] + "</td><td>" + data.dropChance[i][3] + "</td><td>" + data.dropChance[i][2] + "</td></tr>");
     }
     $("#main").append(tb);
 }

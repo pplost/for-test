@@ -21,12 +21,12 @@
 				</td>
 				<td id="link_to_wiki"></td>
 			</tr>
-			
+
 			<tr>
 				<td>配卡</td>
 				<td colspan="7" id="cards"></td>
 			</tr>
-			
+
 			<tr>
 				<td>红卡hit数</td>
 				<td><input type="text" id="buster_hits" style="width:50px" disabled></td>
@@ -37,7 +37,7 @@
 				<td>EX卡hit数</td>
 				<td><input type="text" id="ex_hits" style="width:50px" disabled></td>
 			</tr>
-			
+
 			<tr>
 				<td>红卡np率(%)</td>
 				<td><input type="text" id="buster_np" style="width:50px" disabled></td>
@@ -48,7 +48,7 @@
 				<td>ex卡np率(%)</td>
 				<td><input type="text" id="ex_np" style="width:50px" disabled></td>
 			</tr>
-			
+
 			<tr>
 				<td>骑乘(%)</td>
 				<td><input type="text" id="ride" style="width:50px" disabled></td>
@@ -59,7 +59,7 @@
 				<td>宝具np率(%)</td>
 				<td><input type="text" id="np_np" style="width:50px" disabled></td>
 			</tr>
-			
+
 			<tr>
 				<td>一技能</td>
 				<td>
@@ -120,7 +120,7 @@
 					</select>
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td>np获取提升(%)</td>
 				<td><input type="text" id="np_up" style="width:50px"></td>
@@ -130,15 +130,15 @@
 				<td><input type="text" id="quick_up" style="width:50px"></td>
 				<td colspan="2"></td>
 			</tr>
-			
+
 		</tbody>
-		
+
 		<tbody id ="skills">
 			<tr>
-				
+
 			</tr>
 		</tbody>
-		
+
 		<tbody>
 			<tr>
 				<td></td>
@@ -148,7 +148,7 @@
 				<td>ex卡</td>
 				<td colspan="3" rowspan="6" id="cal_result"></td>
 			</tr>
-			
+
 			<tr>
 				<td>是否暴击</td>
 				<td><input type="checkbox" id="first_crit" style="width:50px"></td>
@@ -164,7 +164,7 @@
 				<td><input type="checkbox" id="third_ok" style="width:50px"></td>
 				<td><input type="checkbox" id="ex_ok" style="width:50px"></td>
 			</tr>
-			
+
 			<tr>
 				<td >鞭尸hit数</td>
 				<td><input type="text" id="first_ok_hits" style="width:50px"></td>
@@ -172,7 +172,7 @@
 				<td><input type="text" id="third_ok_hits" style="width:50px"></td>
 				<td><input type="text" id="ex_ok_hits" style="width:50px"></td>
 			</tr>
-			
+
 			<tr>
 				<td>卡序</td>
 				<td>
@@ -209,9 +209,9 @@
 						<option value="1">EX</option>
 					</select>
 				</td>
-				
+
 			</tr>
-			
+
 			<tr>
 				<td>敌方补正</td>
 				<td>
@@ -237,31 +237,31 @@
 					<input type="button" id="cal_np_list" onclick="calNPList()" value="列表">
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td colspan="8">例外：1.死灵类中鐘を鳴らすもの和エレシュキガル的种类补正是1。<br/>2.クリスティーヌ(Assassin)以狂阶补正计算。</td>
 			</tr>
 			<tr>
-				<td colspan="8" style="text-align:right; font-size:12px; border:1px solid #fff;"><a href="https://xianlechuanshuo.github.io/fgo/calc4.html">友情链接：宝具计算器</a></td>
+				<td colspan="8" style="text-align:right; font-size:12px; border:none;"><a href="https://xianlechuanshuo.github.io/fgo/calc4.html">友情链接：宝具计算器</a></td>
 			</tr>
 		</tbody>
 	</table>
 	<p></p>
 	<table id="np_list"></table>
-	
+
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="js/title-link.js"></script>
 	<script type="text/javascript">
 		var servants = new Array();
 		//读取数据
-		$(function(){  
-			$.getJSON("data/servants.json",function(data){  
+		$(function(){
+			$.getJSON("data/servants.json",function(data){
 				$.each(data,function(infoIndex,info){
 					servants[info["seq"]]=info;
 					var lst='<option value="'+servants[info["seq"]].seq+'">'+'【'+servants[info["seq"]]["class"]+"】 "+servants[info["seq"]].name+'</option>';
 					$("#servants").append(lst);
 				});
-				$("#servants").val(1); 
+				$("#servants").val(1);
 				updateStatus(1);
 			});
 		});
@@ -277,7 +277,7 @@
 				var lst='<option value="'+servants[i].seq+'">'+'【'+servants[i]["class"]+"】 "+servants[i].name+'</option>';
 				$("#servants").append(lst);
 			}
-			$("#servants").val(1); 
+			$("#servants").val(1);
 			updateStatus(1);
 		}
 		//更新表格数据
@@ -341,7 +341,7 @@
 			if(!flag){
 				$("#servants").empty();
 				$("#servants").append(lst);
-				$("#servants").val(sid); 
+				$("#servants").val(sid);
 				updateStatus(sid);
 			}
 			else{
@@ -457,8 +457,8 @@
 				if(servants[i].busterCards<b||servants[i].artsCards<a||servants[i].quickCards<q){
 					isCertified=false
 				}
-				
-		
+
+
 				//蓝chain
 				if($("#first_card").val()=="-2"){a++};
 				if(a>=3){artsChain=20;}
@@ -493,7 +493,7 @@
 			});
 			var rankSeq=1;
 			for (var i in npList){
-				
+
 				var tds="<td>"+rankSeq+'</td>';
 				tds+="<td>"+npList[i].id+'</td>';
 				tds+="<td>"+npList[i].name+'</td>';
@@ -617,7 +617,7 @@
 			}
 			return np;
 		}
-		
+
 		//基本NP獲得率(Atk) × [首卡加成 + 卡片倍率 x (1 ± 卡片性能Buff)] × (1 + NP獲得量Buff)× Critical補正 × Overkill補正 × 攻擊Hit數 × 伺服器控制參數(假設為1)
 
 		//首卡加成
