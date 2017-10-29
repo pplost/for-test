@@ -209,7 +209,7 @@ function detail_info() {
             if (master.mstSvt[x].collectionNo > 1) {
                 var tid = findSvtFs(master.mstSvt[x].id);
                 var n = [];
-                var m = [0];
+                var m = [];
                 var craftCollectionNo = 0;
                 for (var j in master.mstFriendship) {
                     if (master.mstFriendship[j].id == tid && master.mstFriendship[j].rank < 10) {
