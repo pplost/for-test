@@ -20,13 +20,13 @@ $(document).ready(function() {
             var row = {
                 id: inf["friendship"]["id"],
                 name: inf["friendship"]["name"],
-                servantID: inf["id"],
+                servantID: numLenFormat(inf["id"],3),
                 servant: servantNamesDict[inf["svtId"]],
                 rank: [0, 0, 0, 0, 0, 0, 0],
                 desc: inf["friendship"]["desc"]
             };
             for (var j in inf["friendship"]["rank"]) {
-                row["rank"][j] = numLenFormat(inf["friendship"]["rank"], 6);
+                row["rank"][j] = numLenFormat(inf["friendship"]["rank"][j], 6);
                 row["rank"][6] += row["rank"][j];
             }
             info.push(row);
