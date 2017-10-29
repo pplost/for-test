@@ -61,7 +61,7 @@ function createTableBody() {
             tds += '<td><a ' + slink + ' target="_blank">' + parseInt(info[i]["servantID"]) + '</a></td>';
         }
         tds += '<td><a ' + slink + ' target="_blank">' + info[i]["servant"] + '</a></td>';
-        for (var j = 0; i <= 6; i++) {
+        for (var j = 0; j <= 6; j++) {
             tds += '<td>' + parseInt(info[i]["rank"][j]) / 1000 + '</td>';
         }
         tds += '<td style="text-align:left">' + info[i]["desc"] + '</td>';
