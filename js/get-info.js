@@ -227,10 +227,11 @@ function detail_info() {
                         break;
                     }
                 }
-                m[0] = n[4] / 10000;
+                m.push(n[4] / 10000);
                 for (var i = 5; i < 10; i++) {
                     m.push((n[i] - n[i - 1]) / 10000);
                 }
+                m.push(n[9] / 10000);
                 var t = {
                     id: craftCollectionNo,
                     name: "",

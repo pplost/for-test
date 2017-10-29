@@ -45,12 +45,10 @@
 		//国服开放进度
 		var process = 308;
 		var picFlag = true;
-		$(document).ready(function() {
-			if (window.location.search == "?no_pic") {
-				picFlag = false;
-				document.title += "(无图版)";
-			}
-		});
+		if (window.location.search == "?no_pic") {
+			picFlag = false;
+			document.title += "(无图版)";
+		}
 	</script>
 </body>
 

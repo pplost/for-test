@@ -18,7 +18,7 @@ $(document).ready(function() {
     $.each(data, function(i, inf) {
         if (inf.hasOwnProperty("friendship")) {
             var row = {
-                id: inf["friendship"]["id"],
+                id: numLenFormat(inf["friendship"]["id"],3),
                 name: inf["friendship"]["name"],
                 servantID: numLenFormat(inf["id"], 3),
                 servant: servantNamesDict[inf["svtId"]],
@@ -27,9 +27,7 @@ $(document).ready(function() {
             };
             for (var j in inf["friendship"]["rank"]) {
                 row["rank"][j] = numLenFormat(inf["friendship"]["rank"][j] * 1000, 6);
-                row["rank"][6] += inf["friendship"]["rank"][j] * 1000;
             }
-            row["rank"][6] = numLenFormat(row["rank"][6], 6);
             info.push(row);
         }
     });
