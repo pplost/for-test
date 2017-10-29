@@ -14,25 +14,26 @@ var sortStatus = {
 };
 
 $(document).ready(function() {
-    $.getJSON("data/fcraft.json", function(data) {
-        for (var i in data) {
-            var row = {
-                id: numLenFormat(data[i]["id"], 3),
-                name: data[i].name,
-                servantID: numLenFormat(data[i]["servantID"], 3),
-                servant: data[i].servant,
-                desc: data[i].desc
-            };
-            for (var j in data[i]["friendship"]) {
-                row[j] = numLenFormat(data[i]["friendship"][j] * 1000, 6);
-            }
+    var data = readJson("data/fcraft.json", "fgoArchive_main_time", "fgoArchive_main_data");
+    $.each(data, function(i, inf) {
+        var row = {};
+        if (inf.hasOwnProperty("friendship")) {
+            row["id"] = inf["friendship"]["id"];
+            row["name"] = inf["friendship"]["name"];
+            row["servantID"] = inf["id"];
+            row["servant"] = servantNamesDict[inf["svtId"]];
+            row["rank"] = inf["friendship"]["rank"];
+            row["rank"].push(eval(inf["friendship"]["rank"].join("+")));
+            row["desc"] = inf["friendship"]["desc"];
             info.push(row);
-        };
-        sortStatus["servantID"] = true;
-        createTableHead();
-        createTableBody();
+        }
     });
+    sortStatus["servantID"] = true;
+    createTableHead();
+    createTableBody();
 });
+
+
 
 function createTableBody() {
     $("#main_table").empty();
@@ -60,13 +61,9 @@ function createTableBody() {
             tds += '<td><a ' + slink + ' target="_blank">' + parseInt(info[i]["servantID"]) + '</a></td>';
         }
         tds += '<td><a ' + slink + ' target="_blank">' + info[i]["servant"] + '</a></td>';
-        tds += '<td>' + parseInt(info[i]["0-5"]) / 1000 + '</td>';
-        tds += '<td>' + parseInt(info[i]["5-6"]) / 1000 + '</td>';
-        tds += '<td>' + parseInt(info[i]["6-7"]) / 1000 + '</td>';
-        tds += '<td>' + parseInt(info[i]["7-8"]) / 1000 + '</td>';
-        tds += '<td>' + parseInt(info[i]["8-9"]) / 1000 + '</td>';
-        tds += '<td>' + parseInt(info[i]["9-10"]) / 1000 + '</td>';
-        tds += '<td>' + parseInt(info[i]["total"]) / 1000 + '</td>';
+        for (var j = 0; i <= 6; i++) {
+            tds += '<td>' + parseInt(info[i]["rank"][j]) / 1000 + '</td>';
+        }
         tds += '<td style="text-align:left">' + info[i]["desc"] + '</td>';
         tr.append(tds);
         $("#main_table").append(tr);
