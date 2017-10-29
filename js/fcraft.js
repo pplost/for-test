@@ -25,7 +25,7 @@ $(document).ready(function() {
                 desc: inf["friendship"]["desc"]
             };
             for (var j in inf["friendship"]["rank"]) {
-                row["rank" + j][j] = numLenFormat(inf["friendship"]["rank"][j] * 1000, 6);
+                row["rank" + j] = numLenFormat(inf["friendship"]["rank"][j] * 1000, 6);
             }
             info.push(row);
         }
