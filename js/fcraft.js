@@ -14,7 +14,7 @@ var sortStatus = {
 };
 
 $(document).ready(function() {
-    var data = readJson("data/fcraft.json", "fgoArchive_main_time", "fgoArchive_main_data");
+    var data = readJson("data/data.json", "fgoArchive_main_time", "fgoArchive_main_data");
     $.each(data, function(i, inf) {
         var row = {};
         if (inf.hasOwnProperty("friendship")) {
