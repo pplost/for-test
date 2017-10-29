@@ -58506,7 +58506,7 @@
 			{
 				"id": 425650,
 				"num": 1,
-				"name": "无辜の怪獣 EX",
+				"name": "无辜的怪兽 EX",
 				"chargeTurn": 7,
 				"icoId": 605,
 				"desc": [
@@ -58523,7 +58523,7 @@
 			{
 				"id": 426350,
 				"num": 2,
-				"name": "オーバーロード改 C",
+				"name": "过载·改 C",
 				"chargeTurn": 7,
 				"icoId": 601,
 				"desc": [
@@ -58540,7 +58540,7 @@
 			{
 				"id": 427350,
 				"num": 3,
-				"name": "ファイナルエリチャン C",
+				"name": "最终的伊丽酱 C",
 				"chargeTurn": 7,
 				"icoId": 302,
 				"desc": [
@@ -58562,7 +58562,7 @@
 		"noblePhantasm": [
 			{
 				"id": 1000401,
-				"name": "钢鉄天空魔嬢",
+				"name": "钢铁天空魔娘",
 				"hits": 8,
 				"color": "Buster",
 				"np": [
@@ -58808,7 +58808,7 @@
 			{
 				"id": 425650,
 				"num": 1,
-				"name": "无辜の怪獣 EX",
+				"name": "无辜的怪兽 EX",
 				"chargeTurn": 7,
 				"icoId": 605,
 				"desc": [
@@ -58825,7 +58825,7 @@
 			{
 				"id": 426350,
 				"num": 2,
-				"name": "オーバーロード改 C",
+				"name": "过载·改 C",
 				"chargeTurn": 7,
 				"icoId": 601,
 				"desc": [
@@ -58842,7 +58842,7 @@
 			{
 				"id": 427350,
 				"num": 3,
-				"name": "ファイナルエリチャン C",
+				"name": "最终的伊丽酱 C",
 				"chargeTurn": 7,
 				"icoId": 302,
 				"desc": [
@@ -58864,7 +58864,7 @@
 		"noblePhantasm": [
 			{
 				"id": 1000501,
-				"name": "钢鉄天空魔嬢",
+				"name": "钢铁天空魔娘",
 				"hits": 8,
 				"color": "Buster",
 				"np": [

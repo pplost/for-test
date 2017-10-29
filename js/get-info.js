@@ -330,6 +330,7 @@ function detail_info() {
                             var t = [];
                             t.push(master.mstCombineLimit[j].itemIds[k]);
                             if (!itemsDict[master.mstCombineLimit[j].itemIds[k]]) {
+                                console.log("------------item------------");
                                 console.log(master.mstCombineLimit[j].itemIds[k], findItemName(master.mstCombineLimit[j].itemIds[k]));
                             }
                             t.push(master.mstCombineLimit[j].itemNums[k]);
@@ -348,6 +349,7 @@ function detail_info() {
                         var t = [];
                         t.push(master.mstCombineSkill[i].itemIds[j]);
                         if (!itemsDict[master.mstCombineSkill[i].itemIds[j]]) {
+                            console.log("------------item------------");
                             console.log(master.mstCombineSkill[i].itemIds[j], findItemName(master.mstCombineSkill[i].itemIds[j]));
                         }
                         t.push(master.mstCombineSkill[i].itemNums[j]);
@@ -563,7 +565,7 @@ function detail_info() {
             lists.push(inf);
 
             //log
-            if (!inf.name) {
+            if (!servantNamesDict[inf.svtId]) {
                 console.log("------------name------------");
                 console.log("collectionNo:", master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'name:', findSvtNameZh2[master.mstSvt[x].id]);
             }
