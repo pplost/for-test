@@ -16,15 +16,19 @@ var sortStatus = {
 $(document).ready(function() {
     var data = readJson("data/data.json", "fgoArchive_main_time", "fgoArchive_main_data");
     $.each(data, function(i, inf) {
-        var row = {};
         if (inf.hasOwnProperty("friendship")) {
-            row["id"] = inf["friendship"]["id"];
-            row["name"] = inf["friendship"]["name"];
-            row["servantID"] = inf["id"];
-            row["servant"] = servantNamesDict[inf["svtId"]];
-            row["rank"] = inf["friendship"]["rank"];
-            row["rank"].push(eval(inf["friendship"]["rank"].join("+")));
-            row["desc"] = inf["friendship"]["desc"];
+            var row = {
+                id: inf["friendship"]["id"],
+                name: inf["friendship"]["name"],
+                servantID: inf["id"],
+                servant: servantNamesDict[inf["svtId"]],
+                rank: [],
+                desc: inf["friendship"]["desc"]
+            };
+            for (var j in inf["friendship"]["rank"]) {
+                row["rank"].push(numLenFormat(inf["friendship"]["rank"], 6));
+            }
+            row["rank"].push(eval(row["rank"].join("+")));
             info.push(row);
         }
     });
