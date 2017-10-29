@@ -22,13 +22,13 @@ $(document).ready(function() {
                 name: inf["friendship"]["name"],
                 servantID: inf["id"],
                 servant: servantNamesDict[inf["svtId"]],
-                rank: [],
+                rank: [0, 0, 0, 0, 0, 0, 0],
                 desc: inf["friendship"]["desc"]
             };
             for (var j in inf["friendship"]["rank"]) {
-                row["rank"].push(numLenFormat(inf["friendship"]["rank"], 6));
+                row["rank"][j] = numLenFormat(inf["friendship"]["rank"], 6);
+                row["rank"][6] += row["rank"][j];
             }
-            row["rank"].push(eval(row["rank"].join("+")));
             info.push(row);
         }
     });
