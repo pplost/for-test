@@ -163,8 +163,8 @@ function detail_info() {
                 "noblePhantasm": [],
                 "limitItems": [],
                 "limitQPs": [],
-                "SkillItems": [],
-                "SkillQPs": [],
+                "skillItems": [],
+                "skillQPs": [],
             };
 
             //
@@ -301,17 +301,17 @@ function detail_info() {
                 }
             }
             inf.card.Arts = {
-                Quantity: cardQuantity[0],
+                quantity: cardQuantity[0],
                 hits: cardHits[0],
                 np: cardNp[0].sort()
             };
             inf.card.Buster = {
-                Quantity: cardQuantity[1],
+                quantity: cardQuantity[1],
                 hits: cardHits[1],
                 np: cardNp[1].sort()
             };
             inf.card.Quick = {
-                Quantity: cardQuantity[2],
+                quantity: cardQuantity[2],
                 hits: cardHits[2],
                 np: cardNp[2].sort()
             };

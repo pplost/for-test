@@ -49,7 +49,7 @@ function createItemReqInf() {
                     }
                 });
             });
-            $.each(info.SkillItems, function(j, items) {
+            $.each(info.skillItems, function(j, items) {
                 $.each(items, function(k, item) {
                     if (item[0] == itemId) {
                         skillNum += (item[1] * 3);
