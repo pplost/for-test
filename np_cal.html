@@ -184,6 +184,7 @@
 		$(function() {
 			var data = readJson("data/data.json", "fgoArchive_main_time", "fgoArchive_main_data");
 			var seq = 0;
+			var exceptList = [];
 			$.each(data, function(i, info) {
 				var row = {
 					seq: seq,
@@ -218,13 +219,24 @@
 						}
 					});
 				});
+				//海德移到后面
+				if (info["id"] == 0) {
+					exceptList.push(row);
+				}
+				//海德移到后面
+				else if (info["id"] == 81) {
+					servants.push(row);
+					seq++;
+					exceptList[0]["seq"] = seq;
+					servants.push(exceptList[0]);
+					seq++;
+				}
 				//例外:大帝
-				if (info["id"] == 108) {
+				else if (info["id"] == 108) {
+					var newRow = JSON.parse(JSON.stringify(row));
 					row["name"] += "(强化本前)";
 					servants.push(row);
 					seq++;
-
-					var newRow = JSON.parse(JSON.stringify(row));
 					newRow["name"] += "(强化本后)";
 					newRow["seq"] = seq;
 					newRow["busterNP"] = info["card"]["Buster"]["np"][1];
