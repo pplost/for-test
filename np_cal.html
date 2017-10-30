@@ -195,7 +195,7 @@
 					busterHits: info["card"]["Buster"]["hits"],
 					artsCards: info["card"]["Arts"]["quantity"],
 					artsHits: info["card"]["Arts"]["hits"],
-					quickCards: info["card"]["Quick"]["hits"],
+					quickCards: info["card"]["Quick"]["quantity"],
 					quickHits: info["card"]["Quick"]["hits"],
 					exHits: info["card"]["EX"]["hits"],
 					npCard: info["noblePhantasm"][0]["color"],
@@ -224,7 +224,7 @@
 					servants.push(row);
 					seq++;
 
-					var newRow = row;
+					var newRow = JSON.parse(JSON.stringify(row));
 					newRow["name"] += "(强化本后)";
 					newRow["seq"] = seq;
 					newRow["busterNP"] = info["card"]["Buster"]["np"][1];

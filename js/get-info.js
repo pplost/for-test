@@ -355,10 +355,10 @@ function detail_info() {
                         t.push(master.mstCombineSkill[i].itemNums[j]);
                         tmp.push(t);
                     }
-                    inf.SkillQPs.push(master.mstCombineSkill[i].qp);
+                    inf.skillQPs.push(master.mstCombineSkill[i].qp);
                 }
                 if (tmp.length != 0) {
-                    inf.SkillItems.push(tmp);
+                    inf.skillItems.push(tmp);
                 }
             }
 
