@@ -273,7 +273,7 @@ function detail_info() {
             for (var i in transCardNp) {
                 cardNp[i] = Array.from(transCardNp[i]);
                 cardNp[i].sort();
-                if(cardNp[i][0]==0){
+                if (cardNp[i][0] == 0) {
                     cardNp[i].reverse();
                     cardNp[i].pop();
                     cardNp[i].sort();
