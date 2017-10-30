@@ -197,9 +197,9 @@
 					artsHits: info["card"]["Arts"]["hits"],
 					quickCards: info["card"]["Quick"]["hits"],
 					quickHits: info["card"]["Quick"]["hits"],
-					exHits: quickHits: info["card"]["EX"]["hits"],
-					npCard: quickHits: info["noblePhantasm"][0]["color"],
-					npHits: quickHits: info["noblePhantasm"][0]["hits"],
+					exHits: info["card"]["EX"]["hits"],
+					npCard: info["noblePhantasm"][0]["color"],
+					npHits: info["noblePhantasm"][0]["hits"],
 					busterNP: info["card"]["Buster"]["np"][0],
 					artsNP: info["card"]["Arts"]["np"][0],
 					quickNP: info["card"]["Quick"]["np"][0],
@@ -227,12 +227,12 @@
 					var newRow = row;
 					newRow["name"] += "(强化本后)";
 					newRow["seq"] = seq;
-					busterNP: info["card"]["Buster"]["np"][1],
-						artsNP: info["card"]["Arts"]["np"][1],
-						quickNP: info["card"]["Quick"]["np"][1],
-						exNP: info["card"]["EX"]["np"][1],
-						npNP: info["card"]["noblePhantasm"][0]["np"][1],
-						servants.push(newRow);
+					newRow["busterNP"] = info["card"]["Buster"]["np"][1];
+					newRow["artsNP"] = info["card"]["Arts"]["np"][1];
+					newRow["quickNP"] = info["card"]["Quick"]["np"][1];
+					newRow["exNP"] = info["card"]["EX"]["np"][1];
+					newRow["npNP"] = info["card"]["noblePhantasm"][0]["np"][1];
+					servants.push(newRow);
 					seq++;
 				} else {
 					servants.push(row);
