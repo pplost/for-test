@@ -34,7 +34,7 @@ function createItemReqInf() {
     }
     document.title = itemsDict[itemId];
     createItemDropInf(itemId);
-    var data = readJson("data/data.json", "fgoArchive_main_ver", "fgoArchive_main_data");
+    var data = readJson("data/data.json", "fgoArchiveMainDataVer", "fgoArchiveMainData");
     $.each(data, function(i, info) {
         if (info.id > 0) {
             var singleLmtNum = 0;
@@ -119,7 +119,7 @@ function createItemReqList(totalList, limitNum, skillNum) {
 }
 
 function createItemDropInf(itemId) {
-    var data = readJson("data/drop_chance.json", "fgoArchive_dropChance_ver", "fgoArchive_dropChance_data")[itemId];
+    var data = readJson("data/drop_chance.json", "fgoArchiveDropDataVer", "fgoArchiveDropData")[itemId];
     var tb = $("<table></table>");
     tb.attr("style", "margin:10px 10px;");
     tb.attr("class", "no_side_border");
