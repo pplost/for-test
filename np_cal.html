@@ -182,7 +182,7 @@
 		var servants = new Array();
 		//读取数据
 		$(function() {
-			var data = readJson("data/data.json", "fgoArchive_main_time", "fgoArchive_main_data");
+			var data = readJson("data/data.json", "fgoArchive_main_ver", "fgoArchive_main_data");
 			var seq = 0;
 			var exceptList = [];
 			$.each(data, function(i, info) {
@@ -213,9 +213,13 @@
 					$.each(inf1["desc"], function(i2, inf2) {
 						if (inf2[0].match("uick.*?提升")) {
 							row["quickEff"] = parseFloat(inf2[1].split("%")[0]);
+						} else {
+							row["quickEff"] = 0;
 						}
 						if (inf2[0].match("rts.*?提升")) {
 							row["artsEff"] = parseFloat(inf2[1].split("%")[0]);
+						} else {
+							row["artsEff"] = 0;
 						}
 					});
 				});

@@ -23,22 +23,22 @@
 			border: 1px solid #aaa;
 			text-align: center;
 		}
+		table.no_side_border,td.no_right_border{
+			border-right:none;
+		}
 		table.no_side_border, table.no_side_border td {
-			border-right: none;
 			border-left: none;
 			vertical-align: top;
 		}
-		table td.right_border{
-			border-right:1px solid #aaa;
-		}
+
 	</style>
 </head>
 
 <body>
 	<table class="no_side_border">
-		<tr><td class="right_border">1</td><td class="right_border">2</td><td>3</td><tr>
-		<tr><td class="right_border">2</td><td class="right_border">3</td><td>4</td><tr>
-		<tr><td class="right_border">3</td><td class="right_border">4</td><td>5</td><tr>
+		<tr><td>1</td><td>2</td><td class="no_right_border">3</td><tr>
+		<tr><td>2</td><td>3</td><td class="no_right_border">4</td><tr>
+		<tr><td>3</td><td>4</td><td class="no_right_border">5</td><tr>
 	</table>
 </body>
 
