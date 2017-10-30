@@ -18,7 +18,6 @@ function readJson(url, verProperty, dataProperty) {
             },
         });
         if (window.localStorage.hasOwnProperty(dataProperty) && window.localStorage.hasOwnProperty(verProperty) && version == window.localStorage.getItem(verProperty)) {
-            console.log("本地");
             returnData = JSON.parse(window.localStorage.getItem(dataProperty));
         } else {
             $.ajax({
