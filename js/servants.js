@@ -50,7 +50,7 @@ function createPage(info) {
     }
     tb.append("<tr><th=rowspan='9'>灵基再临</th><td>Lv1->Lv2</td><td></td></tr>");
     for (var i = 2; i <= 9; i++) {
-        tb.append("<tr><td>Lv" + i + "->Lv" + i + 1 + "</td><td></td></tr>");
+        tb.append("<tr><td>Lv" + i + "->Lv" + (i + 1) + "</td><td></td></tr>");
     }
     $("#main").append(tb);
 }
