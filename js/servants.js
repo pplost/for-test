@@ -52,4 +52,5 @@ function createPage(info) {
     for (var i = 2; i <= 9; i++) {
         tb.append("<tr><td>Lv" + i + "->Lv" + i + 1 + "</td><td></td></tr>");
     }
+    $("#main").append(tb);
 }
