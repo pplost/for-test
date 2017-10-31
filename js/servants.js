@@ -41,5 +41,7 @@ function createServantInf() {
 
 function createPage(info) {
     document.title = servantNamesDict[info.svtId];
-    $("#main").append('<div><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + numLenFormat(info.id, 3) + '.jpg"</div>');
+    $("#main").append('<div style="margin-top:30px"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + numLenFormat(info.id, 3) + '.jpg"</div>');
+    var tb=$("<table></table>");
+    tb.attr('','');
 }
