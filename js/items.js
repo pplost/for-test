@@ -27,11 +27,11 @@ function createItemReqInf() {
     var limitNum = 0;
     var skillNum = 0;
     var totalList = [];
-    var itemId = window.location.search.match(/\d+/g);
+    var itemId = window.location.search.match(/\d+/g)[0];
     if (!itemsDict[itemId]) {
-        window.location.href = "require.html";
-        return;
-    }
+    window.location.href = "require.html";
+    return;
+}
     document.title = itemsDict[itemId];
     createItemDropInf(itemId);
     var data = readJson("data/data.json", "fgoArchiveMainDataVer", "fgoArchiveMainData");
@@ -128,6 +128,7 @@ function createItemDropInf(itemId) {
     td.attr("rowspan", data.ApEfficiency.length + 1);
     td.attr("style", "width:140px;");
     td.append("<img src='http://file.fgowiki.fgowiki.com/fgo/material/" + itemsPath[itemId] + ".jpg'</>");
+    td.append("<p>数据来自效率剧场 更新日期：2017-10-25</p>");
     tr.append(td);
     tr.append("<td class='right_border'>AP效率Top" + data.ApEfficiency.length + "</td><td class='right_border'>平均AP</td><td class='right_border'>样本数</td><td class='right_border'>掉率Top" + data.ApEfficiency.length + "</td><td class='right_border'>掉率</td><td>样本数</td>");
     tb.append(tr);
