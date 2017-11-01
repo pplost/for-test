@@ -62,7 +62,7 @@ function setTableVal(data) {
             var e_li = $("<li></li>");
             e_li.attr("class", "require_item");
             e_li.append("<a href='item.html?" + items[0] + "'><img src='" + getPicUrl("item", items[0]) + "'/></a>");
-            e_li.append(" × " + items[1]);
+            e_li.append(" × " + items[1].length < 2 ? " " : "" + items[1]);
             $("#require").find("tr").eq(i + 1).find("td").eq(1).append(e_li);
         });
     });
@@ -78,7 +78,7 @@ function setTableVal(data) {
             var e_li = $("<li></li>");
             e_li.attr("class", "require_item");
             e_li.append("<a href='item.html?" + items[0] + "'><img src='" + getPicUrl("item", items[0]) + "'/></a>");
-            e_li.append(" × " + items[1]);
+            e_li.append(" × " + items[1].length < 2 ? " " : "" + items[1]);
             $("#require").find("tr").eq(i + 6).find("td").eq(1).append(e_li);
         });
     });
