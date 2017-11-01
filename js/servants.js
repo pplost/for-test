@@ -44,11 +44,11 @@ function createPage(data) {
     $("#main").append('<div style="margin-top:30px"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + numLenFormat(data.id, 3) + '.jpg"</div>');
     var tb = $("<table></table>");
     tb.attr("id","require");
-    tb.append("<tr><th rowspan='4'>灵基再临</th><td>第1阶段</td><td></td></tr>");
+    tb.append("<tr><td rowspan='4'>灵基再临</td><td>第1阶段</td><td></td></tr>");
     for (var i = 2; i <= 4; i++) {
         tb.append("<tr><td>第" + i + "阶段</td><td></td></tr>");
     }
-    tb.append("<tr><th rowspan='9'>灵基再临</th><td>Lv1 → Lv2</td><td></td></tr>");
+    tb.append("<tr><td rowspan='9'>技能升级</td><td>Lv1 → Lv2</td><td></td></tr>");
     for (var i = 2; i <= 9; i++) {
         tb.append("<tr><td>Lv" + i + " → Lv" + (i + 1) + "</td><td></td></tr>");
     }
