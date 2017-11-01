@@ -135,6 +135,6 @@ function createItemDropInf(itemId) {
     for (var i in data.ApEfficiency) {
         tb.append("<tr><td class='right_border'>" + data.ApEfficiency[i][0] + "</td><td class='right_border'>" + data.ApEfficiency[i][3] + "AP/个</td><td class='right_border'>" + data.ApEfficiency[i][2] + "</td><td class='right_border'>" + data.dropChance[i][0] + "</td><td class='right_border'>" + data.dropChance[i][3] + "%</td><td>" + data.dropChance[i][2] + "</td></tr>");
     }
-    tb.append("<tr><td colspan='7'><a href='http://bbs.nga.cn/read.php?tid=12346005'>国服掉落解包数据及关卡配置</a></td></tr>");
+    tb.append("<tr><td colspan='7'><a href='http://bbs.nga.cn/read.php?tid=12346005' target='_blank'>国服掉落解包数据及关卡配置</a></td></tr>");
     $("#main").append(tb);
 }
