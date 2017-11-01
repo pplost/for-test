@@ -71,4 +71,5 @@ function getPicUrl(type, id) {
             url = "resources/others/0.jpg";
             break;
     }
+    return url;
 }
