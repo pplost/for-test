@@ -28,7 +28,7 @@ function createItemReqInf() {
     var skillNum = 0;
     var totalList = [];
     var itemId = window.location.search.match(/\d+/g)[0];
-    if (!itemsDict[itemId]) {
+    if (itemId >= 8000 || !itemsDict[itemId]) {
         window.location.href = "item.html";
         return;
     }

@@ -84,3 +84,10 @@ li.require_itemi, li.require_item img {
     width: auto;
     cursor: auto;
 }
+
+table.no_border, table.no_border td {
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
