@@ -128,13 +128,13 @@ function createItemDropInf(itemId) {
     td.attr("rowspan", data.ApEfficiency.length + 1);
     td.attr("style", "width:140px;");
     td.append("<img src='" + getPicUrl("item", itemId) + "'</>");
-    td.append("<p>数据来自效率剧场</p><p>更新日期：</p><p>2017-10-25</p>");
+    td.append("<p>数据来自效率剧场<br/>更新日期：<br/>2017-10-25</p>");
     tr.append(td);
     tr.append("<td class='right_border'>AP效率Top" + data.ApEfficiency.length + "</td><td class='right_border'>平均AP</td><td class='right_border'>样本数</td><td class='right_border'>掉率Top" + data.ApEfficiency.length + "</td><td class='right_border'>掉率</td><td>样本数</td>");
     tb.append(tr);
     for (var i in data.ApEfficiency) {
         tb.append("<tr><td class='right_border'>" + data.ApEfficiency[i][0] + "</td><td class='right_border'>" + data.ApEfficiency[i][3] + "AP/个</td><td class='right_border'>" + data.ApEfficiency[i][2] + "</td><td class='right_border'>" + data.dropChance[i][0] + "</td><td class='right_border'>" + data.dropChance[i][3] + "%</td><td>" + data.dropChance[i][2] + "</td></tr>");
     }
-    tb.append("<a href='http://bbs.nga.cn/read.php?tid=12346005'>国服掉落解包数据及关卡配置</a>");
+    tb.append("<tr><td colspan='7'><a href='http://bbs.nga.cn/read.php?tid=12346005'>国服掉落解包数据及关卡配置</a></td></tr>");
     $("#main").append(tb);
 }
