@@ -63,9 +63,11 @@ function setTableVal(data) {
             e_li.attr("class", "require_item");
             e_li.append("<a href='item.html?" + items[0] + "'><img src='" + getPicUrl("item", items[0]) + "'/></a>");
             if (items[1] < 10) {
-                items[1] = " " + items[1];
+                e_li.append(" ×  " + items[1]);
             }
-            e_li.append(" × " + items[1]);
+            else{
+                e_li.append(" × " + items[1]);
+            }
             $("#require").find("tr").eq(i + 1).find("td").eq(1).append(e_li);
         });
     });
@@ -82,7 +84,10 @@ function setTableVal(data) {
             e_li.attr("class", "require_item");
             e_li.append("<a href='item.html?" + items[0] + "'><img src='" + getPicUrl("item", items[0]) + "'/></a>");
             if (items[1] < 10) {
-                items[1] = " " + items[1];
+                e_li.append(" ×  " + items[1]);
+            }
+            else{
+                e_li.append(" × " + items[1]);
             }
             e_li.append(" × " + items[1]);
             $("#require").find("tr").eq(i + 6).find("td").eq(1).append(e_li);
