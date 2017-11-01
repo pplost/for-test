@@ -79,7 +79,7 @@ div.float_num a, div.float_num {
     text-shadow: #000 1px 0 0, #000 0 1px 0, #000 -1px 0 0, #000 0 -1px 0;
 }
 
-require_item.li, require_item.li img {
+l.require_itemi, li.require_item img {
     height: 30px;
     width: auto;
     cursor: auto;
