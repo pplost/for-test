@@ -57,20 +57,20 @@ function createPage(data) {
 }
 
 function setTableVal(data) {
-    //$("#require").find("tr").eq(m).find("td").eq(n).append('99999999');// 将表格第m+1行第n+1列的内容设置为s
     $.each(data.limitItems, function(i, period) {
         $.each(period, function(j, items) {
-            $("#require").find("tr").eq(i + 1).find("td").eq(1).append("<img src='" + getPicUrl("item", items[0]) + "' style='width:60px'/>");
-            $("#require").find("tr").eq(i + 1).find("td").eq(1).append("×" + items[1]);
+            var e_div = $("<div></div>");
+            e_div.attr("class", "require_item");
+            e_div.append("<img src='" + getPicUrl("item", items[0]) + "' style='width:60px'/>");
+            e_div.append("×" + items[1]);
+            $("#require").find("tr").eq(i + 1).find("td").eq(1).append(e_div);
         });
     });
-
-
-
-
-
-
-
-
-
+    $.each(data.limitQPs, function(i, qp) {
+        var e_div = $("<div></div>");
+        e_div.attr("class", "require_item");
+        e_div.append("<img src='http://www.z4a.net/images/2017/11/01/QP.png' style='width:60px'/>");
+        e_div.append("×" + numSeparator(qp, 4));
+        $("#require").find("tr").eq(i + 1).find("td").eq(1).append(e_div);
+    });
 }

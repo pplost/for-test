@@ -73,3 +73,16 @@ function getPicUrl(type, id) {
     }
     return url;
 }
+
+function numSeparator(num, len) {
+    var result = "";
+    var l = Math.pow(10, len);
+    while (num / l >= 1) {
+        result = ',' + num.toString().slice(-len) + result;
+        num = parseInt(num / l)
+    }
+    if (num >= 1) {
+        result = num + result;
+    }
+    return result;
+}
