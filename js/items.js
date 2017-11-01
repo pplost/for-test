@@ -17,7 +17,7 @@ function createItemList() {
     var u = $("<ul></ul>");
     u.attr("class", "display");
     for (var i in itemList) {
-        var liStr = '<li><a href="require.html?' + itemList[i] + '"><img src="http://file.fgowiki.fgowiki.com/fgo/material/' + itemsPath[itemList[i]] + '.jpg" /></a></li>';
+        var liStr = '<li><a href="item.html?' + itemList[i] + '"><img src="http://file.fgowiki.fgowiki.com/fgo/material/' + itemsPath[itemList[i]] + '.jpg" /></a></li>';
         u.append(liStr);
     }
     $("#main").append(u);
@@ -29,7 +29,7 @@ function createItemReqInf() {
     var totalList = [];
     var itemId = window.location.search.match(/\d+/g)[0];
     if (!itemsDict[itemId]) {
-    window.location.href = "require.html";
+    window.location.href = "item.html";
     return;
 }
     document.title = itemsDict[itemId];
