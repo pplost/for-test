@@ -58,6 +58,7 @@ td li {
     list-style: none;
     margin: 6px 6px 6px 6px;
     float: left;
+    text-align: -center;
     cursor: pointer;
 }
 
