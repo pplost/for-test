@@ -17,7 +17,7 @@ function createItemList() {
     var u = $("<ul></ul>");
     u.attr("class", "display");
     for (var i in itemList) {
-        var liStr = '<li><a href="item.html?' + itemList[i] + '"><img src="http://file.fgowiki.fgowiki.com/fgo/material/' + itemsPath[itemList[i]] + '.jpg" /></a></li>';
+        var liStr = '<li><a href="item.html?' + itemList[i] + '"><img src="' + getPicUrl("item", itemList[i]) + '" /></a></li>';
         u.append(liStr);
     }
     $("#main").append(u);
@@ -29,9 +29,9 @@ function createItemReqInf() {
     var totalList = [];
     var itemId = window.location.search.match(/\d+/g)[0];
     if (!itemsDict[itemId]) {
-    window.location.href = "item.html";
-    return;
-}
+        window.location.href = "item.html";
+        return;
+    }
     document.title = itemsDict[itemId];
     createItemDropInf(itemId);
     var data = readJson("data/data.json", "fgoArchiveMainDataVer", "fgoArchiveMainData");
@@ -81,8 +81,8 @@ function createItemReqList(totalList, limitNum, skillNum) {
                 var num_div = $("<div></div>");
                 pic_div.attr("class", "bg_pic");
                 num_div.attr("class", "float_num");
-                pic_div.append("<a href='http://fgowiki.com/guide/petdetail/" + totalList[i][0] + "'><img src='http://file.fgowiki.fgowiki.com/fgo/head/" + numLenFormat(totalList[i][0], 3) + ".jpg'></a>");
-                num_div.append("<a href='http://fgowiki.com/guide/petdetail/" + totalList[i][0] + "'>" + totalList[i][1] + "</a>");
+                pic_div.append("<a href='servant.html?" + totalList[i][0] + "'><img src='" + getPicUrl("servant", totalList[i][0]) + "'></a>");
+                num_div.append("<a href='servant.html?" + totalList[i][0] + "'>" + totalList[i][1] + "</a>");
                 pic_div.append(num_div);
                 li.append(pic_div);
                 ul.append(li);
@@ -104,7 +104,7 @@ function createItemReqList(totalList, limitNum, skillNum) {
                 var num_div = $("<div></div>");
                 pic_div.attr("class", "bg_pic");
                 num_div.attr("class", "float_num");
-                pic_div.append("<a href='http://fgowiki.com/guide/petdetail/" + numLenFormat(totalList[i][0], 3) + "'><img src='http://file.fgowiki.fgowiki.com/fgo/head/" + numLenFormat(totalList[i][0], 3) + ".jpg'></a>");
+                pic_div.append("<a href='servant.html?" + totalList[i][0] + "'><img src='" + getPicUrl("servant", totalList[i][0]) + "'></a>");
                 num_div.append(totalList[i][2]);
                 pic_div.append(num_div);
                 li.append(pic_div);
@@ -127,8 +127,8 @@ function createItemDropInf(itemId) {
     var td = $("<td></td>");
     td.attr("rowspan", data.ApEfficiency.length + 1);
     td.attr("style", "width:140px;");
-    td.append("<img src='http://file.fgowiki.fgowiki.com/fgo/material/" + itemsPath[itemId] + ".jpg'</>");
-    td.append("<p>数据来自效率剧场 更新日期：2017-10-25</p>");
+    td.append("<img src='" + getPicUrl("item", itemId) + "'</>");
+    td.append("<p>数据来自效率剧场</p><p>更新日期：2017-10-25</p>");
     tr.append(td);
     tr.append("<td class='right_border'>AP效率Top" + data.ApEfficiency.length + "</td><td class='right_border'>平均AP</td><td class='right_border'>样本数</td><td class='right_border'>掉率Top" + data.ApEfficiency.length + "</td><td class='right_border'>掉率</td><td>样本数</td>");
     tb.append(tr);
