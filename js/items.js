@@ -136,4 +136,5 @@ function createItemDropInf(itemId) {
         tb.append("<tr><td class='right_border'>" + data.ApEfficiency[i][0] + "</td><td class='right_border'>" + data.ApEfficiency[i][3] + "AP/个</td><td class='right_border'>" + data.ApEfficiency[i][2] + "</td><td class='right_border'>" + data.dropChance[i][0] + "</td><td class='right_border'>" + data.dropChance[i][3] + "%</td><td>" + data.dropChance[i][2] + "</td></tr>");
     }
     $("#main").append(tb);
+    tb.after("<p><a href='http://bbs.nga.cn/read.php?tid=12346005'>国服掉落解包数据及关卡配置</a></p>");
 }
