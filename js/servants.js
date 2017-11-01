@@ -18,7 +18,7 @@ function createServantList() {
     var u = $("<ul></ul>");
     u.attr("class", "display");
     for (var i in servantList) {
-        var liStr = '<li><a href="servant.html?' + servantList[i] + '"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + numLenFormat(servantList[i], 3) + '.jpg" /></a></li>';
+        var liStr = '<li><a href="servant.html?' + servantList[i] + '"><img src="' + getPicUrl("servant", servantList[i]) + '" /></a></li>';
         u.append(liStr);
     }
     $("#main").append(u);
@@ -41,14 +41,14 @@ function createServantInf() {
 
 function createPage(data) {
     document.title = servantNamesDict[data.svtId];
-    $("#main").append('<div style="margin-top:30px"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + numLenFormat(data.id, 3) + '.jpg"</div>');
+    $("#main").append('<div style="margin-top:30px"><img src="' + getPicUrl("servant", data.id) + '"/></div>');
     var tb = $("<table></table>");
-    tb.attr("id","require");
+    tb.attr("id", "require");
     tb.append("<tr><td colspan='2'>灵基再临</td></tr>");
     for (var i = 1; i <= 4; i++) {
         tb.append("<tr><td>第" + i + "阶段</td><td></td></tr>");
     }
-    tb.append("<tr><td rowspan='9'>技能升级</td></tr>");
+    tb.append("<tr><td colspan='2'>技能升级</td></tr>");
     for (var i = 1; i <= 9; i++) {
         tb.append("<tr><td>Lv" + i + " → Lv" + (i + 1) + "</td><td></td></tr>");
     }
@@ -56,32 +56,14 @@ function createPage(data) {
     setTableVal(data);
 }
 
-function setTableVal(data){
-    //$("table tr").eq(m).find("td").eq(n).html(something);  // 将表格第m+1行第n+1列的内容设置为s
-    $.each(data.limitItems, function(i, info) {
-        $.each(info, function(j, item) {
-
+function setTableVal(data) {
+    //$("#require").find("tr").eq(m).find("td").eq(n).append('99999999');// 将表格第m+1行第n+1列的内容设置为s
+    $.each(data.limitItems, function(i, period) {
+        $.each(period, function(j, items) {
+            $("#require").find("tr").eq(i + 1).find("td").eq(1).append("<img src='" + getPicUrl("item", items[0]) + "' style='width:60px'/>");
+            $("#require").find("tr").eq(i + 1).find("td").eq(1).append("×" + items[1]);
         });
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

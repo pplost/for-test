@@ -54,3 +54,21 @@ function removeLocalCahce() {
     }
     window.location.reload();
 }
+
+function getPicUrl(type, id) {
+    var url = "";
+    switch (type) {
+        case "servant":
+            url = "http://file.fgowiki.fgowiki.com/fgo/head/" + numLenFormat(id, 3) + ".jpg";
+            break;
+        case "craft":
+            url = "http://fgowiki.com/fgo/equip/" + numLenFormat(id, 3) + ".jpg";
+            break;
+        case "item":
+            url = "http://file.fgowiki.fgowiki.com/fgo/material/" + itemsPath[itemId] + ".jpg";
+            break;
+        default:
+            url = "resources/others/0.jpg";
+            break;
+    }
+}
