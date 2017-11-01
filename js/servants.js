@@ -30,7 +30,7 @@ function createServantInf() {
     $.each(data, function(i, info) {
         if (info.id == servantId) {
             id = info.id;
-            createPage((info);
+            createPage(info);
             return false;
         }
     });
