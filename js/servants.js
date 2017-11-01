@@ -30,8 +30,7 @@ function createServantInf() {
     $.each(data, function(i, info) {
         if (info.id == servantId) {
             id = info.id;
-            createPage(id);
-            setTableVal(info);
+            createPage((info);
             return false;
         }
     });
@@ -40,11 +39,11 @@ function createServantInf() {
     }
 }
 
-function createPage(id) {
-    document.title = servantNamesDict[info.svtId];
-    $("#main").append('<div style="margin-top:30px"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + numLenFormat(id, 3) + '.jpg"</div>');
+function createPage(data) {
+    document.title = servantNamesDict[data.svtId];
+    $("#main").append('<div style="margin-top:30px"><img src="http://file.fgowiki.fgowiki.com/fgo/head/' + numLenFormat(data.id, 3) + '.jpg"</div>');
     var tb = $("<table></table>");
-
+    tb.attr("id","require");
     tb.append("<tr><th=rowspan='4'>灵基再临</th><td>第1阶段</td><td></td></tr>");
     for (var i = 2; i <= 4; i++) {
         tb.append("<tr><td>第" + i + "阶段</td><td></td></tr>");
@@ -54,6 +53,7 @@ function createPage(id) {
         tb.append("<tr><td>Lv" + i + " → Lv" + (i + 1) + "</td><td></td></tr>");
     }
     $("#main").append(tb);
+    setTableVal(data);
 }
 
 function setTableVal(data){
