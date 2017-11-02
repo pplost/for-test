@@ -1,25 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="Content-Type" content="text/html" />
-	<title>素材查询</title>
-	<link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>素材规划</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 
 
 </head>
 
 <body>
-	<div id="title_link"></div>
-	<div>
-		<table>
-			<tr>
+	<div class="container">
+		<div class="span12">
+			<div id="title_link"></div>
+			<div class="text-center">
+				<div class="row">
+					<div class="col-xs-2">
+						<select class="form-control"></select>
+					</div>
+					<div class="col-xs-1">
+						搜索
+					</div>
+					<div class="col-xs-2">
+						<input type="text" class="form-control" placeholder="search">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			<div class="text-center">
+				<form class="form-search" style="text-align:middle;">
+					<select class="form-control"></select> 搜索 <input class="input-medium search-query" type="text" />
+				</form>
+			</div>
+		</div>
+			<div>
 
-			</tr>
-		</table>
+				<table class="table">
+					<tboby>
+
+						<tr>
+
+							<td class="col-md-2">
+								图标
+							</td>
+							<td class="col-md-1">
+								名字
+							</td>
+							<td class="col-md-1">
+								现在等级
+							</td>
+							<td class="col-md-1">
+								1
+							</td>
+							<td class="col-md-1">
+								目标等级
+							</td>
+							<td class="col-md-1">
+								10
+							</td>
+						</tr>
+					</tboby>
+				</table>
+			</div>
+			<input class="btn btn-primary" type="button" onclick="testLS()" value="测试" />
+		</div>
+
 	</div>
-	<input type="button" style="width:50px" onclick="testLS()" value="测试" />
+
 	<script type='text/javascript' src='js/jquery.min.js'></script>
 	<script type='text/javascript' src='js/bootstrap.min.js'></script>
 	<script type='text/javascript' src='js/trans-dicts.js'></script>

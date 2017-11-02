@@ -1,6 +1,6 @@
 // $(document).ready(function() {
 //     var pages = {
-//         ' ': '首页',
+//         'index.html': '首页',
 //         'fcraft.html': '羁绊礼装表',
 //         'fcraft.html?no_pic': '羁绊礼装表(无图版)',
 //         'np_cal.html': 'NP计算器',
