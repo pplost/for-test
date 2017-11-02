@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>狗粮计算器</title>
-	<link rel="stylesheet" href="css/trash.css" type="text/css" />
+	<!-- <link rel="stylesheet" href="css/trash.css" type="text/css" /> -->
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
 
@@ -14,61 +14,68 @@
 	<div class="container">
 		<div id="title_link">
 		</div>
-		<table>
-			<tbody>
-				<tr>
-					<td colspan="3">狗粮计算器</td>
-				</tr>
-				<tr>
-					<td>星级</td>
-					<td colspan="2">
-						<select id="star">
-						<option value="1">★</option>
-						<option value="2">★★</option>
-						<option value="3">★★★</option>
-						<option value="4">★★★★</option>
-						<option value="5">★★★★★</option>
-					</select>
-					</td>
-				</tr>
-				<tr>
-					<td>当前等级</td>
-					<td colspan="2"><input type="number" min="1" max="100" value="1" id="current_lvl"></td>
-				</tr>
-				<tr>
-					<td>目标等级</td>
-					<td colspan="2"><input type="number" min="1" max="100" value="1" id="target_lvl"></td>
-				</tr>
-				<tr>
-					<td>升级剩余经验</td>
-					<td colspan="2"><input type="number" min="0" max="1456500" value="100" id="remained_exp"></td>
-				</tr>
-				<tr>
-					<td colspan="3"><input type="button" value="计算" onclick="cal()"></td>
-				</tr>
-				<tr>
-					<td colspan="3">结果</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>同职阶</td>
-					<td>异职阶</td>
-				</tr>
-				<tr>
-					<td><img src="resources/items/4StarExpCard.png" style="width:50px"></td>
-					<td id="gold_same_class">0</td>
-					<td id="gold_diff_class">0</td>
-				</tr>
-				<tr>
-					<td colspan="3" style="padding:1px 1px 1px 1px;">+</td>
-				</tr>
-				<tr>
-					<td><img src="resources/items/3StarExpCard.png" style="width:50px"></td>
-					<td id="silver_same_class">0</td>
-					<td id="silver_diff_class">0</td>
-				</tr>
-			</tbody>
-		</table>
+		<p></p>
+		<div class="row">
+			<div class="span6">
+			<div class="col-md-2 col-md-offset-2">
+				<table class="table table-bordered" style="width:300px;text-align:center;">
+					<tbody>
+						<tr>
+							<td colspan="3">狗粮计算器</td>
+						</tr>
+						<tr>
+							<td>星级</td>
+							<td colspan="2">
+								<select id="star">
+									<option value="1">★</option>
+									<option value="2">★★</option>
+									<option value="3">★★★</option>
+									<option value="4">★★★★</option>
+									<option value="5">★★★★★</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>当前等级</td>
+							<td colspan="2"><input type="number" min="1" max="100" value="1" id="current_lvl"></td>
+						</tr>
+						<tr>
+							<td>目标等级</td>
+							<td colspan="2"><input type="number" min="1" max="100" value="1" id="target_lvl"></td>
+						</tr>
+						<tr>
+							<td>升级剩余经验</td>
+							<td colspan="2"><input type="number" min="0" max="1456500" value="100" id="remained_exp"></td>
+						</tr>
+						<tr>
+							<td colspan="3"><input class="btn btn-primary" type="button" value="计算" onclick="cal()"></td>
+						</tr>
+						<tr>
+							<td colspan="3">结果</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>同职阶</td>
+							<td>异职阶</td>
+						</tr>
+						<tr>
+							<td><img src="resources/items/4StarExpCard.png" style="width:50px"></td>
+							<td id="gold_same_class" style="vertical-align:middle;">0</td>
+							<td id="gold_diff_class" style="vertical-align:middle;">0</td>
+						</tr>
+						<tr>
+							<td colspan="3" style="padding:1px 1px 1px 1px;">+</td>
+						</tr>
+						<tr style="vertical-align:middle">
+							<td><img src="resources/items/3StarExpCard.png" style="width:50px"></td>
+							<td id="silver_same_class" style="vertical-align:middle;">0</td>
+							<td id="silver_diff_class" style="vertical-align:middle;">0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type='text/javascript' src='js/bootstrap.min.js'></script>
