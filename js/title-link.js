@@ -15,7 +15,7 @@ $(document).ready(function() {
     for (var i in pages) {
         var e_li = $("<li></li>");
         if (page == i) {
-            $("#page_name").html(pages[i]);
+            $("#page_name").append(pages[i]);
             e_li.attr("class", "active");
         }
         e_li.append("<a href='" + i + "'>" + pages[i] + "</a>");
