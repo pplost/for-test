@@ -4,78 +4,63 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>素材规划</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="css/newTrash.css" type="text/css" />
+	<link rel="stylesheet" href="css/trash.css" type="text/css" />
 </head>
 
 <body>
-	<div class="container">
-		<div class="span12">
-			<div id="title_link"></div>
-			<div class="row top-bottom">
-				<div class="text-center">
-					<form class="form-inline">
-						<div class="form-group">
-							<select class="form-control"></select>
-							<label for="exampleInputEmail2">查询</label>
-							<input type="email" class="form-control" id="exampleInputEmail2" placeholder="查询">
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="row top-bottom">
-				<table class="table">
-					<tboby>
-						<tr>
-							<td colspan="2">头像</td>
-							<td>目前灵基</td>
-							<td>1</td>
-							<td>目标灵基</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td>图标</td>
-							<td>名字</td>
-							<td>现在等级</td>
-							<td>1</td>
-							<td>目标等级</td>
-							<td>10</td>
-						</tr>
-						<tr>
-							<td>图标</td>
-							<td>名字
-							</td>
-							<td>现在等级</td>
-							<td>1</td>
-							<td>目标等级</td>
-							<td>10</td>
-						</tr>
-						<tr>
-							<td>图标</td>
-							<td>名字</td>
-							<td>现在等级</td>
-							<td>1</td>
-							<td>目标等级</td>
-							<td>10</td>
-						</tr>
-					</tboby>
-				</table>
-			</div>
-			<div class="row top-bottom">
-				<table class="table" id="planned">
-				</table>
-			</div>
-			<div class="text-right">
-				<input class="btn btn-primary" type="button" onclick="testLS()" value="测试" />
-			</div>
-		</div>
-
+	<div id="title_link"></div>
+	<div>
+		<select id="servants"></select>
+		<label>查询</label>
+		<input type="text" placeholder="关键字">
+	</div>
+	<div>
+		<table id="input_data">
+			<tboby>
+				<tr>
+					<td colspan="2">头像</td>
+					<td>目前灵基</td>
+					<td>1</td>
+					<td>目标灵基</td>
+					<td>4</td>
+				</tr>
+				<tr>
+					<td>图标</td>
+					<td>名字</td>
+					<td>现在等级</td>
+					<td>1</td>
+					<td>目标等级</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>图标</td>
+					<td>名字
+					</td>
+					<td>现在等级</td>
+					<td>1</td>
+					<td>目标等级</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>图标</td>
+					<td>名字</td>
+					<td>现在等级</td>
+					<td>1</td>
+					<td>目标等级</td>
+					<td>10</td>
+				</tr>
+			</tboby>
+		</table>
+	</div>
+	<div>
+		<table id="in_data"></table>
+	</div>
+	<div class="text-right">
+		<input class="btn btn-primary" type="button" onclick="testLS()" value="测试" />
 	</div>
 
 	<script type='text/javascript' src='js/jquery.min.js'></script>
-	<script type='text/javascript' src='js/bootstrap.min.js'></script>
 	<script type='text/javascript' src='js/trans-dicts.js'></script>
 	<script type='text/javascript' src='js/common.js'></script>
 	<script type="text/javascript" src="js/title-link.js"></script>
