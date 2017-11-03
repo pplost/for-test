@@ -50,9 +50,9 @@ $(document).ready(function() {
 
 function updateStatus() {
     var seq = $("#servants").val();
-    $("#input_data").find("tr").eq(0).find("td").eq(0).html("<a href='servant?" + svtData[seq].id + "'><img src='" + getPicUrl("servant", svtData[seq].id) + "' /></a>");
+    $("#input_data").find("tr").eq(0).find("td").eq(0).html("<a href='servant.html?" + svtData[seq].id + "'><img src='" + getPicUrl("servant", svtData[seq].id) + "' /></a>");
     for (var i = 0; i < 3; i++) {
-        $("#input_data").find("tr").eq(i + 1).find("td").eq(0).html("<img src='" + getPicUrl("skill", svtData[seq].skills[i].ico) + "' />");
+        $("#input_data").find("tr").eq(i + 1).find("td").eq(1).html("<img src='" + getPicUrl("skill", svtData[seq].skills[i].ico) + "' />");
     }
 }
 

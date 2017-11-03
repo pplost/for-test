@@ -68,10 +68,10 @@ function getPicUrl(type, id) {
             url = "http://file.fgowiki.fgowiki.com/fgo/material/" + itemsPath[id] + ".jpg";
             break;
         case "skill":
-            url = "resources/skills/SkillIcon_" + id + "png";
+            url = "resources/skills/SkillIcon_" + id + ".png";
             break;
         case "others":
-            url = "resources/others/" + id + "png";
+            url = "resources/others/" + id + ".png";
             break;
         default:
             url = "resources/others/0.jpg";

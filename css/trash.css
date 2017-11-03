@@ -91,3 +91,12 @@ table.no_border, table.no_border td {
     border-left: none;
     border-right: none;
 }
+
+.skillIco img {
+    height: 30px;
+    width: auto;
+}
+.servantIco img{
+    height: 60px;
+    width: auto;
+}

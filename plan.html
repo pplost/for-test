@@ -19,32 +19,135 @@
 		<table id="input_data">
 			<tboby>
 				<tr>
-					<td>头像</td>
+					<td class="servantIco" rowspan="4">头像</td>
 					<td>目前灵基</td>
-					<td>1</td>
+					<td>技能</td>
+					<td>现在等级</td>
+					<td>目标等级</td>
+					<td>优先级</td>
+				</tr>
+				<tr>
+					<td>
+						<select id="current_limit">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+					</td>
+					<td class="skillIco">技能图标</td>
+					<td>
+						<select id="current_skill1">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</td>
+					<td>
+						<select id="target_skill1">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</td>
+					<td>
+						<select id="lvl_priority">
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+							<option value="4">★★★★</option>
+							<option value="5">★★★★★</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr>
 					<td>目标灵基</td>
-					<td>4</td>
+					<td class="skillIco">技能图标</td>
+					<td>
+						<select id="current_skill2">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</td>
+					<td>
+						<select id="target_skill2">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</td>
+					<td rowspan="2">
+						<input class="btn btn-primary" type="button" onclick="saveData()" value="保存" />
+					</td>
 				</tr>
 				<tr>
-					<td>图标</td>
-					<td>现在等级</td>
-					<td>1</td>
-					<td>目标等级</td>
-					<td>10</td>
-				</tr>
-				<tr>
-					<td>图标</td>
-					<td>现在等级</td>
-					<td>1</td>
-					<td>目标等级</td>
-					<td>10</td>
-				</tr>
-				<tr>
-					<td>图标</td>
-					<td>现在等级</td>
-					<td>1</td>
-					<td>目标等级</td>
-					<td>10</td>
+					<td>
+						<select id="target_limit">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+					</td>
+					<td class="skillIco">技能图标</td>
+					<td>
+						<select id="current_skill3">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</td>
+					<td>
+						<select id="target_skill3">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</td>
 				</tr>
 			</tboby>
 		</table>
