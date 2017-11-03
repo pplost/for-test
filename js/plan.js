@@ -23,23 +23,29 @@ $(document).ready(function() {
                 skillQPs: info.skillQPs,
                 skills: {
                     skill1: {
-                        ico: 0,
+                        name: "",
+                        ico: 0
                     },
                     skill2: {
-                        ico: 0,
+                        name: "",
+                        ico: 0
                     },
                     skill3: {
-                        ico: 0,
-                    },
+                        name: "",
+                        ico: 0
+                    }
                 },
             };
             $.each(info.skills, function(j, skill) {
                 if (skill.num == 1) {
+                    servant.skills.skill1.name = skill.name;
                     servant.skills.skill1.ico = skill.icoId;
                 } else if (skill.num == 2) {
+                    servant.skills.skill2.name = skill.name;
                     servant.skills.skill2.ico = skill.icoId;
                 } else if (skill.num == 3) {
-                    servantskills.skill3.ico = skill.icoId;
+                    servant.skills.skill2.name = skill.name;
+                    servant.skills.skill3.ico = skill.icoId;
                 }
             });
             svtData.push(servant);
@@ -54,6 +60,7 @@ $(document).ready(function() {
 function updateStatus() {
     var seq = $("#servants").val();
     $("#input_data").find("tr").eq(0).find("td").eq(0).html("<a href=servant?'" + svtData[seq].id + "'><img src='" + getPicUrl("servant", svtData[seq].id) + "' /></a>");
+
 }
 
 $("#servants").change(function() {
