@@ -21,32 +21,23 @@ $(document).ready(function() {
                 limitQPs: info.limitQPs,
                 skillItems: info.skillItems,
                 skillQPs: info.skillQPs,
-                skills: {
-                    skill1: {
+                skills: [{
                         name: "",
                         ico: 0
                     },
-                    skill2: {
+                    {
                         name: "",
                         ico: 0
                     },
-                    skill3: {
+                    {
                         name: "",
                         ico: 0
                     }
-                },
+                ],
             };
             $.each(info.skills, function(j, skill) {
-                if (skill.num == 1) {
-                    servant.skills.skill1.name = skill.name;
-                    servant.skills.skill1.ico = skill.icoId;
-                } else if (skill.num == 2) {
-                    servant.skills.skill2.name = skill.name;
-                    servant.skills.skill2.ico = skill.icoId;
-                } else if (skill.num == 3) {
-                    servant.skills.skill2.name = skill.name;
-                    servant.skills.skill3.ico = skill.icoId;
-                }
+                servant.skills[skill.num - 1].name = skill.name;
+                servant.skills[skill.num - 1].ico = skill.icoId;
             });
             svtData.push(servant);
             var lst = '<option value="' + seq + '">' + '【' + classNamesDict[info["class"]] + "】 " + servantNamesDict[info.svtId] + '</option>';
@@ -59,8 +50,10 @@ $(document).ready(function() {
 
 function updateStatus() {
     var seq = $("#servants").val();
-    $("#input_data").find("tr").eq(0).find("td").eq(0).html("<a href=servant?'" + svtData[seq].id + "'><img src='" + getPicUrl("servant", svtData[seq].id) + "' /></a>");
-
+    $("#input_data").find("tr").eq(0).find("td").eq(0).html("<a href='servant?" + svtData[seq].id + "'><img src='" + getPicUrl("servant", svtData[seq].id) + "' /></a>");
+    for (var i = 0; i < 3; i++) {
+        $("#input_data").find("tr").eq(i + 1).find("td").eq(0).html("<img src='" + getPicUrl("skill", svtData[seq].skills[i].ico) + "' />");
+    }
 }
 
 $("#servants").change(function() {
