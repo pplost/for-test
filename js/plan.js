@@ -21,14 +21,25 @@ $(document).ready(function() {
                 limitQPs: info.limitQPs,
                 skillItems: info.skillItems,
                 skillQPs: info.skillQPs,
+                skills: {
+                    skill1: {
+                        ico: 0,
+                    },
+                    skill2: {
+                        ico: 0,
+                    },
+                    skill3: {
+                        ico: 0,
+                    },
+                },
             };
             $.each(info.skills, function(j, skill) {
                 if (skill.num == 1) {
-                    servant["skills"]["skill1"]["ico"] = skill.icoId;
+                    servant.skills.skill1.ico = skill.icoId;
                 } else if (skill.num == 2) {
-                    servant["skills"]["skill2"]["ico"] = skill.icoId;
+                    servant.skills.skill2.ico = skill.icoId;
                 } else if (skill.num == 3) {
-                    servant["skills"]["skill3"]["ico"] = skill.icoId;
+                    servantskills.skill3.ico = skill.icoId;
                 }
             });
             svtData.push(servant);
