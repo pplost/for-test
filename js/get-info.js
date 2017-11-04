@@ -432,11 +432,13 @@ function detail_info() {
                             var t = [];
 
                             l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
-                            l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
+                            l[1] = l[1].replace(/〔(.*?)〕/g, "($1)");
                             l[1] = l[1].replace(/的話|┗|\[Lv\.\]/g, "");
                             l[1] = l[1].replace(/<br>/g, " ");
                             l[1] = l[1].replace(/Critical/g, "暴击");
                             l[1] = l[1].replace(/攻擊|攻撃/g, "攻击");
+                            l[1] = l[1].replace(/<a.*?>(.*?)\(?(.*?)\)?(.*?)<\/a>/g, "$1$2$3");
+                            l[2] = l[2].replace(/<a.*?>(.*?)\(?(.*?)\)?(.*?)<\/a>/g, "$1$2$3");
                             //hits修正
                             if ((l[1] + ' ').search(/攻击[^力]/) == -1) {
                                 npHits = 0;
@@ -453,7 +455,7 @@ function detail_info() {
                             var npInf = {
                                 id: master.mstSvtTreasureDevice[y].treasureDeviceId,
                                 name: npName,
-                                //ruby: npRuby,
+                                ruby: npRuby,
                                 rank: npRank,
                                 type: npType,
                                 damage: npDamage,
@@ -462,6 +464,7 @@ function detail_info() {
                                 np: cardNp[4].sort(),
                                 desc: o
                             };
+
                             inf.noblePhantasm.push(npInf);
                         }
                     }
@@ -504,11 +507,12 @@ function detail_info() {
                         }
                     }
                     l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
-                    l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
+                    l[1] = l[1].replace(/〔(.*?)〕/g, "($1)");
                     l[1] = l[1].replace(/\[Lv\.\]|┗/g, "");
                     l[1] = l[1].replace(/<br>/g, " ");
                     l[1] = l[1].replace(/Critical/g, "暴击");
-
+                    l[1] = l[1].replace(/<a.*?>(.*?)\(?(.*?)\)?(.*?)<\/a>/g, "$1$2$3");
+                    l[2] = l[2].replace(/<a.*?>(.*?)\(?(.*?)\)?(.*?)<\/a>/g, "$1$2$3");
                     len = l[1].split(/＆|＋/).length;
                     var o = [];
                     for (var i = 0; i < len; i++) {
@@ -570,7 +574,7 @@ function detail_info() {
                     }
 
                     l[1] = l[1].replace(/ ＋ |　＋　/g, "＋");
-                    l[1] = l[1].replace(/(.*?)〔(.*?)〕(.*?)/g, "$1($2)$3");
+                    l[1] = l[1].replace(/〔(.*?)〕/g, "($1)");
                     l[1] = l[1].replace(/\[Lv\.\]/g, "");
                     l[1] = l[1].replace(/<br>/g, " ");
                     l[1] = l[1].replace(/Critical/g, "暴击");
@@ -631,5 +635,6 @@ function detail_info() {
     }
 
     removeItems();
-    document.getElementById("info").innerHTML = (JSON.stringify(lists));
+    $("#info").append("<code id='info_str'></code>");
+    $("#info_str").append(JSON.stringify(lists).replace(/<(.*?)>/g, "&lt;$1&gt"));
 }
