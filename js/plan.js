@@ -2,7 +2,13 @@ var svtData = [];
 
 function testLS() {
     if (window.localStorage) {
-        alert("你的浏览器可以支持本地缓存。");
+        window.localStorage.setItem("testLS", "test");
+        if (window.localStorage.getItem("testLS") == "test") {
+            alert("你的浏览器可以支持本地缓存。");
+            window.localStorage.removeItem("testLS");
+        } else {
+            alert("你的浏览器不支持本地缓存！");
+        }
     } else {
         alert("你的浏览器不支持本地缓存！");
     }
@@ -14,6 +20,7 @@ $(document).ready(function() {
     $.each(data, function(i, info) {
         if (info.id > 0) {
             var servant = {
+                seq: seq,
                 id: info.id,
                 "class": classNamesDict[info["class"]],
                 queryStr: servantNamesDict[info.svtId] + servantnickNamesDict[info.svtId],
@@ -54,8 +61,23 @@ function updateStatus() {
     for (var i = 0; i < 3; i++) {
         $("#input_data").find("tr").eq(i + 1).find("td").eq(1).html("<img src='" + getPicUrl("skill", svtData[seq].skills[i].ico) + "' />");
     }
+    $("select.num").val(1);
 }
 
 $("#servants").change(function() {
+    updateStatus();
+});
+
+//查询功能
+$("#search_str").on("input propertychange", function() {
+    var searchStr = $("#search_str").val();
+    var lst = "";
+    for (var i in svtData) {
+        if (servants[i].queryStr.match(searchStr)) {
+            lst += '<option value="' + svtData[i].seq + '">' + '【' + servants[i]["class"] + "】 " + servants[i].name + '</option>';
+        }
+    }
+    $("#servants").empty();
+    $("#servants").append(lst);
     updateStatus();
 });

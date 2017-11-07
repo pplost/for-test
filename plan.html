@@ -13,7 +13,7 @@
 	<div>
 		<select id="servants"></select>
 		<label>查询</label>
-		<input type="text" placeholder="关键字">
+		<input type="text" placeholder="关键字" id="search_str">
 	</div>
 	<div>
 		<table id="input_data">
@@ -28,7 +28,7 @@
 				</tr>
 				<tr>
 					<td>
-						<select id="current_limit">
+						<select class="num limit" id="current_limit">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -37,7 +37,7 @@
 					</td>
 					<td class="skillIco">技能图标</td>
 					<td>
-						<select id="current_skill1">
+						<select class="num skill" id="current_skill1">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -51,7 +51,7 @@
 						</select>
 					</td>
 					<td>
-						<select id="target_skill1">
+						<select class="num skill" id="target_skill1">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -65,7 +65,7 @@
 						</select>
 					</td>
 					<td>
-						<select id="lvl_priority">
+						<select class="num priority" id="lvl_priority">
 							<option value="1">★</option>
 							<option value="2">★★</option>
 							<option value="3">★★★</option>
@@ -79,7 +79,7 @@
 					<td>目标灵基</td>
 					<td class="skillIco">技能图标</td>
 					<td>
-						<select id="current_skill2">
+						<select class="num skill" id="current_skill2">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -93,7 +93,7 @@
 						</select>
 					</td>
 					<td>
-						<select id="target_skill2">
+						<select class="num skill" id="target_skill2">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -107,12 +107,12 @@
 						</select>
 					</td>
 					<td rowspan="2">
-						<input class="btn btn-primary" type="button" onclick="saveData()" value="保存" />
+						<input class="btn btn-primary" type="button" onclick="addLine()" value="增加" />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<select id="target_limit">
+						<select class="num limit" id="target_limit">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -121,7 +121,7 @@
 					</td>
 					<td class="skillIco">技能图标</td>
 					<td>
-						<select id="current_skill3">
+						<select class="num skill" id="current_skill3">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -135,7 +135,7 @@
 						</select>
 					</td>
 					<td>
-						<select id="target_skill3">
+						<select class="num skill" id="target_skill3">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
