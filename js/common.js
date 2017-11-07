@@ -16,6 +16,11 @@ function readJson(url, verProperty, dataProperty) {
             success: function(data) {
                 version = data[verProperty];
             },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                if (window.localStorage.hasOwnProperty(verProperty)) {
+                    version = window.localStorage.getItem(verProperty);
+                }
+            }
         });
         if (window.localStorage.hasOwnProperty(dataProperty) && window.localStorage.hasOwnProperty(verProperty) && version == window.localStorage.getItem(verProperty)) {
             returnData = JSON.parse(window.localStorage.getItem(dataProperty));
