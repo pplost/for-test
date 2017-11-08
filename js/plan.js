@@ -1,20 +1,21 @@
-var svtData = [];
+var svtData = {};
 var saveData = {
-    svtLvl: {},
-    itemCost: {}
+    lvlInf: {},
 };
 
 $(document).ready(function() {
     data = readJson("data/data.json", "fgoArchiveMainDataVer", "fgoArchiveMainData");
-    var seq = 0;
+    if (window.localStorage && window.localStorage.hasOwnProperty("fgoArchivePlanData")) {
+        saveData = JSON.parse(window.localStorage.getItem("fgoArchivePlanData"));
+    }
     $.each(data, function(i, info) {
         if (info.id > 0) {
             var servant = {
-                seq: seq,
                 id: info.id,
                 name: servantNamesDict[info.svtId],
                 "class": classNamesDict[info["class"]],
                 queryStr: servantNamesDict[info.svtId] + " " + servantnickNamesDict[info.svtId] + " " + info.id,
+                priority: -1,
                 limitItems: info.limitItems,
                 limitQPs: info.limitQPs,
                 skillItems: info.skillItems,
@@ -37,12 +38,12 @@ $(document).ready(function() {
                 servant.skills[skill.num - 1].name = skill.name;
                 servant.skills[skill.num - 1].ico = skill.icoId;
             });
-            svtData.push(servant);
-            var lst = '<option value="' + seq + '">' + '【' + servant["class"] + "】 " + servant.name + '</option>';
+            svtData[info.id] = servant;
+            var lst = '<option value="' + info.id + '">' + '【' + servant["class"] + "】 " + servant.name + '</option>';
             $("#servants").append(lst);
-            seq++;
         }
     });
+
     updateStatus();
 });
 
@@ -61,10 +62,10 @@ function testLS() {
 }
 
 function updateStatus() {
-    var seq = $("#servants").val();
-    $("#input_data").find("tr").eq(0).find("td").eq(0).html("<a href='servant.html?" + svtData[seq].id + "'><img src='" + getPicUrl("servant", svtData[seq].id) + "' /></a>");
+    var id = $("#servants").val();
+    $("#input_data").find("tr").eq(0).find("td").eq(0).html("<a href='servant.html?" + id + "'><img src='" + getPicUrl("servant", id) + "' /></a>");
     for (var i = 0; i < 3; i++) {
-        $("#input_data").find("tr").eq(i + 1).find("td").eq(1).html("<img src='" + getPicUrl("skill", svtData[seq].skills[i].ico) + "' />");
+        $("#input_data").find("tr").eq(i + 1).find("td").eq(1).html("<img src='" + getPicUrl("skill", svtData[id].skills[i].ico) + "' />");
     }
     $("select.num").val(0);
 }
@@ -78,7 +79,7 @@ $("#search_str").on("input propertychange", function() {
     var lst = "";
     for (var i in svtData) {
         if (svtData[i].queryStr.match(searchStr)) {
-            lst += '<option value="' + svtData[i].seq + '">' + '【' + svtData[i]["class"] + "】 " + svtData[i].name + '</option>';
+            lst += '<option value="' + svtData[i].id + '">' + '【' + svtData[i]["class"] + "】 " + svtData[i].name + '</option>';
         }
     }
 
@@ -103,9 +104,10 @@ function addLine() {
         alert("三技能当前等级不能大于目标等级！");
         return;
     }
-    var seq = $("#servants").val();
+    var id = $("#servants").val();
+    svtData[id].priority = $("#lvl_priority").val();
     var row = {
-        id: svtData[seq].id,
+        id: id,
         current_limit: $("#current_limit").val(),
         target_limit: $("#target_limit").val(),
         current_skill1: $("#current_skill1").val(),
@@ -116,38 +118,48 @@ function addLine() {
         target_skill3: $("#target_skill3").val(),
         priority: $("#lvl_priority").val()
     };
-    saveData.svtLvl[seq] = row;
-    calMaterialNum(svtData[seq].limitItems, svtData[seq].limitQPs, $("#current_limit").val(), $("#target_limit").val(), "+");
-    calMaterialNum(svtData[seq].skillItems, svtData[seq].skillQPs, $("#current_skill1").val(), $("#target_skill1").val(), "+");
-    calMaterialNum(svtData[seq].skillItems, svtData[seq].skillQPs, $("#current_skill2").val(), $("#target_skill2").val(), "+");
-    calMaterialNum(svtData[seq].skillItems, svtData[seq].skillQPs, $("#current_skill3").val(), $("#target_skill3").val(), "+");
+    saveData.lvlInf[id] = row;
+    var itemCost = calItemCost();
+    if (window.localStorage) {
+        window.localStorage.setItem("fgoArchivePlanData", JSON.stringify(saveData));
+    }
 }
 
-function calMaterialNum(items, qps, cLvl, tLvl, optSymbol) {
+function calItemCost() {
+    var itemCost = {};
+    $.each(saveData.lvlInf, function(i, servant) {
+        //if(servant.priority>=lvl_priority){
+        calSingleCost(itemCost, servant.current_limit, servant.target_limit, svtData[servant.id].limitItems, svtData[servant.id].limitQPs);
+        calSingleCost(itemCost, servant.current_skill1, servant.target_skill1, svtData[servant.id].skillItems, svtData[servant.id].skillQPs);
+        calSingleCost(itemCost, servant.current_skill2, servant.target_skill2, svtData[servant.id].skillItems, svtData[servant.id].skillQPs);
+        calSingleCost(itemCost, servant.current_skill3, servant.target_skill3, svtData[servant.id].skillItems, svtData[servant.id].skillQPs);
+        //}
+    });
+    return itemCost;
+}
+
+function calSingleCost(itemCost, cLvl, tLvl, items, qps) {
     for (var i = cLvl; i < tLvl; i++) {
         for (var j in items[i]) {
-            resetCost(optSymbol, items[i][j]);
-            resetCost(optSymbol, ["QP", qps[i]]);
+            resetCost(itemCost, items[i][j]);
+            resetCost(itemCost, ["QP", qps[i]]);
         }
     }
 }
 
-function resetCost(optSymbol, items) {
-    if (optSymbol == "+") {
-        if (saveData.itemCost.hasOwnProperty(items[0])) {
-            saveData.itemCost[items[0]] += items[1];
-        } else {
-            saveData.itemCost[items[0]] = items[1];
-        }
-    } else if (optSymbol == "-") {
-        saveData.itemCost[items[0]] -= items[1];
-        if (saveData.itemCost[items[0]] <= 0) {
-            delete saveData.itemCost[items[0]];
-        }
+function resetCost(itemCost, items) {
+    if (itemCost.hasOwnProperty(items[0])) {
+        itemCost[items[0]] += items[1];
+    } else {
+        itemCost[items[0]] = items[1];
     }
 }
 
 function create_code() {
     $("#code").html(JSON.stringify(saveData));
     $("#code_area").css("display", "block");
+}
+
+function load_code() {
+    $("#code").empty();
 }
