@@ -50,11 +50,11 @@ ul.display li:hover {
 }
 
 li img {
-    width: auto;
-    height: 96px;
+    width: 96px;
+    height: auto;
 }
 
-li {
+td li {
     list-style: none;
     margin: 6px 6px 6px 6px;
     float: left;
@@ -90,13 +90,4 @@ table.no_border, table.no_border td {
     border-bottom: none;
     border-left: none;
     border-right: none;
-}
-
-.skillIco img {
-    height: 30px;
-    width: auto;
-}
-.servantIco img{
-    height: 60px;
-    width: auto;
 }

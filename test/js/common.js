@@ -71,7 +71,6 @@ function getPicUrl(type, id) {
             break;
         case "item":
             url = "http://file.fgowiki.fgowiki.com/fgo/material/" + itemsPath[id] + ".jpg";
-            // url = "https://kazemai.github.io/fgo-vz/common/images/icon/items/" + id + ".png";
             break;
         case "skill":
             url = "http://file.fgowiki.fgowiki.com/mobile/images/Skill/" + skillsPath[id] + ".png";

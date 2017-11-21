@@ -4,10 +4,7 @@ var saveData = {
 };
 
 $(document).ready(function() {
-    data = readJson("data/data.json", "fgoArchiveMainDataVer", "fgoArchiveMainData");
-    if (window.localStorage && window.localStorage.hasOwnProperty("fgoArchivePlanData")) {
-        saveData = JSON.parse(window.localStorage.getItem("fgoArchivePlanData"));
-    }
+    var data = readJson("data/data.json", "fgoArchiveMainDataVer", "fgoArchiveMainData");
     $.each(data, function(i, info) {
         if (info.id > 0) {
             var servant = {
@@ -43,7 +40,14 @@ $(document).ready(function() {
             $("#servants").append(lst);
         }
     });
-
+    if (window.localStorage && window.localStorage.hasOwnProperty("fgoArchivePlanData")) {
+        saveData = JSON.parse(window.localStorage.getItem("fgoArchivePlanData"));
+        $.each(saveData.lvlInf, function(i, servant) {
+            createSvtList(i);
+            svtData[i].priority=servant.servants;
+        });
+        calItemCost();
+    }
     updateStatus();
 });
 
@@ -119,7 +123,9 @@ function addLine() {
         priority: $("#lvl_priority").val()
     };
     saveData.lvlInf[id] = row;
+
     var itemCost = calItemCost();
+    createSvtList(id);
     if (window.localStorage) {
         window.localStorage.setItem("fgoArchivePlanData", JSON.stringify(saveData));
     }
@@ -135,6 +141,7 @@ function calItemCost() {
         calSingleCost(itemCost, servant.current_skill3, servant.target_skill3, svtData[servant.id].skillItems, svtData[servant.id].skillQPs);
         //}
     });
+    createCostList(itemCost);
     return itemCost;
 }
 
@@ -160,6 +167,73 @@ function create_code() {
     $("#code_area").css("display", "block");
 }
 
+var q;
 function load_code() {
-    $("#code").empty();
+    try {
+        q=JSON.parse($("#in_code").val());
+    } catch (e) {
+        alert("数据不合法");
+        return;
+    }
+    console.log("???");
+    saveData=JSON.parse($("#in_code").val());
+    if(window.localStorage){
+        window.localStorage.setItem("fgoArchivePlanData", JSON.stringify(saveData));
+    }
+     $("lvl_inf").remove();
+     calItemCost();
+     for(var i in saveData){
+         createSvtList(i);
+     }
+    $('#in_code_area').css('display','none');
+}
+
+function createCostList(itemCost) {
+    $("#item_require").empty();
+    var e_ul = $("<ul></ul>");
+    for (var i in itemCost) {
+        var e_li = $("<li></li>");
+        var pic_div = $("<div></div>");
+        var num_div = $("<div></div>");
+        pic_div.attr("class", "bg_pic");
+        num_div.attr("class", "float_num");
+        if (i == "QP") {
+            pic_div.append("<a><img src='" + getPicUrl("others", i) + "'></a>");
+            num_div.append("<a>" + itemCost[i] + "</a>");
+        } else {
+            pic_div.append("<a href='item.html?" + i + "'><img src='" + getPicUrl("item", i) + "'></a>");
+            num_div.append("<a href='item.html?" + i + "'>" + itemCost[i] + "</a>");
+        }
+        pic_div.append(num_div);
+        e_li.append(pic_div);
+        e_ul.append(e_li);
+    }
+    $("#item_require").append(e_ul);
+}
+
+function createSvtList(id) {
+    var e_tr = $("<tr></tr>");
+    e_tr.addClass("lvl_inf");
+    e_tr.append("<td>" + id + "</td>");
+    e_tr.append("<td><a href='servant.html?" + id + "'><img src='" + getPicUrl("servant", id) + "' style='width:auto;height:60px'/></a></td>");
+    e_tr.append("<td>" + saveData.lvlInf[id].current_limit + "</td>");
+    e_tr.append("<td>" + saveData.lvlInf[id].target_limit + "</td>");
+    e_tr.append("<td>" + (parseInt(saveData.lvlInf[id].current_skill1) + 1) + "</td>");
+    e_tr.append("<td>" + (parseInt(saveData.lvlInf[id].target_skill1) + 1) + "</td>");
+    e_tr.append("<td>" + (parseInt(saveData.lvlInf[id].current_skill2) + 1) + "</td>");
+    e_tr.append("<td>" + (parseInt(saveData.lvlInf[id].target_skill2) + 1) + "</td>");
+    e_tr.append("<td>" + (parseInt(saveData.lvlInf[id].current_skill3) + 1) + "</td>");
+    e_tr.append("<td>" + (parseInt(saveData.lvlInf[id].target_skill3) + 1) + "</td>");
+    e_tr.append("<td>" + (parseInt(saveData.lvlInf[id].priority) + 1) + "</td>");
+    e_tr.append("<td><input type='button' value='删除' onclick='deleteList(this," + id + ")' ></td>");
+    $("#svt_list").append(e_tr);
+}
+
+
+function deleteList(obj,id) {
+    obj.parentNode.parentNode.remove();
+    delete saveData.lvlInf[id];
+    window.localStorage.setItem("fgoArchivePlanData", JSON.stringify(saveData));
+    svtData[id].priority=-1;
+    calItemCost();
 }

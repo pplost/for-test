@@ -3,3 +3,37 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+ul.display div.row li {
+    list-style: none;
+}
+
+ul.display div.row li:hover {}
+
+ul.display div.row img{
+    width: auto;
+    height: 128px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+@media (max-width: 996px) {
+    ul.display div.row img {
+        width: auto;
+        height: 96px;
+    }
+}
+
+@media (max-width: 768px) {
+    ul.display div.row img {
+        width: auto;
+        height: 72px;
+    }
+}
+
+@media (max-width: 600px) {
+    ul.display div.row img {
+        width: 100%;
+        height: auto;
+    }
+}
