@@ -7,7 +7,7 @@ import zhconv
 import urllib.request
 import re
 from getCraft import getCraftInf
-from wiki_supple import wikiSupple
+#from wiki_supple import wikiSupple
 
 path='../data/data.json'
 with open('text/data.json','r+',encoding='utf-8') as rpoint:
