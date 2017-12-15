@@ -20,10 +20,15 @@ data=g.compareDiff("text/craft.json",data)
 #格式化
 formatStr=json.dumps(data,ensure_ascii=False,indent=4)
 formatStr=formatStr.replace('    ','\t')
+formatStr=formatStr.replace('（','(')
+formatStr=formatStr.replace('）',')')
 formatStr=zhconv.convert(formatStr,'zh-cn')
 
 minStr=json.dumps(data,ensure_ascii=False,separators=(',',':'))
+minStr=minStr.replace('（','(')
+minStr=minStr.replace('）',')')
 minStr=zhconv.convert(minStr,'zh-cn')
+
 
 with open('text/data.json','w+',encoding='utf-8') as wpoint:
 	#json.dump(data,wpoint,ensure_ascii=False,indent=4)

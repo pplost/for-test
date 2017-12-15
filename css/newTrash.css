@@ -8,9 +8,12 @@ ul.display div.row li {
     list-style: none;
 }
 
-ul.display div.row li:hover {}
+ul.display div.row li:hover {
+    margin-top: -5%;
+    margin-bottom: 5%;
+}
 
-ul.display div.row img{
+ul.display div.row img {
     width: auto;
     height: 128px;
     margin-top: 10%;
