@@ -348,6 +348,10 @@ function detail_info() {
                                 console.log("------------item------------");
                                 console.log(master.mstCombineLimit[j].itemIds[k], findItemName(master.mstCombineLimit[j].itemIds[k]));
                             }
+							if (!itemsPath[master.mstCombineLimit[j].itemIds[k]]) {
+                                console.log("------------item icon------------");
+                                console.log('collectionNo:', master.mstSvt[x].collectionNo, "servantID:", master.mstSvt[x].id, 'itemIcoId:', master.mstCombineLimit[j].itemIds[k], 'name:', findItemName(master.mstCombineLimit[j].itemIds[k]));
+                            }
                             t.push(master.mstCombineLimit[j].itemNums[k]);
                             tmp.push(t);
                         }
