@@ -24,7 +24,9 @@ var $Q = jQuery.noConflict();
 var translations = {
     //表框架
     "FateGOアイテム効率劇場":"FGO素材效率剧场",
+    "FateGOアイテム効率劇場PC":"FGO素材效率剧场",
     "各シート概要":"各表单概要",
+    "スマホ用表示":" ",
     "はじめに":"介绍",
     "AP効率Best5":"AP效率前5",
     "ドロップ率Best5":"掉率前5",
@@ -37,7 +39,7 @@ var translations = {
     "クエスト名":"关卡",
     "1個あたり":"每个所需",
     "絆P/AP":"羁绊/AP",
-    "像1+?凸2":"<div id=xxwc class=xxwc onmouseenter='enter(event);' onmouseleave='leave();'><div id=xxwc1 class=xxwc1plus2>1</div><div id=xxwcleft class=xxwctop>肖</div><div id=xxwcleft class=xxwcbottom>像</div><div id=xxwcplus2 class=xxwc1plus2>+2</div><div id=xxwcright class=xxwctop>满破</div><div id=xxwcright class=xxwcbottom>午餐</div></div>",
+    "像1+ﾗ凸2":"<div id=xxwc class=xxwc onmouseenter='enter(event);' onmouseleave='leave();'><div id=xxwc1 class=xxwc1plus2>1</div><div id=xxwcleft class=xxwctop>肖</div><div id=xxwcleft class=xxwcbottom>像</div><div id=xxwcplus2 class=xxwc1plus2>+2</div><div id=xxwcright class=xxwctop>满破</div><div id=xxwcright class=xxwcbottom>午餐</div></div>",
     "リンク":"Link",
     "アイテム別":"按素材",
     "1周あたり":"每把",
@@ -63,18 +65,26 @@ var translations = {
     "ピース":"银棋",
     "モニュ":"金像",
     "平均獲得QP":"平均获得QP",
+    "獲得QPパターン内訳":"获得QP量样本",
+    "獲得QP凸モナ":"满破蒙娜丽莎",
+    "凸モナ":"满破蒙娜丽莎",
+    "獲得QP礼装なし":"无蒙娜丽莎",
+    "出現数":"样本数",
+    "割合":"比例",
+    "級":"等级",
+
 
     //素材
     "歯車":"齿轮",
     "ランタン":"鬼灯",
-    "????":"鬼灯",
+    "ﾗﾝﾀﾝ":"鬼灯",
     "羽根":"羽毛",
     "ホム":"血瓶",
     "ホムベビ":"血瓶",
     "ランプ":"神灯",
-    "????":"神灯",
+    "ﾗﾝﾌﾟ":"神灯",
     "スカラベ":"甲虫",
-    "?????":"甲虫",
+    "ｽｶﾗﾍﾞ":"甲虫",
     "産毛":"原毛",
     "貝殻":"贝壳",
     "心臓":"心脏",
@@ -131,7 +141,7 @@ var translations = {
     "オルレアン":"奥尔良",
     "ドンレミ":"栋雷米",
     "ヴォークルール":"沃库勒尔",
-    "ラ?シャリテ":"拉沙里泰",
+    "ラ・シャリテ":"拉沙里泰",
     "ジュラ":"汝拉",
     "リヨン":"里昂",
     "マルセイユ":"马赛",
@@ -174,7 +184,7 @@ var translations = {
     "ロンドン":"伦敦",
     "オールドストリート":"旧街",
     "ホワイトチャペル":"白色教堂",
-    "シティ?オブ?ロンドン":"伦敦城",
+    "シティ・オブ・伦敦":"伦敦城",
     "クラーケンウェル":"克勒肯维尔",
     "サザーク":"萨瑟克",
     "ソーホー":"苏活区",
@@ -225,8 +235,11 @@ var translations = {
     //雅戈泰
     "下総国":"下总国",
 
-    //迦勒底之门
+    //塞勒姆
+    "セイレム":"塞勒姆",
 
+    //迦勒底之门
+    "宝物庫超級":"宝物库 超级",
 };
 
 //正则替换词条
@@ -265,7 +278,7 @@ var longestEntry = "";
     var links = document.getElementsByTagName("a");
     document.title="FGO素材效率剧场";
     for(var i = 0; i < links.length; i++){
-        if(links[i].href.match("1TrfSDteVZnjUPz68rKzuZWZdZZBLqw0")){
+        if(links[i].href.match("1TrfSDteVZnjUPz68rKzuZWZdZZBLqw0")||links[i].href.match("2PACX-1vSgINV7TiiW1Bk")){
             links[i].removeAttribute( "href");
         }
     }
