@@ -74,7 +74,7 @@ itemDict={
 	"狂阶金像":"7107"
 }
 def readFile(path,headLine,readLine,flag):
-	with open(path,'r+') as rpoint:
+	with open(path,'r+',encoding='utf-8') as rpoint:
 		lines=rpoint.readlines()
 	tlist=[]
 	outList=[]
@@ -114,7 +114,7 @@ def readFile(path,headLine,readLine,flag):
 					b.pop()
 				else:
 					break
-			b.insert(0,itemDict[l[0]])
+			b.insert(0,l[0])
 			outList.append(b)
 			print(b)
 	#插入结晶
@@ -133,10 +133,9 @@ def listFormat(l1,l2):
 #表头4行，可能会有变动
 #只需70行，会有变动
 #掉率为倒序true，ap为正序false
-l1=readFile('text/掉率.csv',4,70,True)
-l2=readFile('text/AP效率.csv',4,70,False)
+l1=readFile('text/掉率.csv',4,71,True)
+l2=readFile('text/AP效率.csv',4,71,False)
 d=listFormat(l1,l2)
-outStr=json.dumps(d,ensure_ascii=False,indent=4)
-outStr=outStr.replace('    ','\t')
+outStr=json.dumps(d,ensure_ascii=False,separators=(',',':'))
 with open('drop_chance.json','w+',encoding='utf-8') as wpoint:
 	wpoint.write(outStr)
