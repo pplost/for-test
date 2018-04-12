@@ -1,17 +1,15 @@
 // ==UserScript==
 // @name         FGO效率剧场提取
-// @namespace    https://greasyfork.org/zh-CN/scripts/27379-fate-grand-order-wiki-fgo-translate
-// @version      1.0.1
+// @version      1.2.1
 // @icon         https://lh3.googleusercontent.com/TSst6F-PkOtThWjeSOS-12_vQv6X7ybf1LZNecS4SALYmNoaUavtwlpVKL3UyZWQfg
 // @description  FGO效率剧场提取用
-// @author       AgLandy
 // @match        http*://docs.google.com/spreadsheets/d/*
-// @grant        none
 // @require      http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js
+// @namespace https://greasyfork.org/users/131449
 // ==/UserScript==
 
 /*
-如有问题请到这里 “ http://bbs.ngacn.cc/read.php?tid=11000111 ” 反馈
+https://docs.google.com/spreadsheets/d/1TrfSDteVZnjUPz68rKzuZWZdZZBLqw03FlvEToOvqH0/htmlview?sle=true#
 */
 
 
@@ -62,8 +60,8 @@ var translations = {
     "ドロップ率/周":"掉率/把",
     "絆P":"羁绊",
     "基本絆P":"friendshipPoints",
-    "ピース":"银棋",
-    "モニュ":"金像",
+    "ピース":"阶银棋",
+    "モニュ":"阶金像",
     "平均獲得QP":"平均获得QP",
     "獲得QPパターン内訳":"获得QP量样本",
     "獲得QP凸モナ":"满破蒙娜丽莎",
@@ -103,6 +101,8 @@ var translations = {
     "幼角":"6519",
     "胆石":"6529",
     "神酒":"6531",
+	"火薬":"6534",
+    "結氷":"6535",
     "剣ピ":"7001",//剑阶银棋
     "弓ピ":"7002",//弓阶银棋
     "槍ピ":"7003",//枪阶银棋
@@ -129,13 +129,22 @@ var translations = {
     "脂":"6521",//黑脂
     "根":"6518",//树根
     "鎖":"6522",//愚锁
-    "剣":"601",
-    "弓":"602",
-    "槍":"603",
-    "騎":"604",
-    "術":"605",
-    "殺":"606",
-    "狂":"607",
+    // "剣":"601",
+    // "弓":"602",
+    // "槍":"603",
+    // "騎":"604",
+    // "術":"605",
+    // "殺":"606",
+    // "狂":"607",
+	"剣":"剑",
+    "槍":"枪",
+    "騎":"骑",
+    "術":"术",
+    "殺":"杀",
+	"猛火":"之猛火",
+	"秘石":"之秘石",
+	"魔石":"之魔石",
+	"輝石":"之辉石",
 
     //地名
     "エリア":"area",
@@ -253,7 +262,12 @@ var translations = {
 	"鮮血神殿":"鲜血神殿",
 	
     //新宿
-
+	"代々木二丁目":"代代木二丁目",
+	"新宿駅":"新宿站",
+	"バレルタワー":"枪身塔",
+	"パーティ会場":"舞会会场",
+	"タワー最上階":"塔顶楼",
+	
     //雅戈泰
     "アガルタ":"雅戈泰",
 
@@ -262,6 +276,9 @@ var translations = {
 
     //塞勒姆
     "セイレム":"塞勒姆",
+	
+	//アナスタシア	
+	"アナスタシア":"永久冻土帝国",
 
     //迦勒底之门
     "宝物庫超級":"宝物库 超级",

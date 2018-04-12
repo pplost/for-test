@@ -27,37 +27,6 @@ itemDict={
 	"术之秘石":"6205",
 	"杀之秘石":"6206",
 	"狂之秘石":"6207",
-	"羽毛":"6501",
-	"核桃":"6502",
-	"井盖":"6503",
-	"煤灰":"6505",
-	"逆鳞":"6506",
-	"爪子":"6507",
-	"鬼灯":"6508",
-	"蛇玉":"6509",
-	"齿轮":"6510",
-	"书页":"6511",
-	"龙牙":"6512",
-	"蹄铁":"6513",
-	"血瓶":"6514",
-	"八连":"6515",
-	"凶骨":"6516",
-	"心脏":"6517",
-	"树根":"6518",
-	"幼角":"6519",
-	"血泪":"6520",
-	"黑脂":"6521",
-	"愚锁":"6522",
-	"神灯":"6523",
-	"勋章":"6524",
-	"甲虫":"6525",
-	"贝壳":"6526",
-	"毒针":"6527",
-	"原毛":"6528",
-	"胆石":"6529",
-	"髄液":"6530",
-	"神酒":"6531",
-	"勾玉":"6532",
 	"剑阶银棋":"7001",
 	"弓阶银棋":"7002",
 	"枪阶银棋":"7003",
@@ -74,7 +43,7 @@ itemDict={
 	"狂阶金像":"7107"
 }
 def readFile(path,headLine,readLine,flag):
-	with open(path,'r+',encoding='utf-8') as rpoint:
+	with open(path,'r+',encoding='gbk') as rpoint:
 		lines=rpoint.readlines()
 	tlist=[]
 	outList=[]
@@ -87,6 +56,8 @@ def readFile(path,headLine,readLine,flag):
 				x=x.replace("\n","").strip()
 			tlist.append(l)
 		else:
+			if(l[0] in itemDict):
+				l[0] = itemDict[l[0]]
 			for x in range(len(l)):
 				if(x>0):
 					l[x]=l[x].replace("\n","").strip()
@@ -131,10 +102,10 @@ def listFormat(l1,l2):
 	return d
 	
 #表头4行，可能会有变动
-#只需70行，会有变动
+#只需73行，会有变动
 #掉率为倒序true，ap为正序false
-l1=readFile('text/掉率.csv',4,71,True)
-l2=readFile('text/AP效率.csv',4,71,False)
+l1=readFile('text/掉率.csv',4,73,True)
+l2=readFile('text/AP效率.csv',4,73,False)
 d=listFormat(l1,l2)
 outStr=json.dumps(d,ensure_ascii=False,separators=(',',':'))
 with open('drop_chance.json','w+',encoding='utf-8') as wpoint:

@@ -6,7 +6,7 @@ import os
 import zhconv
 import urllib.request
 import re
-from getCraft import getCraftInf
+from module.getCraft import getCraftInf
 #from wiki_supple import wikiSupple
 
 path='../data/data.json'
