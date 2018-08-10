@@ -106,3 +106,9 @@ git reflog expire --expire=now --all
 #压缩版本库
 git gc --prune=now
 git gc --aggressive --prune=now
+
+#合并多个提交
+git rebase -i <version>
+#version填要合并的几个提交的上一个版本
+#将除第一条的pick xxxx改为squash xxxx，wq保存退出
+#修改注释，wq保存退出

@@ -6,7 +6,7 @@ import os
 
 BASE_URL = 'http://file.fgowiki.fgowiki.com/fgo/head/'
 WHITE_LIST = []
-MAX_ID = 204
+MAX_ID = 212
 
 if not os.path.exists('image'):  
     os.makedirs('image')

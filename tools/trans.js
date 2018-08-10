@@ -1,17 +1,15 @@
 // ==UserScript==
 // @name         FGO translate
-// @namespace    https://greasyfork.org/zh-CN/scripts/27379-fate-grand-order-wiki-fgo-translate
-// @version      1.0.1
+// @version      2.1.1
 // @icon         https://lh3.googleusercontent.com/TSst6F-PkOtThWjeSOS-12_vQv6X7ybf1LZNecS4SALYmNoaUavtwlpVKL3UyZWQfg
-// @description  FGO效率剧场扩展翻译
-// @author       AgLandy
+// @description  GO效率剧场扩展翻译
 // @match        http*://docs.google.com/spreadsheets/d/*
-// @grant        none
 // @require      http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js
+// @namespace https://greasyfork.org/users/131449
 // ==/UserScript==
 
 /*
-如有问题请到这里 “ http://bbs.ngacn.cc/read.php?tid=11000111 ” 反馈
+https://docs.google.com/spreadsheets/d/1TrfSDteVZnjUPz68rKzuZWZdZZBLqw03FlvEToOvqH0/htmlview?sle=true#
 */
 
 
@@ -23,6 +21,7 @@ var $Q = jQuery.noConflict();
 
 var translations = {
     //表框架
+	"FGOアイテム効率劇場":"FGO素材效率剧场",
     "FateGOアイテム効率劇場":"FGO素材效率剧场",
     "FateGOアイテム効率劇場PC":"FGO素材效率剧场",
     "各シート概要":"各表单概要",
@@ -85,7 +84,7 @@ var translations = {
     "ﾗﾝﾌﾟ":"神灯",
     "スカラベ":"甲虫",
     "ｽｶﾗﾍﾞ":"甲虫",
-    "産毛":"原毛",
+    "産毛":"胎毛",
     "貝殻":"贝壳",
     "心臓":"心脏",
     "逆鱗":"逆鳞",
@@ -95,8 +94,45 @@ var translations = {
     "八連":"八连",
     "勲章":"勋章",
     "鉄杭":"铁钉",
+	"火薬":"火药",
+    "結氷":"结冰",
+	
+	"英雄の証":"英雄之证",
+	"狂骨":"凶骨",
+	"竜の牙":"龙之牙",
+	"虚影の塵":"虚影之尘",
+	"愚者の鎖":"愚者之锁",
+	"万死の毒針":"万死的毒针",
+	"魔術髄液":"魔术髓液",
+	"世界樹の種":"世界树之种",
+	"ゴーストランタン":"鬼魂提灯",
+	"八連双晶":"八连双晶",
+	"蛇の宝玉":"蛇之宝玉",
+	"鳳凰の羽根":"凤凰羽毛",
+	"無間の歯車":"无间齿轮",
+	"禁断の頁":"禁断书页",
+	"ホムンクルスベビー":"人工生命体幼体",
+	"隕蹄鉄":"陨蹄铁",
+	"大騎士勲章":"大骑士勋章",
+	"追憶の貝殻":"追忆的贝壳",
+	"竜の逆鱗":"龙之逆鳞",
+	"混沌の爪":"混沌之爪",
+	"蛮神の心臓":"蛮神心脏",
+	"精霊根":"精灵根",
+	"戦馬の幼角":"战马的幼角",
+	"血の涙石":"血之泪石",
+	"黒獣脂":"黑兽脂",
+	"封魔のランプ":"封魔之灯",
+	"智慧のスカラベ":"智慧之圣甲虫像",
+	"原初の産毛":"起源的胎毛",
+	"呪獣胆石":"咒兽胆石",
+	"宵哭きの鉄杭":"夜泣铁钉",
+	"励振火薬":"励振火药",
+	"永遠結氷":"永远结冰",
+	
     "銅素材":"铜素材",
     "銀素材":"银素材",
+	
     "剣ピ":"剑阶银棋",
     "弓ピ":"弓阶银棋",
     "槍ピ":"枪阶银棋",
@@ -240,6 +276,11 @@ var translations = {
 	"鮮血神殿":"鲜血神殿",
 	
     //新宿
+	"代々木二丁目":"代代木二丁目",
+	"新宿駅":"新宿站",
+	"バレルタワー":"枪身塔",
+	"パーティ会場":"舞会会场",
+	"タワー最上階":"塔顶楼",
 
     //雅戈泰
     "アガルタ":"雅戈泰",
@@ -249,6 +290,9 @@ var translations = {
 
     //塞勒姆
     "セイレム":"塞勒姆",
+	
+	//永久冻土帝国
+	"アナスタシア":"永久冻土帝国",
 
     //迦勒底之门
     "宝物庫超級":"宝物库 超级",

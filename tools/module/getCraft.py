@@ -70,13 +70,13 @@ class getCraftInf():
 		for x in data:
 			if ('friendship' in x.keys()):
 				if(str(x["id"]) in localData.keys()):
-					x["friendship"]["desc"]=re.sub(r'(.*?只有).*?(装备.*?)',r'\1'+self.nameTransDict[str(x["svtId"])]+'('+self.classTransDict[str(x["class"])]+')'+r'\2',localData[str(x["id"])][1])
+					x["friendship"]["desc"]=re.sub(r'(.*?只有).*?(装备.*?)',r'\1'+self.nameTransDict[str(x["svtId"])]+'【'+self.classTransDict[str(x["class"])]+'】'+r'\2',localData[str(x["id"])][1])
 					x["friendship"]["name"]=localData[str(x["id"])][0]
 					d[x["id"]]=[x["friendship"]["name"],x["friendship"]["desc"]]
 					print("yes",d[x["id"]])
 				else:
 					l=self.getCraftInfo(x["friendship"]["id"])
-					l[1]=re.sub(r'(.*?只有).*?(装备.*?)',r'\1'+self.nameTransDict[str(x["svtId"])]+'('+self.classTransDict[str(x["class"])]+')'+r'\2',l[1])
+					l[1]=re.sub(r'(.*?只有).*?(装备.*?)',r'\1'+self.nameTransDict[str(x["svtId"])]+'【'+self.classTransDict[str(x["class"])]+'】'+r'\2',l[1])
 					d[x["id"]]=l
 					print("no",d[x["id"]])
 		craftStr=json.dumps(d,ensure_ascii=False,indent=4)

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         FGO效率剧场提取
-// @version      1.2.1
+// @version      2.1.1
 // @icon         https://lh3.googleusercontent.com/TSst6F-PkOtThWjeSOS-12_vQv6X7ybf1LZNecS4SALYmNoaUavtwlpVKL3UyZWQfg
 // @description  FGO效率剧场提取用
 // @match        http*://docs.google.com/spreadsheets/d/*
@@ -277,7 +277,7 @@ var translations = {
     //塞勒姆
     "セイレム":"塞勒姆",
 	
-	//アナスタシア	
+	//永久冻土帝国
 	"アナスタシア":"永久冻土帝国",
 
     //迦勒底之门

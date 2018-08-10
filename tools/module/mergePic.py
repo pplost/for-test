@@ -5,7 +5,7 @@ import os
 from PIL import Image,ImageFont,ImageDraw
 
 class mergePic():
-
+	#单张图片参数，间隔，列数
 	def __init__(self,img_height=140,img_width=128,interval=10,col_num=7):
 		self.IMG_HEIGHT = img_height
 		self.IMG_WIDTH = img_width
@@ -13,6 +13,7 @@ class mergePic():
 		self.COL_NUM = col_num
 		
 	def mergeX(self,fileList,newImg,text=''):
+		#没有文件，退出
 		if(len(fileList) < 1):
 			return
 		if(text == ''):
@@ -21,20 +22,24 @@ class mergePic():
 			ft = ImageFont.truetype('msyh.ttf', 36)
 			ftWidth,ftHeight = ft.getsize(text)
 			ftHeight = int(ftHeight * 1.5)
-			
+		#初始化图片坐标
+		leftPos = 0
+		topPos = 0 + ftHeight
+		#图片数量只够一行	
 		if(len(fileList) < self.COL_NUM):
 			width = len(fileList) * (self.IMG_WIDTH + self.INTERVAL) - self.INTERVAL
 		else:
 			width = self.COL_NUM * (self.IMG_WIDTH + self.INTERVAL) - self.INTERVAL
+		#图片宽度小于标题文字宽度
 		if(width < ftWidth):
+			leftPos=int((ftWidth-width)/2)
 			width = ftWidth
 		if(len(fileList) % self.COL_NUM > 0):
 			height = (int(len(fileList) / self.COL_NUM) + 1) * (self.IMG_HEIGHT + self.INTERVAL) - self.INTERVAL + ftHeight
 		else:
 			height = (len(fileList) / self.COL_NUM) * (self.IMG_HEIGHT + self.INTERVAL) - self.INTERVAL + ftHeight
 		img = Image.new('RGB', (int(width), int(height)),(255,255,255))
-		leftPos = 0
-		topPos = 0 + ftHeight
+		
 		for i in range(len(fileList)):
 			img.paste(Image.open(fileList[i]), (leftPos,topPos))
 			if((i + 1) % self.COL_NUM == 0):

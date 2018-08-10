@@ -102,10 +102,10 @@ def listFormat(l1,l2):
 	return d
 	
 #表头4行，可能会有变动
-#只需73行，会有变动
+#只需75行，会有变动，截止到棋子
 #掉率为倒序true，ap为正序false
-l1=readFile('text/掉率.csv',4,73,True)
-l2=readFile('text/AP效率.csv',4,73,False)
+l1=readFile('text/掉率.csv',4,75,True)
+l2=readFile('text/AP效率.csv',4,75,False)
 d=listFormat(l1,l2)
 outStr=json.dumps(d,ensure_ascii=False,separators=(',',':'))
 with open('drop_chance.json','w+',encoding='utf-8') as wpoint:

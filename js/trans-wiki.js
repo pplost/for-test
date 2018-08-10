@@ -54,6 +54,8 @@ var itemsPath = {
     "6533": "zhui",
 	"6534": "huoyao",
 	"6535": "bing",
+	"6536": "gang",
+	"6537": "zhilun",
     "6999": "cubes",
     "7001": "figure1s",
     "7002": "figure2s",
@@ -84,6 +86,9 @@ var itemsPath = {
     "94015007": "guzi",
     "94017504": "fangkuai",
     "94018806": "huzi",
+	"94023305": "yezi",
+	"94025004": "duiqi",
+	"94027507":"heimao",
 };
 
 var skillsPath = {
